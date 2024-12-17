@@ -1,4 +1,5 @@
-import as,{equal as eq,deepEqual as deq}from'node:assert/strict'
+import as,{equal as eq,deepEqual as deq}
+	from'node:assert/strict'
 const log=console.log
 ,_方案=((
 	lit=`\

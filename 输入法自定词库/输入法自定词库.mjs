@@ -1,0 +1,70 @@
+/*生成讯飞个性短语ini、搜狗自定义短语csv
+	Auto.jsPro9311专用
+	作者欸欸WX/QQ33324，接安卓APP订做、接帮工接散活
+	考虑增强：右手优化，智能从右向左排次序
+	智能lib：韵母为“e、u”时可省略*/
+const log=(...a)=>(console.log(...a),a[1]?a:a[0])
+,p=5///position
+///chain模式，即标准模式、提示模式，边键入边筛选
+,keyinChain=a=>a.split('')
+	.reduce((r,a)=>[r[0]+a].concat(r),['']).slice(0,-1)
+,chainLib=a=>a.map(([a,b])=>keyinChain(b).map(b=>[a,b,p])).flat()
+///双键模式，只有单键码则用单键；会结合双拼习惯
+,twoKeyLib=a=>a.map(([a,b])=>[a,b.slice(0,2),p])
+,builders={
+	oneKey:{desc:
+		'单键、首字母模式：首键显示、两键隐藏；不干扰双拼全拼'
+		,b:a=>a.map(([a,b])=>[a,b[0],p])},twoKey:twoKeyLib,chain:chainLib}
+,outputFile=async(f,t,o='utf8')=>((
+	{writeFileSync,existsSync,mkdirSync},{join}
+	,d='output')=>(
+		existsSync(d)||mkdirSync(d,{recursive:true})
+		,writeFileSync(join(d,f),t,o)))
+	(await import('node:fs'),await import('path'))
+,makeFiles=(def,w=outputFile)=>(
+	///全部设置→键盘输入→(最上面)个性短语→导入个性短语
+	w('讯飞个性短语.ini','\ufeff[iFlyIME]\r\n'
+		+def.map(([t,k,i])=>k+'='+i+','+t).join('\r\n')
+		,'utf16le')
+	///更多设置→输入设置→(最下面)自定义短语→管理~→默认分组→批量导入
+	,w('搜狗自定义短语.csv'
+		,def.map(([t,k,i])=>k+','+t+','+i).join('\n')))
+,extract=a=>((
+	groups=a=>a.split('\n#').slice(1)///仿md，“#”分段
+	,words=a=>(b=>(
+		[,a,b]=a.split('\n')///行1标题2正文3按键，后面都是注释
+		,a=a.split(a.includes(',')?',':'')///有逗号按逗号分，没逗号按字分
+		,b=b.split(',')///按键按逗号分
+		,a.map((a,i)=>[a,b[i]])))()
+	)=>groups(a.trimEnd()).map(words).flat())()
+/*分组：几个特殊的用单键模式、
+	特别常用的支持单双键、其余用双键
+*/
+makeFiles(builders.oneKey.b(extract(`
+#特殊
+\t’"
+tab,px,h
+#js
+\\n,\\r\\n
+n,rn
+`)).concat(chainLib(extract(`
+#星座
+♈︎,♉︎,♊︎,♋︎,♌︎,♍︎,♎︎,♏︎,♐︎,♑︎,♒︎,♓︎
+yh,nq,ud,xx,ui,iu,ig,xx,ue,mo,py,yu
+羊牛双蟹狮处秤蝎射摩瓶鱼
+#常用
+←→
+zo,yb
+`)),twoKeyLib(extract(`
+#行星
+☉☽☿♀♂♃♄♅♆♇
+ri,yt,uv,jn,ho,mu,tu,tm,hl,my
+#八卦
+⚊⚋⚌⚍⚎⚏☰☱☲☳☴☵☶☷
+yh,yn,tlyh,ukyn,ukyh,tlyn,qm,dv,li,vf,xp,kj,gf,kp
+阳,阴,太阳,少阴,少阳,太阴
+乾兑离震巽坎艮坤（理想迭代次序，不是原先天或后天次序）
+#符号
+↓↑↔↻∵∴
+xw,uh,zoyb,hr,ynwz,soyi
+`))))
