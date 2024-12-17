@@ -1,0 +1,6 @@
+**/.tmp/
+*/.log/
+*/output/
+*/images/
+*/build/
+/node_modules/
