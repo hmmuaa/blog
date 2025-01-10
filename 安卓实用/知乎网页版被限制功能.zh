@@ -1,0 +1,23 @@
+APP不支持正文检索 只能用网页版
+
+#搜索入口
+1.切换到桌面模式 尝试搜索
+.切换回手机模式 就找到了手机搜索入口
+.收藏即可
+>得到的搜索入口:“zhihu.com/search?q=kandai”
+
+#查看问题下全部答案
+打开搜索结果条目只显示单个答案
+且屏蔽了问题链接
+前往问题页面 可以改地址栏
+也可以写userscript实现
+
+但问题下又只显示三条答案 并屏蔽了评论
+有修复[userscript](greasyfork.org/en/scripts/407967-知乎手机网页版改进)(已存)
+
+#被强制跳转APP
+Firefox有选项禁用所有此类跳转
+
+Chrome有修复[userscript](greasyfork.org/en/scripts/389371-知乎去强制下载app)(已存)
+聪明地提供Windows Phone的useragent
+既保留手机界面 也避免强制跳转
