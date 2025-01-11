@@ -1,0 +1,17 @@
+#Pocket Git Clone/Pull from GitHub
+1.在GitHub创建项目 没有特别设置
+.pgit直接创建 也没有特别设置
+.连接VPN情况下
+.Clone成功 未填密码 获取了已有文件
+
+#Push
+1.GitHub用户设置(注意不是项目设置)
+	.选Developers
+.创建classic token, scope选repo
+.生成token 复制
+.编辑pgit项目
+	.选密码验证 填gh用户名 密码粘贴token
+
+#重命名文件夹 文件夹有子文件夹时需特别步骤
+1.复制需重命名的文件夹 重命名副本
+.在pgit中删除原文件夹(长按文件夹后点×)
