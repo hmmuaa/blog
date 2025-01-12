@@ -32,3 +32,9 @@ config:`layout.css.devPixelsPerPx`
 
 经确认stov和njs只需`PixelsPerPx`
 google则只需useragent
+
+/2025年1月11日##尝试Iceraven
+_Iceraven_特点是支持`about:config`并支持更多扩展
+其实现在来看这两点都不会很重要了
+靠userscript都能做到 并且能自己改进代码
+遗憾是原生devtools仍然不支持

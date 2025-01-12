@@ -8,7 +8,12 @@
 需插件(Stylus)或userscript自定义字体
 Chrome两种都不支持
 
-#其他痛点
+##其他痛点
+#Chrome长按选择中文时选的是一个字或一个词
+没有人是要一字一字一词一词选的
+强制把中文效率拉低到英文同等
+这是Chrome系传统弊病 并且没有选项关闭
+
 -禁用外部应用打开链接:ff✔️好像是独有
 	ff还有相关一系列ab/conf:
 		`network.protocol-handler.external-default`
