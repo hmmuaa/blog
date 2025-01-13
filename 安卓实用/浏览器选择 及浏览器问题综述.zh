@@ -1,7 +1,17 @@
+#独有功能
+-Chrome能分网站锁定桌面模式
+-Kiwi基于cr并支持扩展
+
+-Firefox能禁止网页弹APP并支持扩展
+-Firefox Beta支持`about:config`
+-Iceraven没什么特别有用的修改
+-Fennec是一个已经停更的ff定制版
+ff屏蔽的扩展切桌面模式可装
+
 #分网址锁定UA有几种情况
 -Chrome和Kiwi都能分网站记住
 -Firefox只能暂时按tab记住桌面模式
-	-但可以通过userscript实现 详见[Firefox](Firefox.zh)
+	-但可以通过userscript实现 详见[Firefox]()
 -ff beta支持`about:config`但只能设置全局
 
 #中文字库不全
@@ -9,17 +19,11 @@
 Chrome两种都不支持
 
 ##其他痛点
-#Chrome长按选择中文时选的是一个字或一个词
-没有人是要一字一字一词一词选的
-强制把中文效率拉低到英文同等
-这是Chrome系传统弊病 并且没有选项关闭
-
 -禁用外部应用打开链接:ff✔️好像是独有
 	ff还有相关一系列ab/conf:
 		`network.protocol-handler.external-default`
 -复制链接文字:ff❌ kiwi✔️
-
-Fennec是一个已经停更的Firefox定制版
+-排序扩展:没发现哪个支持
 
 #2025年1月9日小结
 还是用回ff
