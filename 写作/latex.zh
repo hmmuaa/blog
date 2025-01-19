@@ -1,0 +1,31 @@
+只做点测试
+
+$$\forall \; x \in X \quad \exists \; y \leq \epsilon$$
+
+非数学环境下给出中文音调:$\={a}\'{a}\v{a}\`{a}a$
+数学环境下给出中文音调:$\bar{a}\acute{a}\check{a}\grave{a}a$
+latex会默认应用手写字体:$du\bar ang$ duāng
+
+$\circ{f}$
+
+$$\mathbb{N} = \{ a \in \mathbb{Z} : a > 0 \}$$
+
+$$
+f(x)=
+\begin{cases}
+1/d_{ij} & \quad \text{when $d_{ij} \leq 160$}\\ 
+0 & \quad \text{otherwise}
+\end{cases}
+$$
+
+$$
+ \fbox{
+ $\begin{array}{l}
+ Given\; the\; vectors\; {\bf p}\; and\; {\bf n}\; as\; input,\; and\;
+ the\;
+ function\; {\sl f},\\ find\; the\; scalar\; \lambda\; that\; minimizes\; f({\bf
+ p}+\lambda {\bf n}). \\
+ Replace\; {\bf p}\; by\; {\bf p} + \lambda {\bf
+ n}.\; Replace\; {\bf n}\; by\; \lambda {\bf n}. \end{array}$
+ }
+$$
