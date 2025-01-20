@@ -1,11 +1,11 @@
 #assert,validate等几种情况
 --2024年4月10日
-validate是用户录入的 有错则提示用户更正 或可存草稿
-assert排错可能来自未完善的代码 尤防止可能记录下非出错的数据
+validate是用户录入的 有格式不符则提示用户更正 或可存草稿
+assert排错可能来自未完善的代码 尤防止记录下非出错的数据
 出错时不由用户处理
 当页面特效出错时可忽略(即原console.assert方式)
 业务逻辑出错时则只能记录错误中断执行(node:assert方式)
-tdd中出错时 会记录错误并继续其他测试
+tdd中assert失败时 记录错误并继续其他测试
 
 --2024年4月19日
 1.Asserts allow a developer to document assumptions

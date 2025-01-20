@@ -1,4 +1,4 @@
-import'#lib'
+import'#lab'
 import{format as uf,inspect as insp}from'util'
 ///参数不能多次使用 引https://nodejs.org/api/util.html#utilformatformat-args
 eq('foo:%s',uf('%s:%s','foo'))
