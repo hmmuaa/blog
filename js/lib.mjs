@@ -9,4 +9,3 @@ Object.assign(global,{p,as,eq,neq,throws,randomIn,...date})
 const groupBy=(a,f)=>a.reduce((a,b,i,l,__,k=f(b,i,l))=>(
 	a[k]=[...(a[k]||[]),b],a),{})
 Object.groupBy=groupBy
-export{p}

@@ -14,6 +14,7 @@ throws(()=>f(['\abc']),TypeError)///这种尝试的写法无效
 f=a=>(''+a).slice(1,-1)///hack
 eq(f(/\abc/),'\\abc')
 eq(f(/\abc/)+f(/\def/),'\\abc\\def')
+///更多见[正则用法]
 
 neq('123',123)
 eq(+'123',123),eq(-'123',-123)

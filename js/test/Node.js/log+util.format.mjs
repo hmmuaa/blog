@@ -13,8 +13,7 @@ const sort=a=>a.replaceAll(': ',':').replaceAll(', ',',')
 	.replaceAll('{ ','{').replaceAll(' }','}')
 	.replaceAll('[ ','[').replaceAll(' ]',']')
 	.replaceAll('\n  ','\n')
-,o=a=>
-	`,s=\`${sort(uf('%s',a))}\`
+,o=a=>`,s=\`${sort(uf('%s',a))}\`
 	,O=\`${sort(uf('%O',a))}\`
 	,o=\`${sort(uf('%o',a))}\`
 	,j=\`${sort(uf('%j',a))}\``

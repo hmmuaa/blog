@@ -27,7 +27,7 @@ eq(monthsLater(5,a).toISOString(),'1970-06-01T00:00:00.000Z')
 ///Calculating 2
 as(minsLater()<hrsLater())
 as(!(minsLater()>hrsLater()))
-eq(new Date(hrsLater()-minsLater()).toISOString(),'1970-01-01T04:55:00.000Z')
+eq(new Date(hrsLater(5,0,0,b)-minsLater(5,0,b)).toISOString(),'1970-01-01T04:55:00.000Z')
 
 ///extendingDateToString
 const asLocal=a=>minsLater(-a.getTimezoneOffset(),0,a),

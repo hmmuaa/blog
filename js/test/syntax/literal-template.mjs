@@ -17,7 +17,7 @@ f=a=>typeof a;eq(f(a),'string');eq(f(`abc`),'string')
 ///2是不加括号做参数 但传进去实际是其信息的一组参数
 f=a=>a;as(f`abc`instanceof Array),eq(f`abc`[0],'abc')
 
-///nesting/combining
+///nesting/combining 嵌套/组合
 a=`a\bc`,b=`z${a}d`;eq(raw`${b}`,'za\bcd')//✘
 ///嵌套前先raw 否则嵌套时\就会被当作escape
 a=raw`a\bc`,b=raw`z${a}d\ef`;eq(raw`${b}`,'za\\bcd\\ef')//✔
@@ -25,3 +25,7 @@ throws(()=>raw(b))
 f=a=>raw`z${a}d\ef`
 eq(f(a),'za\\bcd\\ef')
 eq(f(raw`a\bc`),'za\\bcd\\ef')
+
+///接收tl转成str
+f=(...a)=>String.raw(...a)
+eq(f`abc`,'abc')

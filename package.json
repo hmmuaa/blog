@@ -1,5 +1,5 @@
 {
   "imports": {
-    "#*": "./js/*.mjs"
+    "#*": "./js/*/global.mjs"
   }
 }
