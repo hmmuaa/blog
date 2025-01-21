@@ -1,6 +1,14 @@
 import'#lab'
-let a=5,b=[0,1,2,3,4],c,f
+let a,b,c,f
+a=[,,,],a[1]=11
+eq(a,[,11,,]),eq(a.length,3)
+eq(a[1],11),eq(a[0],undefined),eq(a[5],undefined)
+
+a=a.fill(null)
+eq(a,[null,null,null]),neq(a,[,,,])
+
 ///init
+a=5,b=[0,1,2,3,4]
 eq(Array.from(Array(a).keys()),b)
 eq([...Array(a).keys()],b)
 ///仿“for i” 经常的情况并不是要这个数组 而是要i

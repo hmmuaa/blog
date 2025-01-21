@@ -23,6 +23,12 @@ mgit质量也不高 但能用
 	
 #mgit中重命名文件夹
 重命名好再在mgit中全部stage再提交即可
+1.直接重命名文件夹 再打开mgit
+.在Status中会看到_Missing files_和_Untracked files_
+.操作_Add all to stage_
+._UNSTAGED DIFF_中文件删除状态 误显不必理会
+.Commit,Push
+.检查gh正确重命名 log显示移动文件
 gh会自动识别重命名(移动)操作
 
 #pgit中重命名文件夹
