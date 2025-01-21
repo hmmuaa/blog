@@ -1,4 +1,4 @@
-import'#test'
+import'#lab'
 let a=5,b=[0,1,2,3,4],c,f
 ///init
 eq(Array.from(Array(a).keys()),b)
@@ -77,6 +77,7 @@ a=seq(5),b=a.toReversed();eq(a,seq(5)),eq(b,seq(5).reverse())
 a=seq(5),b=a.toSorted((a,b)=>b-a)
 eq(a,[0,1,2,3,4])
 eq(b,[4,3,2,1,0])
+eq(b.sort((a,b)=>a-b),seq(5))
 
 ///multiple sort
 a=seq(5)
