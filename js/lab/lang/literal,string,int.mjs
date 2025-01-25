@@ -59,6 +59,14 @@ a=[null,{},null];eq(a.sort(a=>!a-1),[{},null,null])
 ///似乎是不行的
 //a=[null,{},null];eq(a.sort((a,b)=>+!!b),[{},null,null])
 
+eq(5-null,5),eq(null-5,-5)
+eq(5-!!undefined,5),eq(!!undefined-5,-5)
+eq(5-!!{},4),eq(!!{}-5,-4)
+a=[null,{},null];eq(a.sort((a,b)=>!a-!b),[{},null,null])
+///todo:写得很晕还要测试确认
+a=[null,[5],null];eq(a.sort((a,b)=>!a?.[0]-!b?.[0])
+	,[[5],null,null])
+
 ///bool
 neq(undefined,false),neq(null,false)
 eq(!undefined,true)

@@ -61,16 +61,13 @@ eq(b,[2,3,4])
 
 ///复制 借此补写只读函数
 f=a=>Array.from(a)
-a=seq(5)
-b=f(a)
-c=b.splice(1,3)
+a=seq(5),b=f(a),c=b.splice(1,3)
 eq(a,[0,1,2,3,4])
 eq(b,[0,4])
 eq(c,[1,2,3])
 
 f=a=>[...a]
-a=seq(5)
-b=f(a).reverse()
+a=seq(5),b=f(a).reverse()
 eq(a,seq(5)),eq(b,seq(5).reverse())
 
 const copy=f

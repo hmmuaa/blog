@@ -1,7 +1,7 @@
 在安卓上使用git有pgit和mgit两个app选择
 (pgit:Pocket Git Clone,mgit:MGit)
-pgit界面较美观 mgit界面美化较差
-但pgit的git功能会偶尔遇到bug 无法解决
+pgit界面较美观 mgit界面设计简直是破坏性的
+但pgit功能缺陷较多 且偶尔bug 无法解决
 mgit质量也不高 但能用
 两个用起来都有很多不足 但m比p强很多
 两个可以配置到一个repo上
