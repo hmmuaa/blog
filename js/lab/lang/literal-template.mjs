@@ -1,4 +1,4 @@
-import'#lib'
+import'#lab'
 let
 ///combining
 a=`abc`,b=`z${a}d`;eq(b,'zabcd')
@@ -15,7 +15,7 @@ eq(typeof`abc`,'string')
 throws(()=>raw(a),TypeError)//已经是string
 f=a=>typeof a;eq(f(a),'string');eq(f(`abc`),'string')
 ///2是不加括号做参数 但传进去实际是其信息的一组参数
-f=a=>a;as(f`abc`instanceof Array),eq(f`abc`[0],'abc')
+f=a=>a;assert(f`abc`instanceof Array),eq(f`abc`[0],'abc')
 
 ///nesting/combining 嵌套/组合
 a=`a\bc`,b=`z${a}d`;eq(raw`${b}`,'za\bcd')//✘

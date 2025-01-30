@@ -1,14 +1,20 @@
 import'#lab'
 import{resolve}from'path'
 import{fileURLToPath}from'url'
-eq(process.argv[1],fileURLToPath(import.meta.url))
-const g=a=>a.split('/').slice(-1)[0].slice(0,-4)
-eq(g(process.argv[1]),'1.try local')
+eq(decodeURI(Error().stack).split('at ')[1]
+	.split(/[/.]/).at(-2),'be import')
+eq(process.argv[1].split(/[/.]/).at(-2),'b')
+eq(fileURLToPath(import.meta.url).split(/[/.]/).at(-2),'be import')
 const entry=resolve(process.argv[1])
 ///引“https://stackoverflow.com/a/66309132
-const throughImportMeta=(
-	m,p=resolve(fileURLToPath(m.url))
-	)=>!p.includes(entry)
+export const isImport=(
+	m,l=resolve(fileURLToPath(m.url))
+)=>(
+	eq(process.argv[1].split(/[/.]/).at(-2),'b')
+	//,eq(l.split(/[/.]/).at(-2),'b')//depends on caller file
+	,eq(fileURLToPath(import.meta.url).split(/[/.]/).at(-2),'be import')
+	,!l.includes(entry)
+)
 ///currying又是一种特殊情况，二次调用时完全不产生记录
 ,forCurrying=()=>
 	p(fileURLToPath(import.meta.url),stack())
