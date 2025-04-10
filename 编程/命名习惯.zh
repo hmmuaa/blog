@@ -1,0 +1,72 @@
+
+#各种语言的参数命名习惯
+x y z xs是Haskell等函数式语言常用的，
+(xs这种谐音英语也蛮印度味儿)
+js也逐渐有人用这种风格
+还有一种val也常见
+
+#常用词首字母参数命名
+a:arg/actual 多个依次abc
+	测试/相等断言中actual用a expected用b或依次
+i:indicator/index/item 只在loop使用 多个依次ijk
+l:list/length两者互关`l.length`/`Array(l)`
+	搭配i:`for i in l`
+f:function依次
+	只有上下文语义充足时 依不重复原则用f
+k v:key value,map专用
+m:matches 用在Array.find/every的复杂情况
+	用abc也不妨碍 用m会增强些可读性
+	`replace=a=>b=>(m=a.find(a=>a[0]==b))?m[1]:b`
+
+#专门情况
+p:puts/print/log eq:areEqual neq:notEqual
+rd:read wt:write md:mkdir
+upd:update
+init/fst/snd/svc/pwm等常见缩写都会使用
+t:target/tag/title/tick/text/type recorder中三者一体
+p b:parse build 转换文本格式 在生成输入法词库中用到
+
+#补充
+x f:extract/regexp format
+en/de:encode/decode
+词头ex/in/im/con/com有大量成组逻辑词
+build其实不常用 p也不易看出是parse 可能不如x/m
+extract不同于deserialize 表示取所需部分
+s/des:serialize/deserialize
+d:duration delay
+
+~~f:from/file/folder 多个依次用f、g
+~~t:to/target/trace
+	f/t暂淘汰 用i/o
+i/o:input/output
+	考虑input和index实际不会一起用不会冲突，
+	并且都代表当前项，适合通用
+t也用做文件名表示tmp file、test file，
+多个文件名依次用tt、t3、t4以排在一起
+
+#关于i(nput) s(ource) f(ile)的问题
+i首先表示一个item，但从文件读经常是多个i；
+f会发生读取文件f和处理函数f冲突，这两个会同时用；
+那么可以考虑的是s(ource)和l(oading file)
+
+#琢磨一些对应的拼音命名？
+（目前并不使用，只是考虑）
+y：源文件
+mb：目标文件
+j、z：键、值
+拼音加英语混合好不好？个人认为可以，
+前提是“英语”只用i、k、v这类确实大家都一看就懂的
+
+#短名
+跨Closure的
+tdd/eq、deq：equal、deepEqual
+as、at：assert、attempt
+
+#“lib” or “libs”
+本身就是缩写，就是截断，lib足以表明，加s纯多余
+
+#global近义词
+overall universal general
+default normal standard
+shared basic plain typical classical official
+bootstrap(引导) init load

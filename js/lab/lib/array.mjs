@@ -19,6 +19,10 @@ eq(Array.from({length:5},(_,i)=>i),b)
 const seq=l=>[...Array(l).keys()]
 eq(seq(a),b)
 
+///i超出并不会报错 iter中用到
+eq(seq(5)[4],4)
+eq(seq(5)[5],undefined)
+
 ///remove dup
 const uniq=a=>[...new Set(a)]
 eq(uniq([...'abcbadec']).join(''),'abcde')
@@ -70,9 +74,14 @@ f=a=>[...a]
 a=seq(5),b=f(a).reverse()
 eq(a,seq(5)),eq(b,seq(5).reverse())
 
-const copy=f
-,toReversed=a=>copy(a).reverse()
-,toSorted=(a,b)=>copy(a).sort(b)
+a=seq(5),b=a.slice()//最方便的写法
+eq(a,seq(5)),eq(b,seq(5)),
+eq(b.reverse(),seq(5).reverse())
+eq(a,seq(5)),eq(b,seq(5).reverse())
+
+const
+toReversed=a=>a.slice().reverse()
+,toSorted=(a,b)=>a.slice().sort(b)
 Object.assign(Array.prototype,{
 	toReversed(){return toReversed(this)}
 	,toSorted(by){return toSorted(this,by)}})
