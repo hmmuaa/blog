@@ -45,7 +45,7 @@ eq(f(a),{i:12,o:{n:3.4,t:'abc'},l:[56]})
 ///alias和destruct虽然都用`:`但是两种完全不同情况
 ///`:`alias时 并不是改名而是复制 实际两侧命名都生效
 ///destruct并不是alias而是展开 类似fn-call 不会命名不会赋值
-f=({notFound:{}})=>{}
+f=({miss:{}})=>{}
 throws(()=>f(a),TypeError)
 
 f=({i:j,o:{n:m,t:s},l:[li]})=>({i,j,p:{m,n,s},l:[li]})
