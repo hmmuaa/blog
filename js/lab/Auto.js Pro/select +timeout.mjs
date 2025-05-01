@@ -42,7 +42,7 @@ await s(v).first().then(a=>a.parent.click())
 ///因此平时可能更适用maxRetries
 await rejects(s(v).timeout(10).findFirst(),TimeoutError)
 await s(v).timeout(10).findFirstOrNull().then(a=>eq(a,null))
-///maxRetries(0)则确保完成一次查找
+///maxRetries(0)则确保完成一次查找 应该等同first/firstOrNull
 await s(v).maxRetries(0).findFirstOrNull()
 	.then(a=>eq(a.text,'Verbose'))
 
