@@ -1,5 +1,5 @@
 {
   "imports": {
-    "#glob": "./js/lab/global.mjs"
+    "#glob": "./js/lab/glob.mjs"
   }
 }
