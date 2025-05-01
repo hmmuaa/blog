@@ -1,4 +1,4 @@
-import'#lab'
+import'#glob'
 ///ternary/三元`:?`
 var a=0
 !0?a=1:_,eq(a,1)
