@@ -1,4 +1,4 @@
-import'#lab'
+import'#glob'
 let a,b,c,f
 a=[,,,],a[1]=11
 eq(a,[,11,,]),eq(a.length,3)
@@ -11,13 +11,25 @@ eq(a,[null,null,null]),neq(a,[,,,])
 a=5,b=[0,1,2,3,4]
 eq(Array.from(Array(a).keys()),b)
 eq([...Array(a).keys()],b)
+assert(b instanceof Array)
+assert(Array.isArray(b))
+eq(typeof b,'object')
+assert([...Array(a).keys()]instanceof Array)
+assert(Array.from(Array(a).keys())instanceof Array)
+const seq=l=>[...Array(l).keys()]
+eq(seq(a),b)
+
 ///仿“for i” 经常的情况并不是要这个数组 而是要i
 eq([...Array(5)].map((_,i)=>i),b)
 eq(Array(5).fill().map((_,i)=>i),b)
 eq(Array.from(Array(5),(_,i)=>i),b)
 eq(Array.from({length:5},(_,i)=>i),b)
-const seq=l=>[...Array(l).keys()]
-eq(seq(a),b)
+
+///init with f
+a=5,b=[0,1,4,9,16]
+eq([...Array(a)].map((_,i)=>i*i),b)
+const range=(f,t)=>[...Array(t-f+1)].map((_,i)=>f+i)
+eq(range(5,7),[5,6,7])
 
 ///i超出并不会报错 iter中用到
 eq(seq(5)[4],4)
