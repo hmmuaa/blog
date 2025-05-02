@@ -43,5 +43,6 @@ receiver.on('receive', listener)
 // 在脚本结束时取消注册广播接收器
 process.on('exit', function () {
 	p('unregisterBroadcastReceiver')
-	unregisterBroadcastReceiver(receiver)
+	//unregisterBroadcastReceiver(receiver)
+	//Error: java.lang.IllegalArgumentException: Receiver not registered:
 })
