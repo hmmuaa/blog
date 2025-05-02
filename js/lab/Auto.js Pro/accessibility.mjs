@@ -1,4 +1,4 @@
-import'#lab'
+import'#glob'
 import acc,{select as _select}from'accessibility'
 import{device}from'device'
 	const{widthPixels:w,heightPixels:h}=device.displayMetrics
