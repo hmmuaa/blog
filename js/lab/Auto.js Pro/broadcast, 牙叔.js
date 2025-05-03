@@ -1,5 +1,7 @@
-///error:Can't find method android.content.ContextWrapper.registerReceiver(adapter1,function).
-///源自牙叔教程 这可能是个pro8的 9需要调整
+/*已整理合并在broadcast.mjs
+源自牙叔教程 这可能是个pro8的 9需要调整
+error:Can't find method android.content.ContextWrapper.registerReceiver(adapter1,function).
+*/
 let receiver = new JavaAdapter(android.content.BroadcastReceiver, {
 	onReceive: function (context, intent) {
 		log(intent)

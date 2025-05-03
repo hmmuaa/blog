@@ -1,4 +1,4 @@
-///成功
+///成功 已整理合并在broadcast.mjs
 // 定义一个回调函数，用于屏幕旋转后执行
 function onScreenRotate(newOrientation) {
 	toastLog('屏幕已旋转，新方向：' + newOrientation)
