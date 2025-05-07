@@ -1,5 +1,5 @@
 import'#lang+'
-let f,g,h
+let a,f,g,h
 f=([a=11,b=22]=[])=>a+b
 eq(f(),33)
 eq(f([33]),55)
@@ -16,8 +16,11 @@ throws(f,TypeError),throws(g,TypeError)
 eq(f({a:3}),5),eq(f({b:3}),4),eq(f({a:3,b:4}),7)
 eq(g([3]),5),eq(g([,3]),4),eq(g([3,4]),7)
 
+//结构
 f=(a={b:1,c:2})=>a.b+a.c,eq(f(),3)
 f=({a={b:1,c:2}}={})=>a.b+a.c,eq(f(),3)
+a={a:1,b:2}
+f=({a:c,b:d}=a)=>c+d,eq(f(),3)
 
 f=({a=1,b=2}={})=>a+b///额外设默认值
 eq(f(),3)///这样可以不传参

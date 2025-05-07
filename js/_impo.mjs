@@ -1,7 +1,7 @@
-import assert,{deepEqual as eq,throws,rejects}from'assert/strict'
+import as,{deepEqual as eq,throws,rejects}from'assert/strict'
 const p=(...a)=>(console.log(...a),a[1]?a:a[0])
 ,proba=a=>Math.random()<a
-Object.assign(global,{p,assert,eq,throws,rejects})
+Object.assign(global,{p,as,eq,throws,rejects})
 
 const groupBy=(a,f)=>a.reduce((a,b,i,l,__,k=f(b,i,l))=>(
 	a[k]=[...(a[k]||[]),b],a),{})

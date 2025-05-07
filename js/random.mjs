@@ -3,6 +3,6 @@ import'./_impo.mjs'
 export const random=(a,b,__,f=Math.random
 	,inRange=(l,m)=>f()*(m-l)+l
 )=>b?inRange(a,b):f()
-let l=.1,m=.6,a=[...Array(1e4)].map(_=>random(l,m))
-a.forEach(a=>assert(l<a&&a<m,a))
-assert((a=a.filter(a=>a<.2).length,1900<a&&a<2100),a)
+let l=.1,m=.6,sep=2e3,a=[...Array(sep*5)].map(_=>random(l,m))
+a.forEach(a=>as(l<a&&a<m,a))
+as((a=a.filter(a=>a<.2).length,sep*.9<a&&a<sep*1.1),a)
