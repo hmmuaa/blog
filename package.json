@@ -1,5 +1,0 @@
-{
-  "imports": {
-    "#glob": "./js/glob.mjs"
-  }
-}

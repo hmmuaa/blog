@@ -1,16 +1,23 @@
 import'#glob'
-let f=([a=11,b=22]=[])=>a+b
+let f,g,h
+f=([a=11,b=22]=[])=>a+b
 eq(f(),33)
 eq(f([33]),55)
 
-f=({a,b})=>a+b;eq(f({a:1,b:2}),3)
-throws(f,TypeError)
+f=({a,b})=>a+b,eq(f({a:1,b:2}),3)
+g=([a,b])=>a+b,eq(g([1,2]),3)
+throws(f,TypeError),throws(g,TypeError)
 ///函数内用到就必须传参 就和正常参数一样
 
-f=({a=1,b=2})=>a+b
-eq(f({}),3)///默认值有效 但
-throws(f,TypeError)///如果不传参会是undefined
+f=({a=1,b=2})=>a+b,eq(f({}),3)
+g=([a=1,b=2])=>a+b,eq(g([]),3)///默认值有效 但
+throws(f,TypeError),throws(g,TypeError)
+///如果不传参会是undefined
 eq(f({a:3}),5),eq(f({b:3}),4),eq(f({a:3,b:4}),7)
+eq(g([3]),5),eq(g([,3]),4),eq(g([3,4]),7)
+
+f=(a={b:1,c:2})=>a.b+a.c,eq(f(),3)
+f=({a={b:1,c:2}}={})=>a.b+a.c,eq(f(),3)
 
 f=({a=1,b=2}={})=>a+b///额外设默认值
 eq(f(),3)///这样可以不传参
