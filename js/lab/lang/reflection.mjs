@@ -1,4 +1,4 @@
-import'#glob'
+import'#lang+'
 const gFn=a=>Object.getOwnPropertyNames(a).filter(b=>
 	typeof a[b]=='function')
 let a=''

@@ -1,4 +1,4 @@
-import'#glob'
+import'#lang+'
 let f,g,h
 f=([a=11,b=22]=[])=>a+b
 eq(f(),33)
