@@ -1,6 +1,6 @@
 import'#lang+'
 //把任何值转为~
-let a,f
+let a,b,f
 a=await 1;eq(a,1)
 a=async()=>1;eq(await a(),1)
 ///throws(()=>1.then(a=>eq(1,a)),SyntaxError)
