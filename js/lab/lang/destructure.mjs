@@ -1,7 +1,9 @@
-import'#lab'
+import'#glob'
 let a,b,c,f
 ///destructure array
 f=([a,b],c=a+b)=>[a,b,c];eq(f([1,2]),[1,2,3])
+,[a]=[1,2],eq(a,1)
+,[,a]=[1,2],eq(a,2)
 
 ///array2obj,字段名只写一次但mutable
 a=[12,3.4,'abc'],c={i:12,n:3.4,t:'abc'}

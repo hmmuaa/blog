@@ -1,5 +1,5 @@
 {
 	"imports": {
-		"#lang+": "./_expo.mjs"
+		"#glob": "./_expo.mjs"
 	}
 }

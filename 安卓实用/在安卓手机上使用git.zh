@@ -14,7 +14,7 @@ mgit质量也不高 但能用
 
 #Push
 1.GitHub用户设置(注意不是项目设置)
-	选Developers
+	选Developer settings
 .创建classic token
 	scope选repo
 .生成token并复制
