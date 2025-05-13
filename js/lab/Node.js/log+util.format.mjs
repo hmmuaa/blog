@@ -1,5 +1,12 @@
 import'#glob'
 import{format as uf,inspect as insp}from'util'
+
+let v=a=>a.forEach(a=>eq(a,'1'))
+v([''+1,1+''
+,uf('%s',1),,uf('%O',1),,uf('%o',1),,uf('%j',1)
+,insp(1),,JSON.stringify(1),(1).toString()])
+throws(_=>(1).toISOString(),TypeError)//1.toISOString is not a function
+
 ///参数不能多次使用 引https://nodejs.org/api/util.html#utilformatformat-args
 eq('foo:%s',uf('%s:%s','foo'))
 
@@ -56,7 +63,7 @@ curFn:[Function:curFn] {[length]:1,[name]:'curFn'}\n}`
 	eq(uf('%j',[1,a]),JSON.stringify([1,a]))
 })()
 
-const v=(f,s,i,o)=>{
+v=(f,s,i,o)=>{
 	eq(''+f,s)
 	eq(uf('%s',f),s)
 	eq(insp(f),i)///log()没有format时使用insp

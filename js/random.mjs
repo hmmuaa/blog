@@ -1,4 +1,4 @@
-import'./_impo.mjs'
+import'#glob'
 /*Math.random生成的是0到1 包含0排除1的小数 0<=a<1*/
 export const random=(a,b,__,f=Math.random
 	,inRange=(l,m)=>f()*(m-l)+l
