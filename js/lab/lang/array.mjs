@@ -1,4 +1,4 @@
-import'#glob'
+import as,{deepEqual as eq,notDeepEqual as neq,throws,rejects}from'assert/strict'
 let a,b,c,f
 a=[,,,],a[1]=11
 eq(a,[,11,,]),eq(a.length,3)
@@ -11,11 +11,11 @@ eq(a,[null,null,null]),neq(a,[,,,])
 a=5,b=[0,1,2,3,4]
 eq(Array.from(Array(a).keys()),b)
 eq([...Array(a).keys()],b)
-assert(b instanceof Array)
-assert(Array.isArray(b))
+as(b instanceof Array)
+as(Array.isArray(b))
 eq(typeof b,'object')
-assert([...Array(a).keys()]instanceof Array)
-assert(Array.from(Array(a).keys())instanceof Array)
+as([...Array(a).keys()]instanceof Array)
+as(Array.from(Array(a).keys())instanceof Array)
 const seq=l=>[...Array(l).keys()]
 eq(seq(a),b)
 
@@ -30,6 +30,10 @@ a=5,b=[0,1,4,9,16]
 eq([...Array(a)].map((_,i)=>i*i),b)
 const range=(f,t)=>[...Array(t-f+1)].map((_,i)=>f+i)
 eq(range(5,7),[5,6,7])
+
+const array=(l,f=i=>i)=>Array(l).fill().map((_,i)=>f(i))
+eq(array(5),[0,1,2,3,4])
+eq(array(5,i=>i*i),[0,1,4,9,16])
 
 ///i超出并不会报错 iter中用到
 eq(seq(5)[4],4)
