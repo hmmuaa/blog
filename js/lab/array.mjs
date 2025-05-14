@@ -31,9 +31,9 @@ a=5,b=[0,1,4,9,16]
 eq([...Array(a)].map((_,i)=>i*i),b)
 
 const array=(l,f=i=>i)=>Array.from({length:l},(_,i)=>f(i))
+,range=(f,t)=>array(t-f+1,i=>f+i)
 eq(array(5),[0,1,2,3,4])
 eq(array(5,i=>i*i),[0,1,4,9,16])
-const range=(f,t)=>array(t-f+1,i=>f+i)
 eq(range(5,7),[5,6,7])
 
 ///i超出并不会报错 iter中用到
@@ -118,3 +118,12 @@ eq(seq(10).toSorted((a,b,f=Math.floor)=>
 
 eq(a.toSorted((a,b)=>b-a).toSorted((a,b)=>a%2-b%2)
 ,[4,2,0,3,1])//排序条件倒序写 分段写后面
+
+/*array to iterator
+https://stackoverflow.com/a/79189447/2537458
+(是ES2025标准 ajs不支持)*/
+// const expensiveFunction = n => 2 * n;
+// a = [2, 5, 78, 4];
+// const result = a.values().map(expensiveFunction).find(r => r > 100);
+
+// console.log(result);

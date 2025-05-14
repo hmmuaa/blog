@@ -1,6 +1,7 @@
 import'#glob'
 let i,a
-///[generator语法](developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator)
+/*[generator语法](developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator
+) `*`+`yield`会自动生成next函数*/
 function*g(){yield 1,yield 2,yield 3}
 a=g(),eq(a.next().value,1),eq(a.next().value,2)
 
@@ -73,6 +74,9 @@ eq(ns(i[Symbol.iterator]()),'{next:[Function:next]}')
 eq([...i],[...'abcdefghijklmnopqrstuvwxyz'])
 throws(_=>[...i[Symbol.iterator]()],TypeError)//i[Symbol.iterator] is not a function or its return value is not iterable
 throws(_=>i.join(),TypeError)//i(...).join is not a function
+eq(j,27),j=0,eq(j,0)
+for(let a of i){if(a=='b')break;else{eq(a,'a')}}
+eq(j,2)//中途break有效
 
 i=(i=0)=>({[Symbol.iterator](){return{next:()=>({value:String.fromCharCode(lo+i++),done:i>26})}}})
 eq([...i()],[...'abcdefghijklmnopqrstuvwxyz'])
