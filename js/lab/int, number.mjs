@@ -20,3 +20,10 @@ as(-0===0)
 neq(-0,0)
 neq(0,-0)
 eq(0,+0)
+
+///int-obj
+let f=a=>({valueOf:_=>a
+,get char(){return String.fromCharCode(97+a)}})
+,a=f(5)
+eq(+a,5),eq(Math.pow(a,2),25)
+eq(a.char,'f')

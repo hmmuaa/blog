@@ -1,15 +1,19 @@
-import'#lab'
+import'#glob'
 ///typical
 function fn(a,b){return a+b}
 eq(fn(12,34),46)
 ///arrow
-let f=(a,b)=>a+b
+let
+f=(a,b)=>a+b
 eq(f(12,34),46)
 ///inline
 f=function(a,b){return a+b}
 eq(f(12,34),46)
 ///obj init shorthand
-let o={f(a,b){return a+b}}
+let
+o={f(a,b){return a+b}}
+eq(o.f(12,34),46)
+o={f:(a,b)=>a+b}
 eq(o.f(12,34),46)
 ///变通
 f={f(a,b){return a+b}}.f
