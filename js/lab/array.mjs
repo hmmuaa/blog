@@ -31,9 +31,9 @@ a=5,b=[0,1,4,9,16]
 eq([...Array(a)].map((_,i)=>i*i),b)
 
 const ar=(l,f=i=>i)=>Array.from({length:l},(_,i)=>f(i))
-,range=(f,t)=>array(t-f+1,i=>f+i)
-eq(array(5),[0,1,2,3,4])
-eq(array(5,i=>i*i),[0,1,4,9,16])
+,range=(f,t)=>ar(t-f+1,i=>f+i)
+eq(ar(5),[0,1,2,3,4])
+eq(ar(5,i=>i*i),[0,1,4,9,16])
 eq(range(5,7),[5,6,7])
 
 ///i超出并不会报错 iter中用到
@@ -97,15 +97,18 @@ eq(b.reverse(),seq(5).reverse())
 eq(a,seq(5)),eq(b,seq(5).reverse())
 
 const
-toReversed=a=>a.slice().reverse()
+last=a=>a[a.length-1]
+,toReversed=a=>a.slice().reverse()
 ,toSorted=(a,b)=>a.slice().sort(b)
 ,findLast=(a,f)=>toReversed(a).find(f)
 Object.assign(Array.prototype,{
-	toReversed(){return toReversed(this)}
+	last(){return last(this)}
+	,toReversed(){return toReversed(this)}
 	,toSorted(by){return toSorted(this,by)}
 	,findLast(f){return findLast(this,f)}})
 // ,toSorted=(a,b)=>copy(a).sort(b)
 // Array.prototype.toSorted=function(by){return toSorted(this,by)}
+eq(seq(5).last(),4)
 a=seq(5),b=a.toReversed();eq(a,seq(5)),eq(b,seq(5).reverse())
 a=seq(5),b=a.toSorted((a,b)=>b-a)
 eq(a,[0,1,2,3,4])

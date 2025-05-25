@@ -1,4 +1,5 @@
 'nodejs';log=console.log
+///只留备考 已经做了大量调整 在.mjs
 ///#函数名
 ///arrow fn写法
 fn=a=>log(a,new Error().stack)

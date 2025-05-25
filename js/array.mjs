@@ -10,10 +10,12 @@ const uniq=a=>[...new Set(a)]
 Object.groupBy=groupBy
 
 const
-toReversed=a=>a.slice().reverse()
+last=a=>a[a.length-1]
+,toReversed=a=>a.slice().reverse()
 ,toSorted=(a,b)=>a.slice().sort(b)
 ,findLast=(a,f)=>toReversed(a).find(f)
 Object.assign(Array.prototype,{
-	toReversed(){return toReversed(this)}
+	last(){return last(this)}
+	,toReversed(){return toReversed(this)}
 	,toSorted(by){return toSorted(this,by)}
 	,findLast(f){return findLast(this,f)}})
