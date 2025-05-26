@@ -14,7 +14,7 @@ const st='Error',ed=`
 有时在其stack下 有时不在 通常都在 但并不一定
 所幸是否有这段ed似乎和其前部分内容无关 可忽略*/
 const p=console.error
-export const short=(a,b=a)=>({}
+export const shorts=(a,b=a)=>({}
 	,as(b.startsWith(st)),b=b.slice(st.length)
 	,b.endsWith(ed)&&(p('*ed'),b=b.slice(0,-ed.length))
 	// ,p(b)
