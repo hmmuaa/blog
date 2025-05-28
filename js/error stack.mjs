@@ -14,6 +14,11 @@ const st='Error',ed=`
 有时在其stack下 有时不在 通常都在 但并不一定
 所幸是否有这段ed似乎和其前部分内容无关 可忽略*/
 const p=console.error
+,replaceHead=(a,f,t)=>
+	a.startsWith(f)?a.replace(f,t):a
+,fn=a=>
+	///objinit o={f:...}之后o.f()会出现
+	replaceHead(a,'Object.','_.')
 export const shorts=(a,b=a)=>({}
 	,as(b.startsWith(st)),b=b.slice(st.length)
 	,b.endsWith(ed)&&(p('*ed'),b=b.slice(0,-ed.length))
@@ -25,7 +30,7 @@ export const shorts=(a,b=a)=>({}
 	,b.every(b=>as(b[b.length-1].includes('file:///')))
 	,b=b.map(b=>b.slice(0,-1))
 	,b=b.map(b=>b.join(' '))
-	,eq(b[0],'p','***'+b+'***'+a+'***')
-	,b=b.slice(1).reverse().join('/')
+	,eq(b[0],'p',a)
+	,b=b.slice(1).map(fn).reverse().join('/')
 )
 // p(compile(Error().stack))

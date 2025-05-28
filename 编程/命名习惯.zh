@@ -38,6 +38,7 @@ d:duration delay
 ~~f:from/file/folder 多个依次用f、g
 ~~t:to/target/trace
 	f/t暂淘汰 用i/o
+replace from(find) to
 i/o:input/output
 	考虑input和index实际不会一起用不会冲突，
 	并且都代表当前项，适合通用
