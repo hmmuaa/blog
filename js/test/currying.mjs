@@ -23,3 +23,30 @@ eq(f(2)(3),[1,3,4])
 f=a=>(a=>[1,a,1+a])(a+1)
 eq(f(1),[1,2,3])
 ///see also:fn-arrow,fake var
+
+///把普通fn通用转成currying
+function curry(fn) {
+  const arity = fn.length;
+
+  return function curried(...args) {
+    if (args.length >= arity) {
+      return fn(...args);
+    } else {
+      return (...nextArgs) => curried(...args, ...nextArgs);
+    }
+  };
+}
+function add(a, b, c) {
+  return a + b + c;
+}
+
+const curriedAdd = curry(add);
+
+// Normal function call
+console.log(add(1, 2, 3)); // Output: 6
+
+// Curried calls
+console.log(curriedAdd(1)(2)(3)); // Output: 6
+console.log(curriedAdd(1, 2)(3)); // Output: 6
+console.log(curriedAdd(1)(2, 3)); // Output: 6
+console.log(curriedAdd(1, 2, 3)); // Output: 6
