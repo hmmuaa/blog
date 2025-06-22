@@ -21,6 +21,15 @@ neq(-0,0)
 neq(0,-0)
 eq(0,+0)
 
+eq(Infinity,Infinity)
+eq(Infinity,Infinity+1)
+eq(Infinity,Infinity*2)
+eq(Infinity,Infinity-1)
+
+eq(Math.trunc(5/2),2)
+eq(5%2,1)
+eq(-5%2,-1)
+
 ///int-obj
 let f=a=>({valueOf:_=>a
 ,get char(){return String.fromCharCode(97+a)}})

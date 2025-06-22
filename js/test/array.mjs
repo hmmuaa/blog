@@ -124,6 +124,17 @@ eq(seq(10).toSorted((a,b,f=Math.floor)=>
 eq(a.toSorted((a,b)=>b-a).toSorted((a,b)=>a%2-b%2)
 ,[4,2,0,3,1])//排序条件倒序写 分段写后面
 
+/*concat*/
+eq([1,2].concat([]).concat([3]),[1,2,3])
+eq([1,2].concat().concat([3]),[1,2,3])
+eq([1,2].concat().concat(3),[1,2,3])//原来可以不套皮
+eq([1,2].concat(undefined).concat([3]),[1,2,undefined,3])
+eq([1,2].concat(null).concat([3]),[1,2,null,3])
+const nd=undefined
+eq([1,2].concat(nd).concat([3]),[1,2,undefined,3])
+let _
+eq([1,2].concat(_).concat([3]),[1,2,undefined,3])
+
 /*array to iterator
 https://stackoverflow.com/a/79189447/2537458
 (是ES2025标准 ajs不支持)*/
