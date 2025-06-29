@@ -98,6 +98,7 @@ eq(a,seq(5)),eq(b,seq(5).reverse())
 
 const
 last=a=>a[a.length-1]
+,last2=a=>a.at(-1)
 ,toReversed=a=>a.slice().reverse()
 ,toSorted=(a,b)=>a.slice().sort(b)
 ,findLast=(a,f)=>toReversed(a).find(f)
@@ -109,6 +110,7 @@ Object.assign(Array.prototype,{
 // ,toSorted=(a,b)=>copy(a).sort(b)
 // Array.prototype.toSorted=function(by){return toSorted(this,by)}
 eq(seq(5).last(),4)
+eq(seq(5).at(-1),4)
 a=seq(5),b=a.toReversed();eq(a,seq(5)),eq(b,seq(5).reverse())
 a=seq(5),b=a.toSorted((a,b)=>b-a)
 eq(a,[0,1,2,3,4])

@@ -4,8 +4,8 @@ import{format as uf}from'util'
 ///arrow fn写法
 let f=_=>Error().stack
 ,st=`Error
-    at f (file:///storage/emulated/0/a_a/gh/hmmuaa/blog/js/lab/Node.js/log+error%20stack.mjs:5:10)
-    at file:///storage/emulated/0/a_a/gh/hmmuaa/blog/js/lab/Node.js/log+error%20stack.mjs:15:4
+    at f (file:///storage/emulated/0/a_a/gh/hmmuaa/blog/js/test/Node.js/error%20stack.mjs:5:10)
+    at file:///storage/emulated/0/a_a/gh/hmmuaa/blog/js/test/Node.js/error%20stack.mjs:15:4
     at ModuleJob.run `
 ,ed=`(node:internal/modules/esm/module_job:195:25)
     at async Promise.all (index 0)
