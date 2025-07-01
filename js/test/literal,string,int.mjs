@@ -1,4 +1,4 @@
-import'#lab'
+import'#glob'
 eq('\abc','abc'),eq(`\abc`,'abc')
 eq(String.raw`\abc`,'\\abc')///内建
 let
@@ -67,7 +67,11 @@ a=[null,{},null];eq(a.sort((a,b)=>!a-!b),[{},null,null])
 a=[null,[5],null];eq(a.sort((a,b)=>!a?.[0]-!b?.[0])
 	,[[5],null,null])
 
-///bool
-neq(undefined,false),neq(null,false)
+///condition
+neq(undefined,true),neq(undefined,false)
 eq(!undefined,true)
 eq(!!undefined,false)
+
+neq(null,true),neq(null,false)
+eq(!null,true)
+eq(!!null,false)

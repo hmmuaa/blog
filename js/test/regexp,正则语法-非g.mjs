@@ -1,4 +1,4 @@
-import'#lab'
+import'#glob'
 ///非g模式 从整个str一级级向下定位 和g模式很不同
 ///不能仿g模式(或者我没想到怎么写)
 eq('aaaaaaa'.match(/(aa)a(aa)a/).slice(1),['aa','aa'])
