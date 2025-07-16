@@ -2,16 +2,22 @@ import'#glob'
 import{format as uf,inspect as insp}from'util'
 
 let v=a=>a.forEach(a=>eq(a,'1'))
-v([''+1,1+''
-,uf('%s',1),,uf('%O',1),,uf('%o',1),,uf('%j',1)
-,insp(1),,JSON.stringify(1),(1).toString()])
-throws(_=>(1).toISOString(),TypeError)//1.toISOString is not a function
+v([''+1,1+'',uf('%s',1),uf('%O',1),uf('%o',1),uf('%j',1)
+,insp(1),JSON.stringify(1),(1).toString()])
+
+let a='abc'
+v=a=>a.forEach(a=>eq(a,'abc'))
+v([a,a.toString(),uf('%s',a)])
+v=a=>a.forEach(a=>eq(a,"'abc'"))
+v([uf('%O',a),uf('%o',a),insp(a)])
+v=a=>a.forEach(a=>eq(a,'"abc"'))
+v([uf('%j',a),,JSON.stringify(a)])
 
 ///参数不能多次使用 引https://nodejs.org/api/util.html#utilformatformat-args
 eq('foo:%s',uf('%s:%s','foo'))
 
 const refFn=Math.floor,arFn=(a,b)=>a+b,curFn=a=>b=>a+b
-,a={i:11,n:22.2,s:'abc',a:[33,44.4,'def',[55,66.6],{s:'hij'}]
+a={i:11,n:22.2,s:'abc',a:[33,44.4,'def',[55,66.6],{s:'hij'}]
 	,o:{i:77,n:88.8,s:'fizz',a:[99,11.1,'buzz'],o:{s:'klm',n:88.8}}
 	,refFn,arFn,curFn
 }

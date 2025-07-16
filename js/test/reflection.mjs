@@ -1,4 +1,4 @@
-import'#lang+'
+import'#glob'
 const gFn=a=>Object.getOwnPropertyNames(a).filter(b=>
 	typeof a[b]=='function')
 let a=''
@@ -7,6 +7,35 @@ eq(gFn(a),[])
 eq(Object.keys(a),[])
 eq(Object.values(a),[])
 eq(Object.entries(a),[])
+eq(a.prototype,undefined)
+
+a=process.stdout
+eq(Object.getOwnPropertyNames(a),[
+	'connecting',       '_hadError',
+    '_parent',          '_host',
+    '_readableState',   '_events',
+    '_eventsCount',     '_maxListeners',
+    '_writableState',   'allowHalfOpen',
+    '_sockname',        '_pendingData',
+    '_pendingEncoding', 'server',
+    '_server',          '_type',
+    'fd',               '_isStdio',
+    'destroySoon',      '_destroy'])
+eq(gFn(a),[ 'destroySoon', '_destroy' ])
+eq(Object.keys(a),[
+  'connecting',       '_hadError',
+  '_parent',          '_host',
+  '_readableState',   '_events',
+  '_eventsCount',     '_maxListeners',
+  '_writableState',   'allowHalfOpen',
+  '_sockname',        '_pendingData',
+  '_pendingEncoding', 'server',
+  '_server',          '_type',
+  'fd',               '_isStdio',
+  'destroySoon',      '_destroy'
+])
+// eq(Object.values(a),[])
+// eq(Object.entries(a),[])
 eq(a.prototype,undefined)
 
 a=console

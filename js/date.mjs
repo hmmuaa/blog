@@ -2,7 +2,7 @@ import as,{equal as eq,deepEqual as deq}from'node:assert/strict'
 const p=(...a)=>(console.error(...a),a[1]?a:a[0])
 ///创建
 ,a=new Date(0)
-,b=new Date(Date.UTC(2012,11,20,3,0,0))///月份从0算 1月是0
+,b=new Date(Date.UTC(2012,11,20,3,0,0))///月份从0算 12月是11
 
 ///Calculating
 eq(a.toISOString(),'1970-01-01T00:00:00.000Z')
@@ -32,17 +32,19 @@ eq(new Date(hrsLater(5,0,0,b)-minsLater(5,0,b)).toISOString(),'1970-01-01T04:55:
 ///extendingDateToString
 const asLocal=a=>minsLater(-a.getTimezoneOffset(),0,a),
 toLog=a=>asLocal(a).toISOString().slice(5,-5).replace('T',' ')
-export const stamp=(a=new Date)=>asLocal(a).toISOString().slice(0,-5)
+export const
+code=(a=new Date)=>asLocal(a).toISOString().slice(2,-5)
 	.replace('T','').replaceAll('-','').replaceAll(':',''),
-stampms=(a=new Date)=>asLocal(a).toISOString().slice(0,-1)
+code2ms=(a=new Date)=>asLocal(a).toISOString().slice(2,-1)
 	.replace('T','').replace('.','')
 	.replaceAll('-','').replaceAll(':','')
 Date.prototype.toAutoJsLog=function(){return toLog(this)}
-Date.prototype.stamp=function(a){return stamp(this)}
+Object.defineProperty(Date.prototype,'code'
+	,{get(){return code(this)}})
 
 eq(a.toAutoJsLog(),'01-01 08:00:00')
-eq(a.stamp(),'19700101080000')
-eq(stampms(a),'19700101080000000')
+eq(a.code,'700101080000')
+eq(code2ms(a),'700101080000000')
 
 const sp=(a=new Date())=>asLocal(a).toISOString()
 	.slice(0,-1).split(/[-T:.]/)
