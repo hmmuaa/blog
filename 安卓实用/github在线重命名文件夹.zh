@@ -1,0 +1,20 @@
+#github rename folder online totally
+以下存档(stackoverflow.com/a/64301817/2537458)
+
+>You could use a workflow for this.
+```
+# ./.github/workflows/rename.yaml
+name: Rename Directory
+
+on:
+  push:
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: git mv old_name new_name
+      - uses: EndBug/add-and-commit@v5.1.0
+```
+Then just delete the workflow file, which you can do in the UI

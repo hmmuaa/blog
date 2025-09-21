@@ -16,8 +16,8 @@ as(Array.isArray(b))
 eq(typeof b,'object')
 as([...Array(a).keys()]instanceof Array)
 as(Array.from(Array(a).keys())instanceof Array)
-const seq=l=>[...Array(l).keys()]
-eq(seq(a),b)
+let arr=l=>[...Array(l).keys()]
+eq(arr(a),b)
 
 ///仿“for i” 经常的情况并不是要这个数组 而是要i
 eq([...Array(5)].map((_,i)=>i),b)
@@ -30,22 +30,34 @@ eq(Array.from({length:5},(_,i)=>i),b)
 a=5,b=[0,1,4,9,16]
 eq([...Array(a)].map((_,i)=>i*i),b)
 
-const ar=(l,f=i=>i)=>Array.from({length:l},(_,i)=>f(i))
-,range=(f,t)=>ar(t-f+1,i=>f+i)
-eq(ar(5),[0,1,2,3,4])
-eq(ar(5,i=>i*i),[0,1,4,9,16])
-eq(range(5,7),[5,6,7])
+arr=(l,f=i=>i)=>Array.from({length:l},(_,i)=>f(i))
+const rng=(f,t)=>arr(t-f+1,i=>f+i)
+eq(arr(5),[0,1,2,3,4])
+eq(arr(5,i=>i*i),[0,1,4,9,16])
+eq(rng(5,7),[5,6,7])
 
 ///i超出并不会报错 iter中用到
-eq(seq(5)[4],4)
-eq(seq(5)[5],undefined)
+eq(arr(5)[4],4)
+eq(arr(5)[5],undefined)
+
+///flat/flatMap
+eq([0,[1,2],3].flat(),arr(4))
+const{sign,floor:fl}=Math
+const u=undefined
+eq(arr(5,a=>a-2).map(a=>sign(a)==1?[fl(a/2),a%2]:[])
+	,[[],[],[],[0,1],[1,0]])
+eq(arr(5,a=>a-2).map(a=>sign(a)==1?[fl(a/2),a%2]:[]).flat()
+	,[0,1,1,0])
+eq(rng(-2,2).flatMap(a=>sign(a)==1?[fl(a/2),a%2]:[])
+	,[0,1,1,0])
+eq([1,11].flatMap(a=>sign(a)==1?[fl(a/4),a%4]:[]),arr(4))
 
 ///remove dup
 const uniq=a=>[...new Set(a)]
 eq(uniq([...'abcbadec']).join(''),'abcde')
 
 ///group by
-a=seq(9),b=a=>a<5,c=seq(5)
+a=arr(9),b=a=>a<5,c=arr(5)
 throws(()=>Object.groupBy(a,b),TypeError)
 throws(()=>Map.groupBy(a,b),TypeError)///不支持ES2024
 f=(a,f)=>a.reduce((a,b,i,l,__,k=f(b,i,l))=>(
@@ -82,19 +94,19 @@ eq(b,[2,3,4])
 
 ///复制 借此补写只读函数
 f=a=>Array.from(a)
-a=seq(5),b=f(a),c=b.splice(1,3)
+a=arr(5),b=f(a),c=b.splice(1,3)
 eq(a,[0,1,2,3,4])
 eq(b,[0,4])
 eq(c,[1,2,3])
 
 f=a=>[...a]
-a=seq(5),b=f(a).reverse()
-eq(a,seq(5)),eq(b,seq(5).reverse())
+a=arr(5),b=f(a).reverse()
+eq(a,arr(5)),eq(b,arr(5).reverse())
 
-a=seq(5),b=a.slice()//最方便的写法
-eq(a,seq(5)),eq(b,seq(5)),
-eq(b.reverse(),seq(5).reverse())
-eq(a,seq(5)),eq(b,seq(5).reverse())
+a=arr(5),b=a.slice()//最方便的写法
+eq(a,arr(5)),eq(b,arr(5)),
+eq(b.reverse(),arr(5).reverse())
+eq(a,arr(5)),eq(b,arr(5).reverse())
 
 const
 last=a=>a[a.length-1]
@@ -109,18 +121,18 @@ Object.assign(Array.prototype,{
 	,findLast(f){return findLast(this,f)}})
 // ,toSorted=(a,b)=>copy(a).sort(b)
 // Array.prototype.toSorted=function(by){return toSorted(this,by)}
-eq(seq(5).last(),4)
-eq(seq(5).at(-1),4)
-a=seq(5),b=a.toReversed();eq(a,seq(5)),eq(b,seq(5).reverse())
-a=seq(5),b=a.toSorted((a,b)=>b-a)
+eq(arr(5).last(),4)
+eq(arr(5).at(-1),4)
+a=arr(5),b=a.toReversed();eq(a,arr(5)),eq(b,arr(5).reverse())
+a=arr(5),b=a.toSorted((a,b)=>b-a)
 eq(a,[0,1,2,3,4])
 eq(b,[4,3,2,1,0])
-eq(b.sort((a,b)=>a-b),seq(5))
+eq(b.sort((a,b)=>a-b),arr(5))
 
 ///multiple sort
-a=seq(5)
+a=arr(5)
 eq(a.toSorted((a,b)=>a%2-b%2||b-a),[4,2,0,3,1])//标准写法
-eq(seq(10).toSorted((a,b,f=Math.floor)=>
+eq(arr(10).toSorted((a,b,f=Math.floor)=>
 	f(a/5)-f(b/5)||a%2-b%2||b-a),[4,2,0,3,1,8,6,9,7,5])
 
 eq(a.toSorted((a,b)=>b-a).toSorted((a,b)=>a%2-b%2)
@@ -132,8 +144,7 @@ eq([1,2].concat().concat([3]),[1,2,3])
 eq([1,2].concat().concat(3),[1,2,3])//原来可以不套皮
 eq([1,2].concat(undefined).concat([3]),[1,2,undefined,3])
 eq([1,2].concat(null).concat([3]),[1,2,null,3])
-const nd=undefined
-eq([1,2].concat(nd).concat([3]),[1,2,undefined,3])
+eq([1,2].concat(u).concat([3]),[1,2,undefined,3])
 let _
 eq([1,2].concat(_).concat([3]),[1,2,undefined,3])
 

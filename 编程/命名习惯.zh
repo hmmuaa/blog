@@ -1,13 +1,13 @@
-
 #各种语言的参数命名习惯
 x y z xs是Haskell等函数式语言常用的，
-(xs这种谐音英语也蛮印度味儿)
+(xs这种谐音英语也蛮印度味)
 js也逐渐有人用这种风格
 还有一种val也常见
 
 #常用词首字母参数命名
 a:arg/actual 多个依次abc
 	测试/相等断言中actual用a expected用b或依次
+	map((c,i,a)... reduce((r,c,i,a)... (a:array/array-arg)
 i:indicator/index/item 只在loop使用 多个依次ijk
 l:list/length两者互关`l.length`/`Array(l)`
 	搭配i:`for i in l`
@@ -17,6 +17,7 @@ k v:key value,map专用
 m:matches 用在Array.find/every的复杂情况
 	用abc也不妨碍 用m会增强些可读性
 	`replace=a=>b=>(m=a.find(a=>a[0]==b))?m[1]:b`
+r:result,returning
 
 #专门情况
 p:puts/print/log eq:areEqual neq:notEqual
@@ -76,3 +77,7 @@ bootstrap(引导) init load
 fit:适配 合称
 refit:改装 补
 sort/refit更明确些 fit过于模糊
+
+#常用前缀-动词加名词时
+g:get/s:set/f:find/h:has/p:parse/r:read/w:write
+gl:get list/pi:parse item/hName/fClass

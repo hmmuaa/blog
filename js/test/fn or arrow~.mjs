@@ -1,4 +1,5 @@
 import'#glob'
+///more:object override
 ///typical
 function fn(a,b){return a+b}
 eq(fn(12,34),46)

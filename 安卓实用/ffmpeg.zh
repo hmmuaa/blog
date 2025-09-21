@@ -1,0 +1,4 @@
+旋转视频 似乎并不像想象中的有效
+ffmpeg -i input.mp4 -c copy -metadata:s:v:0 rotate=90 output.mp4
+
+-c copy -metadata:s:v:0 rotate=270
