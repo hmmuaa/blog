@@ -1,5 +1,5 @@
 import'#glob'
-let a,b,c,f
+let a,b,c,f,g
 a=[,,,],a[1]=11
 eq(a,[,11,,]),eq(a.length,3)
 eq(a[1],11),eq(a[0],undefined),eq(a[5],undefined)
@@ -57,29 +57,50 @@ const uniq=a=>[...new Set(a)]
 eq(uniq([...'abcbadec']).join(''),'abcde')
 
 ///group by
-a=arr(9),b=a=>a<5,c=arr(5)
 throws(()=>Object.groupBy(a,b),TypeError)
 throws(()=>Map.groupBy(a,b),TypeError)///不支持ES2024
-f=(a,f)=>a.reduce((a,b,i,l,__,k=f(b,i,l))=>(
-	a[k]=[...(a[k]||[]),b],a),{})
-eq(f(a,b)[true],c)
+f=(a,f)=>a.reduce((z,a,i,l,__,k=f(a))=>(
+	z[k]=[...(z[k]||[]),a],z),{})
+eq(f(arr(9),a=>a%3),{'0':[0,3,6],'1':[1,4,7],'2':[2,5,8]})
 
 ///group by 2map
 f=(a,f)=>a.reduce((a,b,i,l,__,k=f(b,i,l))=>(
 	a.get(k)?.push(b)??a.set(k,[b]),a),new Map)
-eq(f(a,b).get(true),c)
+eq(f(arr(9),a=>a%3).get(1),[1,4,7])
 
-///same w/group then skip through keys,
+///same w/group then skip through keys
+/*注意这部分skipThrough Set实现经测都是错的
+此处留档备查 改正的见下文continual:reduce实现*/
+a='aabbccaabb'.split(''),b=[...new Set(a)]
+eq(b,'abc'.split(''))
 let skipThrough=(a,n=1,uniq=[...new Set(a)])=>
 	a.slice(a.indexOf(uniq[n]))
-a='aabbcc'.split('')
-eq(skipThrough(a).join(''),'bbcc')
-eq(skipThrough(a,2).join(''),'cc')
-
+eq(skipThrough(a).join(''),'bbccaabb')
+eq(skipThrough(a,2).join(''),'ccaabb')
+///错了
 skipThrough=(a,n=1,id=a=>a,uniq=[...new Set(a.map(id))])=>
 	a.slice(a.findIndex(a=>id(a)==uniq[n]))
-eq(skipThrough(a).join(''),'bbcc')
-eq(skipThrough(a,2).join(''),'cc')
+eq(skipThrough(a).join(''),'bbccaabb')
+eq(skipThrough(a,2).join(''),'ccaabb')
+
+///continual partition
+f=(a,id=a=>a)=>a.reduce(([y,z,k],a,_i,_r,ak=id(a))=>
+	k==ak?[y,z.concat(a),k]:[y.concat([z]),[a],ak],[[],[]])
+eq(f(a),[[[],['a','a'],['b','b'],['c','c'],['a','a']],['b','b'],'b'])
+g=(a,id,[[,...r],l]=f(a,id))=>r.concat([l])
+eq(g(a),[['a','a'],['b','b'],['c','c'],['a','a'],['b','b']])
+eq(arr(10,a=>Math.floor(Math.sqrt(a*2+1))),[1,1,2,2,3,3,3,3,4,4])
+eq(g(arr(10,a=>a*2+1),a=>Math.floor(Math.sqrt(a)))
+	,[[1,3],[5,7],[9,11,13,15],[17,19]])
+
+const splitByContinual=(a,id
+	,f=(a,id=a=>a)=>a.reduce(([y,z,k],a,_i,_r,ak=id(a))=>
+		k==ak?[y,z.concat(a),k]:[y.concat([z]),[a],ak],[[],[]])
+	,g=(a,id,[[,...r],l]=f(a,id))=>r.concat([l]))=>(
+	g(a,id)
+)
+eq(splitByContinual(arr(10,a=>a*2+1),a=>Math.floor(Math.sqrt(a)))
+	,[[1,3],[5,7],[9,11,13,15],[17,19]])
 
 ///“输入法自定词库”中使用
 const makeKeyinChain=a=>a.split('')

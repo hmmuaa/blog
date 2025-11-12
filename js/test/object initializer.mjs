@@ -1,5 +1,13 @@
 import'#glob'
-let a={
+///成员互访
+throws(_=>({b:'b',c:b+'c'}),/b is not defined/)
+let
+a=_=>({b:'b',c:b+'c'})
+throws(a,/b is not defined/)
+a={b:_=>'b',c:_=>a.b()+'c'}
+eq(a.c(),'bc')
+
+a={
 	f(){return this.g()}///不能省略this
 	,g(){return'foo'}///顺序可以颠倒
 }

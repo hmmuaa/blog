@@ -7,7 +7,8 @@ js也逐渐有人用这种风格
 #常用词首字母参数命名
 a:arg/actual 多个依次abc
 	测试/相等断言中actual用a expected用b或依次
-	map((c,i,a)... reduce((r,c,i,a)... (a:array/array-arg)
+ar.reduce(z,a,i,r):recents,current,index,rest array
+ar.reduce([y,z],..):recents,recent
 i:indicator/index/item 只在loop使用 多个依次ijk
 l:list/length两者互关`l.length`/`Array(l)`
 	搭配i:`for i in l`
