@@ -1,0 +1,40 @@
+#通过userscript分网址锁定桌面模式
+-userscript有两种方式
+	-一种只对css生效(如st/o) 对知乎判断请求则无效
+	-另一种待测
+
+[userscript](greasyfork.org/scripts/490764-auto-switch-useragent)可以分站点甚至分网址切换
+有小bug
+他默认匹配字符串有“\*”开头 但其实不支持
+添自定义匹配时去掉\*就好了
+查非beta版ua为
+>Mozilla/5.0 (Android 13; Mobile; rv:133.0) Gecko/133.0 Firefox/133.0
+切桌面为
+>Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0
+
+#Firefox Beta设置自动桌面界面
+需要`about:config`(只有Firefox Beta支持)
+
+传统方式改useragent
+google:“user agent”
+>Mozilla/5.0 (Android 13; Mobile; rv:134.0) Gecko/134.0 Firefox/134.0
+开桌面模式为
+>`Mozilla/5.0 (X11; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0`
+config`general.useragent.override`填入
+
+设置后对google生效了 但对stov和njs无效
+因为这些网站css通过屏宽决定界面
+(stov:StackOverflow.com,njs:Nodejs.org)
+
+config:`layout.css.devPixelsPerPx`
+改为1.5对stov生效 改为1则对njs也生效了
+但字实在太小了 只是证明可行
+
+经确认stov和njs只需`PixelsPerPx`
+google则只需useragent
+
+/2025年1月11日##尝试Iceraven
+_Iceraven_特点是支持`about:config`并支持更多扩展
+其实现在来看这两点都不会很重要了
+靠userscript都能做到 并且能自己改进代码
+遗憾是原生devtools仍然不支持

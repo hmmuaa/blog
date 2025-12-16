@@ -8,17 +8,40 @@ Halfwidth Left Corner Bracket
 和半角句号`｡` 半角顿号`､` 半角平假名中点`･`
 是邻居
 
+(https://zh.wikipedia.org/wiki/顿号)
+在 Unicode 字符是 U+3001： 
+台、港、澳标准为置中，如“、︁”，直排时皆然
+中国大陆同日本标准为靠左下，如“、︀”；直排时靠右上，Unicode 4.1 增加配合中国大陆写法之“直排顿号（PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA），U+FE11”“︑”[6]，以兼容 GB 18030
+另有“小顿号（SMALL IDEOGRAPHIC COMMA）”“﹑”在 U+FE51，源自 CNS 11643／Big5；此外还有“半形顿号（HALFWIDTH IDEOGRAPHIC COMMA）”“､”在 U+FF64，源自 JIS X 0201 编码。
+﹑|
+､|
+/|
+\|
+ |
+
 ﾟHalfwidth Katakana Semi-Voiced Sound Mark
 	ぱぴぷ
 
 , ،
-[ ] ( ) { } ⟨⟩
+[],(),{},⟨⟩,⟪⟫
 ‹ › « »
-
-⟨ ⟩ 	⟪⟫ 	< >
+<>
 Angle brackets (BE&AE)[2] 	Angle brackets (BE&AE)[2] 	less-than and greater-than 
-
+⟪|⟫|U+27EA
 ⟪|
 《|
 ¥|
 ￥|
+
+·|+00B7 MIDDLE DOT
+.|+002E FULL STOP
+˙|+02D9 DOT ABOVE
+⸳-|+2E33 Raised Dot 目前选用 ⸳⸳
+‧-|+2027 HYPHENATION POINT
+·-|+0387 GREEK ANO TELEIA
+⸱-|+2E31 WORD SEPARATOR MIDDLE DOT
+⋅-|+22C5 DOT OPERATOR
+∙-|U+2219 BULLET OPERATOR
+․|U+2024 ONE DOT LEADER
+᛫U+16EB RUNIC SINGLE PUNCTUATION
+•U+2022 BULLET

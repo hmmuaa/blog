@@ -1,0 +1,18 @@
+星号“*”在记评分时使用频繁 但在md中有转义
+一个解决方案是用“∗”区分
+`*aaa*` - *aaa*
+`∗aaa∗` - ∗aaa∗
+
+`*配色全*款式多×价格贵` - *配色全*款式多×价格贵
+`∗配色全∗款式多×价格贵` - ∗配色全∗款式多×价格贵
+
+\*Superscript Asterisk(U+002A)
+∗Asterisk(U+2217)
+
+默认的重点号其实是角标重点号“*”
+与其配套的是“⁺⁻
+而在计分时想用的则不是角标
+>The default asterisk character (*) is rendered in a superscript position because its primary traditional use in English-language typesetting is as a footnote or reference marker.
+
+-为什么用斜线转义“\\*”不好?
+使用星号就是为了直观简练

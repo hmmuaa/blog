@@ -1,0 +1,53 @@
+-fx:Firefox
+-fb:Firefox Beta
+-cr:Chrome
+-kw:Kiwi 基于cr并支持扩展 已停维护但可用
+-ut:Ultimatum 继承kw
+
+-Iceraven没什么特别有用的修改
+-Fennec是一个已经停更的fx定制版
+
+#重要需要
+-禁止网页弹APP:fx
+-支持扩展:-cr
+	fx屏蔽的扩展切桌面模式可装
+-分网站锁定桌面模式:cr
+
+#次要需要
+-“about:config”
+
+#about:config
+fx不支持“about:config”但可通过..打开
+`chrome://geckoview/content/config.xhtml`
+
+#禁止网页弹app
+点进知乎或B站 就会弹app 以下实测知乎
+-切桌面模式则不弹 但需排版
+cr会记住对网站使用桌面模式
+-fx禁用“外部应用打开链接”(Open links in apps)
+cr无此选项 但可以“新标签页打开” 效果一样
+禁用后不弹app 但会在阅读中弹提醒2-3次
+-通过油猴[脚本]能解决全部问题
+[脚本]:<https://greasyfork.org/en/scripts/389371>
+
+在app设置关闭“默认打开-打开支持的链接”无效
+
+#分网址锁定UA有几种情况
+-Chrome和Kiwi都能分网站记住
+-Firefox只能暂时按tab记住桌面模式
+	-但可以通过userscript实现 详见[Firefox]()
+-fb支持`about:config`但只能设置全局
+
+#中文字库不全
+需插件(Stylus)或userscript自定义字体
+Chrome两种都不支持
+
+##其他痛点
+-禁用外部应用打开链接:ff✔️好像是独有
+	ff还有相关一系列ab/conf:
+		`network.protocol-handler.external-default`
+-复制链接文字:ff❌ kiwi✔️
+-排序扩展:没发现哪个支持
+
+#2025年1月9日小结
+还是用回ff

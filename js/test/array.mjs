@@ -59,7 +59,7 @@ eq(uniq([...'abcbadec']).join(''),'abcde')
 ///group by
 throws(()=>Object.groupBy(a,b),TypeError)
 throws(()=>Map.groupBy(a,b),TypeError)///不支持ES2024
-f=(a,f)=>a.reduce((z,a,i,l,__,k=f(a))=>(
+f=(a,f)=>a.reduce((z,a,i,l,_,k=f(a))=>(
 	z[k]=[...(z[k]||[]),a],z),{})
 eq(f(arr(9),a=>a%3),{'0':[0,3,6],'1':[1,4,7],'2':[2,5,8]})
 

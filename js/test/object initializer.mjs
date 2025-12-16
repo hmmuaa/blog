@@ -7,6 +7,11 @@ throws(a,/b is not defined/)
 a={b:_=>'b',c:_=>a.b()+'c'}
 eq(a.c(),'bc')
 
+throws(()=>{let h={b:'b',c:h.b+'c'}}
+,/Cannot access 'h' before initialization/)
+const h={b:'b',c:()=>h.b+'c'}
+eq(h.c(),'bc')
+
 a={
 	f(){return this.g()}///不能省略this
 	,g(){return'foo'}///顺序可以颠倒

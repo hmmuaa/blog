@@ -74,6 +74,9 @@ default normal standard
 shared basic plain typical classical official
 bootstrap(引导) init load
 
+#extract近义
+dump, flat, brief
+
 #其它备用
 fit:适配 合称
 refit:改装 补

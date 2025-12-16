@@ -1,0 +1,15 @@
+-mx:MiXplorer
+-se:Solid Explorer
+-fg:Files by Google
+
+mx有个bug
+查看照片中删除会彻底删除而不是移到回收站
+se/fg无此bug
+
+但mx的标签记忆选文件时非常方便
+常用或之前准备好的文件夹会被放在标签栏
+se则可以从书签找 相对麻烦
+
+复制和移动文件时
+mx的标签栏也如预想的方便快捷
+se居然屏蔽了书签

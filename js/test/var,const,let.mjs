@@ -1,4 +1,7 @@
-import'#lab'
+import'#glob'
+const {}=1,{}={},[]=[],_=1,a=1///占位 逗号前置用
+,f=({}=1,{}={},[]=[],_=1,a=1)=>{}
+
 ///定义变量前就可以定义使用变量的函数
 function fv(){return v}function fl(){return l}
 function fc(){return c}function fd(){return d}
