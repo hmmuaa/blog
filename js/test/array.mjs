@@ -1,4 +1,4 @@
-import'#glob'
+import'#gl'
 let a,b,c,f,g
 a=[,,,],a[1]=11
 eq(a,[,11,,]),eq(a.length,3)
@@ -62,6 +62,11 @@ throws(()=>Map.groupBy(a,b),TypeError)///不支持ES2024
 f=(a,f)=>a.reduce((z,a,i,l,_,k=f(a))=>(
 	z[k]=[...(z[k]||[]),a],z),{})
 eq(f(arr(9),a=>a%3),{'0':[0,3,6],'1':[1,4,7],'2':[2,5,8]})
+
+///abab,interleave
+const gr=f
+f=a=>Object.values(gr(a,i=>i%2))
+eq(f(arr(7)),[[0,2,4,6],[1,3,5]])
 
 ///group by 2map
 f=(a,f)=>a.reduce((a,b,i,l,__,k=f(b,i,l))=>(
