@@ -1,4 +1,13 @@
-旋转视频 似乎并不像想象中的有效
-ffmpeg -i input.mp4 -c copy -metadata:s:v:0 rotate=90 output.mp4
+#剪切画幅(标签方式 原流不更改 但经测mx出错)
+完整参考:`ffmpeg -i input.mp4 -c copy -bsf:v h264_metadata=crop_left=100:crop_right=20:crop_top=10:crop_bottom=10 output.mp4`
+APP:`-c copy -bsf:v hevc_metadata=crop_left=500:crop_right=826:crop_top=24:crop_bottom=0`
+经测mx left/top无效 但宽高有效
 
--c copy -metadata:s:v:0 rotate=270
+#剪切画幅(并重编码)
+完整参考:`ffmpeg -i input -vf "crop=480:270:200:100" -c:v libx264 -crf 17 -c:a copy ouput.mp4`
+APP:`-vf "crop=w:h:l:t" -c:v libx265 -crf 17 -c:a copy`
+`-vf "crop=720:1080:500:0" -c:v libx265 -crf 17 -c:a copy`
+
+#旋转视频 似乎并不像想象中的有效
+完整参考:`ffmpeg -i input.mp4 -c copy -metadata:s:v:0 rotate=90 output.mp4`
+APP:`-c copy -metadata:s:v:0 rotate=270`
