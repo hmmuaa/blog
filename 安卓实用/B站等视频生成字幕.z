@@ -1,0 +1,18 @@
+有些重要的神话播讲需生成脚本以存档
+字幕生成有两个方式
+a.是AI从语音听写 b.是逐帧截图后OCR
+两个方法出错率都很高 都需校对
+目前(25年9月)各大视频平台都提供A类功能
+-B站网页端打开视频 点AI可查字幕
+油猴可保存(http://greasyfork.org/scripts/519378)
+-(抖音)剪映APP自动生成 自写ajs保存
+也有第三方工具提供a类功能
+-Video to Text Converter(pub:Tactical Solution)
+准确差很多但可接受 支持多语言 嵌广告免费
+-[uniscribe.co]每月120min免费额度
+/b类工具未试 可Grok查询 有PaddleOCR等
+
+#其他:<b23.tv/cB9byos>评论区整理
+-whisper.cpp(OpenAI) 可查(android)
+-potplayer内建whisper.cpp
+-pyvideostrans
