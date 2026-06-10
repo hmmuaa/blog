@@ -1,7 +1,10 @@
 import _as,{deepEqual as _eq,notDeepEqual as neq
 	,throws,rejects}from'assert/strict'
-const l=console.log
-,p=(...a)=>(l(...a),a[1]?a:a[0])
+let l=console.log
+,p=a=>(l(a),a)
+//之前用的 forEach(p)会输出整个数组
+//,p=(...a)=>(l(...a),a[1]?a:a[0])
+
 ///assert msg非常难找
 ,f=(msg,_,l='❗'
 	,r=l)=>l+msg+r
