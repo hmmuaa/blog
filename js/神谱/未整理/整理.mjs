@@ -1,10 +1,22 @@
 import'#g'
 let d='.'
 ,f='sacred-texts-gtheo.txt'
-/*260609全选文本复制<https://sacred-texts.com/cla/hesiod/gtheo.htm>
+/*
+以两个文本版为主 一个影印版为辅 互相核对
+因预计影印版OCR工作量过大
+先文字版互相核对 有出入时再以影印版为准
+两版排版质量都各有问题 确定不是互相复制
+纠正明显错误后 两版文本高度一致
+只是有特定段落 三版的行序都不一样
+
+联合校对的已收录版本
+-uoa.gr是雅典大学域名 但无确切发布者信息
+
+260609全选文本复制<https://sacred-texts.com/cla/hesiod/gtheo.htm>
 1.该文用空格排版 源码大量`&nbsp;` 估计处理文本比html方便
 .与其它源对比 以及AI核实 第4-5行中间空行错 可能还有其它错空行
-.全部行首空四格也错*/
+.全部行首空四格也错
+*/
 let m=a=>a
 	.split('this file.\n\n')[1].split('\n\n \n\n------------')[0]
 	.replaceAll('\n\n','\n')
@@ -57,7 +69,7 @@ let m=a=>a
 /*260610全选文本复制<http://users.uoa.gr/~nektar/history/tributes/ancient_authors/Hesiodus/Theogonia.htm>
 */
 ,uoa=a=>a
-	.replace('Ἡσίοδος - Θεογονία\n\t','Ἡσίοδος - Θεογονία\n\n')
+	.replace('\nἩσίοδος - Θεογονία\n\t','Ἡσίοδος - Θεογονία\n\n')
 	.replace(' (*)','')
 	.split('\nΒάσει τῶν:')[0]
 	.replace('\n\nἐ καί','καί')
