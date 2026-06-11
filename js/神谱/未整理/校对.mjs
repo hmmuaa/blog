@@ -9,8 +9,10 @@ let d='.'
 纠正明显错误后 两版文本高度一致
 只是有特定段落 三版的行序都不一样
 
-联合校对的已收录版本
--uoa.gr是雅典大学域名 但无确切发布者信息
+##几版线上全文获取方法
+-<uoa.gr>是雅典大学域名 但无确切发布者信息
+-Sacred Text
+-Perseus
 
 260609全选文本复制<https://sacred-texts.com/cla/hesiod/gtheo.htm>
 1.该文用空格排版 源码大量`&nbsp;` 估计处理文本比html方便
@@ -87,6 +89,8 @@ let m=a=>a
 	.replace(
 'ντίον ἀλλήλοισι διὰ κρατερὰς ὑσμίνας, 631',
 'ἀντίον ἀλλήλοισι διὰ κρατερὰς ὑσμίνας,--631')
+,perseus=a=>a
+	.split('\n').map(a=>isNaN(a)?a:'').join('\n')
 import{readFile as rd,writeFile as wt}from'fs/promises'
 import{join as jn,extname as xn}from'path'
 const 
@@ -97,5 +101,5 @@ mod=async(f,t,m)=>{
 }
 await mod(jn(d,f),'希腊语.txt',work)
 await mod('希腊语.txt','toTranslator.txt',toTranslator)
-await mod('uoa-gr-nektar.txt','t.txt',uoa)
-eq('Μουσάων'.normalize('NFD').normalize('NFC'),'Μουσάων')
+await mod('uoa-gr-nektar.txt','.tmp/t.txt',uoa)
+await mod('perseus.txt','.tmp/t.txt',perseus)
