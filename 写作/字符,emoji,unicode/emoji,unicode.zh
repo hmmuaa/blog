@@ -72,6 +72,10 @@ U+00B6 ¶ PILCROW SIGN (&para;)
 2B95	 ⮕ 	Rightwards Black Arrow
  	 	→	27A1 ➡ black rightwards arrow
  	 	→	2B05 ⬅ leftwards black arrow
+FFE9 	￩ 	HALFWIDTH LEFTWARDS ARROW
+FFEA 	￪ 	HALFWIDTH UPWARDS ARROW
+FFEB 	￫ 	HALFWIDTH RIGHTWARDS ARROW
+FFEC 	￬ 	HALFWIDTH DOWNWARDS ARROW
 
 ￬
 ↚ ↛ ↜ ↝ ↞ ↟ ↠ ↣ ↤ ↥ ↦ ↧ ↨ ↫ ↬ ↭
@@ -98,6 +102,8 @@ U+00B6 ¶ PILCROW SIGN (&para;)
 ➤|
 ➝|
 ◄|
+￩|
+￫|
 ‹|single angle quotation mark (U+2039)
 ›|0x203A|&rsaquo;
 »|
@@ -106,6 +112,8 @@ U+00B6 ¶ PILCROW SIGN (&para;)
 >|greater-than sign (U+003E)
 ﹤|small less-than sign (U+FE64)
 ﹥|small greater-than sign (U+FE65)
+￩|
+￫|
 ◂▸|
 ◃▹|
 ⟨⟩|

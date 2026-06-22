@@ -13,6 +13,26 @@ let d='.'
 -<uoa.gr>是雅典大学域名 但无确切发布者信息
 -Sacred Text
 -Perseus
+-<physics.ntua.gr>(雅典国立技术大学)
+
+*Perseus多个版本
+<https://catalog.perseus.org/catalog/urn:cts:greekLit:tlg0020.tlg001>
+在Editions下有四个版本 其中最新的是1914版
+但其实“Quick-Find”是更新的1999版
+区别如 99版第25行末是冒号 其他版本是间隔号
+但99版处理较繁琐 实际收录14版
+本站(14和99版)和UOA/ST版文本区别较多
+如L15
+u:“ἠδὲ Ποσειδάωνα γαιήοχον, ἐννοσίγαιον”
+p:“ἠδὲ Ποσειδάωνα γεήοχον, ἐννοσίγαιον”
+如L48
+u:“ἀρχόμεναί θ᾽ ὑμνεῦσι θεαὶ λήγουσαί τ' ἀοιδῆς”
+p:“ἀρχόμεναί θ᾽ ὑμνεῦσι καὶ ἐκλήγουσαι ἀοιδῆς”
+据查 u版更符合传统写法 p版偏现代化
+两版区别较多 放弃p版
+
+*NTUA(雅典国立技术大学)
+根据以上整理经验又找到这版
 
 260609全选文本复制<https://sacred-texts.com/cla/hesiod/gtheo.htm>
 1.该文用空格排版 源码大量`&nbsp;` 估计处理文本比html方便
@@ -76,9 +96,8 @@ let m=a=>a
 	.split('\nΒάσει τῶν:')[0]
 	.replace('\n\nἐ καί','καί')
 	.replaceAll('\t\n\n','\t')//如l66 p导致行号多空行
-	.split('\n')//.filter(a=>!a.endsWith('\t'))
+	.split('\n')
 	.map((a=>a.split('\t').reverse().join('--').trimEnd()))
-	// .map((a,_,__,[i,t]=a.split('\t'))=>t+'--'+i)
 	.join('\n')
 	.replace(
 `Γείνατο δ᾽ Ἀστερίην ἐυώνυμον, ἥν ποτε Πέρσης
@@ -91,9 +110,32 @@ let m=a=>a
 'ἀντίον ἀλλήλοισι διὰ κρατερὰς ὑσμίνας,--631')
 ,perseus=a=>a
 	.split('\n').map(a=>isNaN(a)?a:'').join('\n')
+	.replaceAll('ʼ','᾽')//GREEK KORONIS
+	.replaceAll('.','·')//GREEK ANO TELEIA
+	.replaceAll('·','·')//GREEK ANO TELEIA
+,ntua=a=>a.split('Θεογονία\n\n')[1]
+	.split('\n').map((a,i)=>i%5==4
+		// ?(a=a.split(' '),a.join('!'))
+		?(a=a.split(' '),a.slice(0,-1).join(' ')+'--'+a.at(-1))
+		:a)
+	.join('\n')
+,listWords=(a
+	,sg=new Intl.Segmenter("grc", { granularity: "word" })
+)=>(
+	sg.segment('a')
+	,[]
+	)
+,dict=a=>listWords(a).join('\n')
+// ,listWords=a=>(a=a.slice(20)
+// 	.split('\n').map(a=>a.split('--')[0])
+// 	.join('\n')
+// 	.replaceAll('\n',' ')
+// 	.split(' ')
+// 	,[...new Set(a)])
+// ,dict=a=>listWords(a).join('\n')
 import{readFile as rd,writeFile as wt}from'fs/promises'
 import{join as jn,extname as xn}from'path'
-const 
+const
 mod=async(f,t,m)=>{
 	let a=await rd(f,'utf8')
 	a=await m(a)
@@ -101,5 +143,7 @@ mod=async(f,t,m)=>{
 }
 await mod(jn(d,f),'希腊语.txt',work)
 await mod('希腊语.txt','toTranslator.txt',toTranslator)
-await mod('uoa-gr-nektar.txt','.tmp/t.txt',uoa)
-await mod('perseus.txt','.tmp/t.txt',perseus)
+// await mod('uoa-gr-nektar.txt','.tmp/t.txt',uoa)
+// await mod('perseus.txt','.tmp/t.txt',perseus)
+// await mod('ntua.txt','.tmp/t.txt',ntua)
+await mod('希腊语.txt','.tmp/t.txt',dict)
