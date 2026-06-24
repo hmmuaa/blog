@@ -1,4 +1,4 @@
-import'#glob'
+import'#g'
 eq('a'.match(/a/)[0],'a')
 eq('b'.match(/b/)[0],'b')
 eq('a'.match(/b/),null)
@@ -146,3 +146,19 @@ let x;
 //   a.replace(x, 'O'),
 //   'thequickbrownfoxjumpsOverthelazydOg'
 // )
+
+/*
+replace match result
+(stackoverflow.com/a/69491433)
+*/
+const regex = /123/g;
+a = "XYZ is some string, but 123 is what to change.";
+///$& means the whole matched string
+eq(a.replace(regex,'*$&*')
+,'XYZ is some string, but *123* is what to change.')
+eq(a.replace(regex, m => m * 2)
+,'XYZ is some string, but 246 is what to change.')
+
+eq('黑龙江､吉林､辽宁并称东北省'
+.replace(/黑龙江|吉林|辽宁|东北省/g,'_$&_')
+,'_黑龙江_､_吉林_､_辽宁_并称_东北省_')

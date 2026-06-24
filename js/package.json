@@ -1,7 +1,10 @@
 {
 	"imports": {
-		"#glob": "./globals.mjs"
-		,"#gl": "./globals.mjs"
-		,"#g": "./globals.mjs"
+		"#glob": "./globals.mjs",
+		"#gl": "./globals.mjs",
+		"#g": "./globals.mjs"
+	},
+	"dependencies": {
+		"pinyin-pro": "^3.28.1"
 	}
 }

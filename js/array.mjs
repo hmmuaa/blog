@@ -1,4 +1,4 @@
-import'#gl'
+import'#g'
 const ar=(l,f=i=>i)=>Array.from({length:l},(_,i)=>f(i))
 Object.assign(global,{ar})
 
@@ -8,20 +8,14 @@ const uniq=a=>[...new Set(a)]
 	a[k]=[...(a[k]||[]),b],a),{})
 Object.groupBy=groupBy
 
-const
+let
 toReversed=a=>a.slice().reverse()
 ,toSorted=(a,b)=>a.slice().sort(b)
 ,findLast=(a,f)=>toReversed(a).find(f)
-// Object.assign(Array.prototype,{
-// 	toReversed(){return toReversed(this)}
-// 	,toSorted(by){return toSorted(this,by)}
-// 	,findLast(f){return findLast(this,f)}})
-
-///2025年12月26日
-let f
-f=(a,f)=>a.reduce((z,a,i,l,_,k=f(a))=>(
-	z[k]=[...(z[k]||[]),a],z),{})
-
-///abab,interleave
-const gr=f
-f=a=>Object.values(gr(a,i=>i%2))
+,transpose=a=>a[0].map((_,i)=>a.map(a=>a[i]))
+Object.assign(Array.prototype,{
+	toReversed(){return toReversed(this)}
+	,toSorted(by){return toSorted(this,by)}
+	,findLast(f){return findLast(this,f)}
+	,transpose(){return transpose(this)}
+})

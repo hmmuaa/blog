@@ -1,28 +1,30 @@
-import'#lib'
+import'#g'
 import{format as uf}from'util'
 let a
 ///把字符串转成正则
 eq(`aaa aaa`.replace(RegExp('aa'),'bb'),`bba aaa`)
 eq(`aaa aaa`.replace(RegExp('aa$'),'bb'),`aaa abb`)
+eq(`aaa aaa`.replace(RegExp('aa','g'),'bb'),`bba bba`)
 
+///避免字符串需多余escape
 eq('abc def'.match(RegExp('(\\w*) (\\w*)')).slice(1),['abc','def'])
-///避免重复escape char
 const regr=(...a)=>RegExp(String.raw(...a))
 eq('abc def'.match(regr`(\w*) (\w*)`).slice(1),['abc','def'])
-
-const seg=a=>(''+a).slice(1,-1)
-,reg=a=>RegExp(a)
-a=seg(/(\w*)/)
-eq('abc def'.match(reg(a+' '+a)).slice(1),['abc','def'])
+///拼接 其实很繁琐不实用
+const part=a=>(''+a).slice(1,-1)
+a=part(/(\w*)/)
+eq('abc def'.match(RegExp(a+' '+a)).slice(1),['abc','def'])
 
 ///拼接 看起来tl最舒服
 let w='(\\w*)'
 eq('abc def'.match(RegExp	(w+' '+w)).slice(1),['abc','def'])
+w=`(\\w*)`
+eq('abc def'.match(RegExp	(w+' '+w)).slice(1),['abc','def'])
 w=String.raw`(\w*)`
 eq('abc def'.match(regr		`${w} ${w}`).slice(1),['abc','def'])
-w=seg(/(\w*)/)
-eq('abc def'.match(reg		(w+' '+w)).slice(1),['abc','def'])
-eq('abc def'.match(reg(uf	('%s %s',w,w))).slice(1),['abc','def'])
+w=part(/(\w*)/)
+eq('abc def'.match(RegExp		(w+' '+w)).slice(1),['abc','def'])
+eq('abc def'.match(RegExp(uf	('%s %s',w,w))).slice(1),['abc','def'])
 
 ///with line break
 eq(`aaa aaa`.replace(/aa/,'bb'),`bba aaa`)
