@@ -36,13 +36,21 @@ Angle brackets (BE&AE)[2] 	Angle brackets (BE&AE)[2] 	less-than and greater-than
 
 ·|+00B7 MIDDLE DOT
 ˙|+02D9 DOT ABOVE
-⸳-|+2E33 Raised Dot 之前选用 ⸳⸳
-‧-|+2027 HYPHENATION POINT 目前选用 ‧‧
-·-|+0387 GREEK ANO TELEIA
+⸳⸳⸳⸳⸳⸳⸳⸳⸳⸳-|+2E33 Raised Dot 选用 较稳定 ⸳⸳
+‧‧‧‧‧‧‧‧‧‧-|+2027 HYPHENATION POINT 出错弃用 ‧‧
+··········-|+0387 GREEK ANO TELEIA 不稳定
 ⸱-|+2E31 WORD SEPARATOR MIDDLE DOT
-⋅-|+22C5 DOT OPERATOR
+⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅-|+22C5 DOT OPERATOR
 ∙-|U+2219 BULLET OPERATOR
 ․|U+2024 ONE DOT LEADER
 .|+002E FULL STOP
 ᛫U+16EB RUNIC SINGLE PUNCTUATION
 •U+2022 BULLET
+
+#对比实测
+-在B站app发布后查看
+27/33一样宽一样高完全一样 87稍窄
+app似乎用手机字体 QQ默认字体一致
+-在网页版中
+2027非常宽出错 0387稍宽 2E33最窄
+网页版似乎强制用鸿蒙字体

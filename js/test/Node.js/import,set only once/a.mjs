@@ -1,5 +1,4 @@
-import'#lab';import{f}from'./be import.mjs'
-p
+import'#g';import{f}from'./be import.mjs'
 eq(f(import.meta).split(/[/.]/).at(-2),'a')
 eq(j,16)
 g(import.meta)
