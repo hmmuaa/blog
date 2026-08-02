@@ -1,9 +1,10 @@
-import'#glob'
+import'#g'
 import{format as uf,inspect as insp}from'util'
 
-let v=a=>a.forEach(a=>eq(a,'1'))
-v([''+1,1+'',uf('%s',1),uf('%O',1),uf('%o',1),uf('%j',1)
-,insp(1),JSON.stringify(1),(1).toString()])
+let v=(...a)=>a.forEach(a=>eq(a,'1'))
+v(''+1,1+''
+,uf('%s',1),uf('%O',1),uf('%o',1),uf('%j',1)
+,insp(1),JSON.stringify(1),(1).toString())
 
 let a='abc'
 v=a=>a.forEach(a=>eq(a,'abc'))
@@ -33,7 +34,7 @@ const sort=a=>a.replaceAll(': ',':').replaceAll(', ',',')
 //p(o(a))
 ///object
 ;(()=>{
-	const _=0
+	const{}={}
 	,s=`{\ni:11,\nn:22.2,\ns:'abc',\na:[Array],\no:[Object],
 refFn:[Function:floor],\narFn:[Function:arFn],
 curFn:[Function:curFn]\n}`
@@ -53,7 +54,9 @@ arFn:[Function:arFn] {[length]:2,[name]:'arFn'},
 curFn:[Function:curFn] {[length]:1,[name]:'curFn'}\n}`
 	,j=`{"i":11,"n":22.2,"s":"abc","a":[33,44.4,"def",[55,66.6],{"s":"hij"}],"o":{"i":77,"n":88.8,"s":"fizz","a":[99,11.1,"buzz"],"o":{"s":"klm","n":88.8}}}`
 	eq(''+a,'[object Object]')//不展开对象和数组
+	eq(a+'','[object Object]')//不展开对象和数组
 	eq(''+[1,a],'1,[object Object]')
+	
 	eq(sort(uf('%s',a)),s)//只展开第一层
 	eq(uf('%s',[1,a]),'[ 1, [Object] ]')
 	
