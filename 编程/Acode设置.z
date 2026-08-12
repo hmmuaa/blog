@@ -1,0 +1,33 @@
+_2026年8月9日_
+#测试版本
+_卡_
+12.9 normal､12.9 fdroid､normal-1.12.0-nightly.6cff253､normal-1.11.8-nightly.4c83d3f(260511)
+1.11.8-nightly.645c353(318,p13)
+1.11.8-nightly.d0ca77e(305,p14)
+1.11.8-nightly.10ee055(226,p14)
+1.11.8-nightly.3ef0246(26 Feb. 21)
+_不卡_
+1.11.8-nightly.c2f6644(26 Feb. 19)
+1.11.8-nightly.c77b117(217,p15)
+11.8 release
+/github.com/Acode-Foundation/Acode/releases?page=9
+..16
+
+##设置
+#高敏感
+Editor settings￫Editing:Format on save:默认关
+#常规
+_Editor settings_
+Scrolling:Scroll settings:默认有点粗 很碍眼
+_Text & layout_
+-Editor font: Cascadia Code -Line height:1.8
+-Text wrap: off
+_Editing_
+-Autosave:1000 -Soft tab:off
+_Guides.._
+-Shows spaces:on
+
+_Theme_
+_App￫Custom_
+-primary color:#99aaaaff
+-secondary color:#eeeeeeff

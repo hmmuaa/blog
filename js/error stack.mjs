@@ -1,4 +1,4 @@
-import'#glob'
+import'#g'
 const st='Error',ed=`
     at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
     at async Promise.all (index 0)
@@ -30,7 +30,7 @@ export const shorts=(a,b=a)=>({}
 	,b.every(b=>as(b[b.length-1].includes('file:///')))
 	,b=b.map(b=>b.slice(0,-1))
 	,b=b.map(b=>b.join(' '))
-	,eq(b[0],'p',a)
+	,eq(b[0],logFnName,a)
 	,b=b.slice(1).map(fn).reverse().join('/')
 )
 // p(compile(Error().stack))

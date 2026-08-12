@@ -50,7 +50,9 @@ eq(a.match(/\W\w*/g),
 
 ///是否字母开头
 eq('ttt'.match(/^\w+/g),['ttt'])
+eq('ttt'.match(/^\w+/),Object.assign(['ttt'],{index:0,input:'ttt',groups:undefined}))
 eq('长chang'.match(/^\w+/g),null)
+eq('长chang'.match(/^\w+/),null)
 
 a='1\n\n\n\n2\n'
 eq(

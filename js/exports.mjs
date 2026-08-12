@@ -1,11 +1,11 @@
 import{random,ranged}from'./random.mjs'
-import*as date from'./date.mjs'
+// import*as date from'./date.mjs'
 
-import{shorts}from'./error stack.mjs'
-const l=console.debug
-,$=(...a)=>(l(shorts(Error().stack),...a),a[1]?a:a[0])
+// import{shorts}from'./error stack.mjs'
+// const l=console.debug
+// ,global._=(...a)=>(l(shorts(Error().stack),...a),a[1]?a:a[0])
 
 import{compareByPinyin}from'./Chinese-text/sort.mjs'
 
-Object.assign(global,{$,random,ranged,...date
+Object.assign(global,{random,ranged,//...date
 	,compareByPinyin})

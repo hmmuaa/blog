@@ -1,4 +1,10 @@
-import'#glob'
+import'#g'
+///toString and like
+eq(''+{i:1,toString:()=>'a'},'a')
+eq(''+Object.assign('a',{i:1}),'a')
+eq(Object.assign('a',{i:1})+'','a')
+
+///去掉烦人的escape char'\''
 eq('\abc','abc'),eq(`\abc`,'abc')
 eq(String.raw`\abc`,'\\abc')///内建
 let

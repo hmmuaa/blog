@@ -39,3 +39,22 @@ eq(proc(s),`\
 较高昂 吐字满 自信 好像句句都押韵
 资讯播报类常用`
 )
+///安卓上所有换行被强制换两行的问题
+/*在Word及富文本编辑器中 有Enter分段和Shift+Enter换行两种
+而安卓中只能用Enter一种 (实体键盘未尝试
+TermKey可以按Shift+Enter 但不能正确输入换行)
+
+经测试 可在剪切板中将\n替换为\r
+在知乎编辑器中粘贴(须网页版 切换到桌面模式)
+粘贴后所见没换行 点预览 所有换行处都有个空格
+再后退就看见换行都正确了 再次预览也是正确的
+推测应该与预览无关 粘贴后就是正确的 只是显示问题*/
+let
+lf='\n'//\u000A Line Feed (LF/Unix换行符) 只能打出来的
+,cr='\r'//\u000D Carriage Return (CR/旧Mac换行符) Win为CRLF
+,ls='\u2028'//Line Separator
+,ps='\u2029'//Paragraph Separator
+eq('\u000A','\n'),eq('\x0A','\n')//三种写法相等
+eq('\u2028',' '),eq('\u2029',' ')
+let fixLines=(a=s)=>a.replaceAll(lf,cr)
+export{fixLines}

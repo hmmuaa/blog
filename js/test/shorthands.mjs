@@ -1,13 +1,19 @@
-import'#glob'
+import'#g'
+///连续声明 逗号间隔 见var..mjs
+var
 ///ternary/三元`:?`
-var a=0
+a=0
 !0?a=1:_,eq(a,1)
 a=!0?2:_,eq(a,2)
 a=0?_:3,eq(a,3)
 a=0?_:0?_:4,eq(a,4)
 
+///like switch..case and shorter
+eq('abc'[3-2],'b')
+eq('abc'[3]??'x','x')
+
 ///`&&||??`需要加括号 `:?`则不需要 加括号的格式都非常累赘
-var a=0
+a=0
 !0&&(a=1),eq(a,1)
 0||(a=2),eq(a,2)
 undefined??(a=3),eq(a,3)
@@ -32,7 +38,7 @@ var hasName = ({
         'true'          : 'Y',
         'false'         : 'N',
         'fileNotFound'  : 'O'})[name];
-assert(hasName=='O')
+as(hasName=='O')
 
 ///dictionary
 var fruitColors = {
