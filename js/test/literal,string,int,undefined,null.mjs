@@ -1,26 +1,20 @@
 import'#g'
-///toString and like
-eq(''+{i:1,toString:()=>'a'},'a')
-eq(''+Object.assign('a',{i:1}),'a')
-eq(Object.assign('a',{i:1})+'','a')
-
-///去掉烦人的escape char'\''
-eq('\abc','abc'),eq(`\abc`,'abc')
-eq(String.raw`\abc`,'\\abc')///内建
+///避免写烦人的escape char'\' 两种方法
+eq('\abc','abc'),eq(`\abc`,'abc')///正常引号都会转义
+eq(String.raw`\abc`,'\\abc')///不转义方法1
 let
 f=String.raw;eq(f`\abc`,'\\abc')
 f=a=>String.raw(a);eq(f`\abc`,'\\abc')
 f=a=>String.raw(a)+123;eq(f`\abc`,'\\abc123')
 
 f=a=>String.raw(a)
-eq(f`\abc`+`de`,'\\abcde')///无法拼接 其实传进去的只有abc
+eq(f`\abc`+`de`,'\\abcde')///⚠️无法拼接 其实传进去的只有abc
 throws(()=>f(`\abc`),TypeError)
-throws(()=>f(['\abc']),TypeError)///这种尝试的写法无效
+throws(()=>f(['\abc']),TypeError)
 
-f=a=>(''+a).slice(1,-1)///hack
+f=a=>(''+a).slice(1,-1)///不转义方法2
 eq(f(/\abc/),'\\abc')
 eq(f(/\abc/)+f(/\def/),'\\abc\\def')
-///更多见[正则用法]
 
 ///#int
 neq(-0,0),eq(-0+0,0)
@@ -36,9 +30,9 @@ as('2'<'20')
 as('2'<'30')
 as(+'2'<+'10')
 
-let a
 ///bool2int4 array.sort
 eq(false-1,-1),eq(true-1,0)
+let
 a=false;eq(a-1,-1);a=true;eq(a-1,0)
 ///反
 a=false;eq(!a-1,0);a=true;eq(!a-1,-1)

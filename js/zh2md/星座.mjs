@@ -13,7 +13,6 @@ Sagittarius/♐︎  Capricorn/♑︎  Aquarius/♒︎  Pisces/♓︎'
 ,Modalities='Cardinal/🜍  Fixed/🜔  Mutable/☿'
 ,Planets='Sun/☉  Moon/☽  Mercury/☿  Venus/♀  Mars/♂  Jupiter/♃  Saturn/♄'
 ,Modern_Planets='Uranus/♅  Neptune/♆  Pluto/⯓'
-// ,f=a=>a.match(/\p{Grapheme_Base}\p{Grapheme_Extend}|\p{Grapheme_Base}/gu)
 ,f=a=>a.split('  ').map((a,_,__,[nm,sy]=a.split('/'))=>sy)
 ,{entries,keys,fromEntries}=Object
 ,zd=fromEntries(f(Zodiacs).map(a=>[a,{}]))

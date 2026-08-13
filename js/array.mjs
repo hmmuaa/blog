@@ -1,6 +1,8 @@
 import'#g'
-const ar=(l,f=i=>i)=>Array.from({length:l},(_,i)=>f(i))
-Object.assign(global,{ar})
+var _
+,init=(l,f=i=>i,g=typeof f=='function'?f:()=>f
+)=>Array.from({length:l},(_,i)=>g(i))
+export default init
 
 ///remove dup
 var _

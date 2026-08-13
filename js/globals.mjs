@@ -1,7 +1,6 @@
 import _as,{deepEqual as _eq,notDeepEqual as neq
 	,throws,rejects}from'assert/strict'
 import{inspect}from'util'
-import'./array.mjs'
 
 /*给log一个短名
 只有调试时用log 调试后都去掉 测试中用eq
@@ -16,7 +15,7 @@ let _
 	.replaceAll('[ ','[').replaceAll(' ]',']')
 	.replaceAll('{ ','{').replaceAll(' }','}')
 	.replace(' [Generator] ','[Generator]')
-	.replace('] {',']{')
+	.replaceAll('] {',']{')
 ,p=(...a)=>(l(a.map(nsp).join('\n')),a[1]?a:a[0])
 // ,p=(...a)=>(l(...a),a[1]?a:a[0])
 ///forEach(log)会输出整个数组 用log1
@@ -34,4 +33,5 @@ let{}=0
 Object.assign(g,{as,eq,neq,throws,rejects})
 
 import fs from'./fs.mjs'
-Object.assign(g,{fs})
+import array from'./array.mjs'
+Object.assign(g,{fs,array})

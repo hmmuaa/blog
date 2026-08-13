@@ -3,8 +3,12 @@ import'#g'
 分层:md-array-obj*/
 var _
 ,colSpan={
-	split:1
+	split:a=>('|'+a).replaceAll(/(?<=\|)([^\|]+)(\|{2,})/g
+		,(_,n,sp)=>array(sp.length,()=>n+'|').join('')).slice(1)
+	,join:a=>a
 }
+
+///Document-Object Model
 
 ,$=String.raw
 ,escape=a=>a.replace(/[\[\]]/g,$`\$&`)
@@ -66,13 +70,22 @@ var _
 ,line=a=>a.replace(/^\||\|$/g,'').split('|').map(cell).join('|')
 ,clean=a=>a.replace(setr,'|||').split('\n').map(line).join('\n')
 
+,td={
+	parse:a=>[...a.matchAll(/(?<=\|)([^\|]+)(\|+)/g)]
+		.map(([_,n,sp])=>Object.assign(n,{colSpan:sp.length}))
+	,join:a=>a
+}
+
 var _
 ,samples={md:'a|b|c\n|\nh|i|j\no|p|q'
 	,arr:{h:['a','b','c'],b:[['h','i','j'],['o','p','q']]}
 	,obj:[{a:'h',b:'i',c:'j'},{a:'o',b:'p',c:'q'}]
 }
+,oba=Object.assign
 eq(escape('[]'),$`\[\]`)
 eq(unescape($`\[\]`),'[]')
+eq(colSpan.split('a|b||c|||d'),'a|b|b|c|c|c|d')
+eq(td.parse('a|b||c|||d'),[oba('b',{colSpan:2}),oba('c',{colSpan:3})])
 eq(md2arr(samples.md),samples.arr)
 eq(arr2obj(samples.arr),samples.obj)
 eq(obj2arr(samples.obj),samples.arr)
@@ -96,6 +109,7 @@ await fs.output('希腊语⸳爱若斯.md',toMk(md))
 
 var _
 ,cl=clean(a[3])
+,cl=colSpan.split(cl)
 ,arr=md2arr(cl)
 ,md=arr2md(arr)
 ,_=eq(md,cl)
