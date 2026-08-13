@@ -20,11 +20,19 @@ eq(a.replaceAll(rg,1),'1fg1mn')
 eq(a.replaceAll(rg,'_$&_$1_$2_'),'_abcde_b_d_fg_hijkl_i_k_mn')
 eq(a.replaceAll(rg,(a,b,c)=>`_${a}_${b}_${c}_`)
 	,'_abcde_b_d_fg_hijkl_i_k_mn')
-///注意split的逻辑不同
+///注意split的逻辑不同 也可以用做多处替换 似乎g没有影响
+eq(a.split(r),['','b','d','fg','i','k','mn'])
 eq(a.split(rg),['','b','d','fg','i','k','mn'])
+eq(a.split(/(^.*$)/),['','abcdefghijklmn',''])
+eq(a.split(/(^.*$)/).join(1),'1abcdefghijklmn1')
+// eq(a.match(/^(.).*(.)$/),['a','bcdefghijklm','n'])
+eq(a.replace(/^(.)(.*)(.)$/,'1$21'),'1bcdefghijklm1')
+// eq(a.replace(/()^.*$()/,1),['','abcdefghijklmn',''])
+// eq(a.split(/(^.*$)/).join(1),'1abcdefghijklmn1')
 
 /*支持lookup
-注意(?:.)叫“Non-capturing” 实际却是在结果中的*/
+注意(?:.)叫“Non-capturing” 实际在replace中并未排除
+在split时则有排除 但似乎和不分组部分无区别*/
 ,rg=/(?<=[ah])(.)(?=.).(?<=[cj])(.)(?:.)(?=.)/g
 eq([...a.matchAll(rg)]
 	,[oba(['bcde','b','d'],{index:1,input:'abcdefghijklmn',groups:undefined})
@@ -53,6 +61,46 @@ eq([...a.matchAll(rg)]
 		,groups:oba(Object.create(null),{a:'b',b:'d'})})
 	,oba(['ijkl','i','k'],{index:8,input:'abcdefghijklmn'
 		,groups:oba(Object.create(null),{a:'i',b:'k'})})])
+
+// p(a.replaceAll(rg,(...a)=>nsp(a.at(-1)))
+// 	,`a['bcde','b','d',1,'abcdefghijklmn']fgh['ijkl','i','k',8,'abcdefghijklmn']mn`)
+eq(a.replaceAll(rg,'_$&_$1_$2_')
+	,'a_bcde_b_d_fgh_ijkl_i_k_mn')
+eq(a.replaceAll(rg,'_$&_$<a>_$<b>_')
+	,'a_bcde_b_d_fgh_ijkl_i_k_mn')
+eq(a.replaceAll(rg,(a,b,c)=>`_${a}_${b}_${c}_`)
+	,'a_bcde_b_d_fgh_ijkl_i_k_mn')
+
+/*+Group name*/
+,rg=/(?<=[ah])(?<a>.)(?=.).(?<=[cj])(?<b>.)(?:.)(?=.)/g
+eq([...a.matchAll(rg)]
+	,[oba(['bcde','b','d'],{index:1,input:'abcdefghijklmn'
+		,groups:oba(Object.create(null),{a:'b',b:'d'})})
+	,oba(['ijkl','i','k'],{index:8,input:'abcdefghijklmn'
+		,groups:oba(Object.create(null),{a:'i',b:'k'})})])
+
+// p(a.replaceAll(rg,(...a)=>nsp(a.at(-1)))
+// 	,`a['bcde','b','d',1,'abcdefghijklmn']fgh['ijkl','i','k',8,'abcdefghijklmn']mn`)
+eq(a.replaceAll(rg,'_$&_$1_$2_')
+	,'a_bcde_b_d_fgh_ijkl_i_k_mn')
+eq(a.replaceAll(rg,'_$&_$<a>_$<b>_')
+	,'a_bcde_b_d_fgh_ijkl_i_k_mn')
+eq(a.replaceAll(rg,(a,b,c)=>`_${a}_${b}_${c}_`)
+	,'a_bcde_b_d_fgh_ijkl_i_k_mn')
+
+/*+indices*/
+,rg=/(?<=[ah])(?<a>.)(?=.).(?<=[cj])(?<b>.)(?:.)(?=.)/gd
+eq([...a.matchAll(rg)]
+	,[oba(['bcde','b','d'],{index:1,input:'abcdefghijklmn'
+		,groups:oba(Object.create(null),{a:'b',b:'d'})
+		,indices:oba([[1,5],[1,2],[3,4]]
+			,{groups:oba(Object.create(null),{a:[1,2],b:[3,4]})})}
+	)
+	,oba(['ijkl','i','k'],{index:8,input:'abcdefghijklmn'
+		,groups:oba(Object.create(null),{a:'i',b:'k'})
+		,indices:oba([[8,12],[8,9],[10,11]]
+			,{groups:oba(Object.create(null),{a:[8,9],b:[10,11]})})}
+	)])
 
 // p(a.replaceAll(rg,(...a)=>nsp(a.at(-1)))
 // 	,`a['bcde','b','d',1,'abcdefghijklmn']fgh['ijkl','i','k',8,'abcdefghijklmn']mn`)

@@ -3,13 +3,14 @@ const oba=Object.assign
 
 /*Negative look ahead (?<!
 和Look ahead+Negated Character Class (?<=[^ 的区别
-:[^|]要求匹配到一个字符。这是最关键的区别
+:[^|]要求匹配到一个字符 这是最关键的区别
 匹配行开头的“|”时
 */
 eq('a'.match(/(?<!\|)a/),oba(['a'],{index:0,input:'a',groups:undefined}))
 eq('a'.match(/(?<=[^|])a/),null)
 
-///match empty
+///match empty,可以用空括号或省略
+eq('ab'.match(/(?<=a)()(?=b)/g),[''])
 eq('ab'.match(/(?<=a)(?=b)/g),[''])
 
 var _
@@ -38,15 +39,18 @@ Supplement or un-trim
 to make it complete, improve it, or fix a missing piece*/
 var _
 ,st=/(?<=^)(?=[^\|])/
-eq('a|b||c'.match(st)[0],'')
+eq('a|b||c'.match(st),oba([''],{index:0,input:'a|b||c',groups:undefined}))
 eq('|a|b||c'.match(st),null)
 st=/((?<=^)(?=[^\|]))(?:[^\|]*?)/
-eq('a|b||c'.match(st)[0],'')
+eq('a|b||c'.match(st),oba(['',''],{index:0,input:'a|b||c',groups:undefined}))
 eq('|a|b||c'.match(st),null)
+,st=/(?<=^)(\|?)(.*)/
+eq('a|b||c'.match(st),oba(['a|b||c','','a|b||c'],{index:0,input:'a|b||c',groups:undefined}))
+eq('|a|b||c'.match(st),oba(['|a|b||c','|','a|b||c'],{index:0,input:'|a|b||c',groups:undefined}))
 var ed=/(?<=.*)(?<!\|)(?=$)/
-eq('a|b||c'.match(ed)[0],'')
+eq('a|b||c'.match(ed),oba([''],{index:6,input:'a|b||c',groups:undefined}))
 eq('a|b||c|'.match(ed),null)
-var stEd=/((?<=^)(?=[^\|]))(?:[^\|]*)(?<!\|)(?=$)/
+var stEd=/^(?:[^\|]*)(?<!\|)(?=$)/
 // p('a|b||c'.match(stEd))
 
 var _
