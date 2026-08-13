@@ -11,7 +11,7 @@ let _
 ,l=console.log
 ///输出表达式 用在eq中
 ,nsp=a=>inspect(a)
-	.replaceAll(': ',':').replaceAll(', ',',')
+	.replaceAll(': ',':').replaceAll(/, +/g,',')
 	.replaceAll('[ ','[').replaceAll(' ]',']')
 	.replaceAll('{ ','{').replaceAll(' }','}')
 	.replace(' [Generator] ','[Generator]')
