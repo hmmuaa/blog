@@ -1,11 +1,22 @@
 import'#g'
 const oba=Object.assign
-/*一次返回一组多个结果
-使用match/matchAll分三种
-(还有一种exec 重复暂不测)
-matchAll是完整结果*/
+/*--+----+----+----#----+----+----+----#----+----+----+----#----+----+----+----
+正则可以*按格式*一次返回一组多个结果
+分g和非g两种不同写法 有逻辑区别
+g暂不测 本文测试非g写法和用法
+写法指正则表达式语法 用法指js函数 两者需正确配合
+
+#js函数
+类似''.split 直观得出正则的多个结果 有几种
+match/match+g/matchAll/exec/split
+其中split逻辑模式与其他不同 正则需配合函数的工作逻辑
+exec估计和matchAll重复暂不测
+
+以下先测试一个一般的情况 即从字符串match所需部分内容
+*/
 let a='abcdefghijklmn',r=/[ah](.).(.)./,rg=/[ah](.).(.)./g
 eq(typeof r,'object'),as(r instanceof RegExp)
+///matchAll能得到完整结果 matchAll必须+g
 eq([...a.matchAll(rg)]
 	,[oba(['abcde','b','d'],{index:0,input:'abcdefghijklmn',groups:undefined})
 	,oba(['hijkl','i','k'],{index:7,input:'abcdefghijklmn',groups:undefined})])

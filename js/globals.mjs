@@ -12,6 +12,7 @@ let _
 ///输出表达式 用在eq中
 ,nsp=a=>inspect(a)
 	.replaceAll(': ',':').replaceAll(/, +/g,',')
+	.replaceAll('\n  ','').replaceAll('\n]',']')
 	.replaceAll('[ ','[').replaceAll(' ]',']')
 	.replaceAll('{ ','{').replaceAll(' }','}')
 	.replace(' [Generator] ','[Generator]')
