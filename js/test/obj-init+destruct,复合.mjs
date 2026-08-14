@@ -40,8 +40,8 @@ a=Object.assign('abc'.split(''),{i:1,n:2.3})
 	throws(()=>[...b],/TypeError: b is not iterable/)
 }
 {
-	///使用链赋值
-	let i,n,r,s,t,u
-	r=[s,t]={i,n,...u}=a
-	eq([s,t,u,i,n,r],['a','b',{'0':'a','1':'b','2':'c'},1,2.3,a])
+	///用链赋值
+	let i,n,r,s,t,u,v
+	r=[s,t,...u]={i,n,...v}=a
+	eq([i,n,r,s,t,u,v],[1,2.3,a,'a','b',['c'],{'0':'a','1':'b','2':'c'}])
 }
