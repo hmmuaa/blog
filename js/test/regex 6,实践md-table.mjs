@@ -44,7 +44,7 @@ eq('|a|b||c'.match(st),null)
 st=/((?<=^)(?=[^\|]))(?:[^\|]*?)/
 eq('a|b||c'.match(st),oba(['',''],{index:0,input:'a|b||c',groups:undefined}))
 eq('|a|b||c'.match(st),null)
-,st=/(?<=^)(\|?)(.*)/
+,st=/^(\|?)(.*)/
 eq('a|b||c'.match(st),oba(['a|b||c','','a|b||c'],{index:0,input:'a|b||c',groups:undefined}))
 eq('|a|b||c'.match(st),oba(['|a|b||c','|','a|b||c'],{index:0,input:'|a|b||c',groups:undefined}))
 var ed=/(?<=.*)(?<!\|)(?=$)/
@@ -52,6 +52,19 @@ eq('a|b||c'.match(ed),oba([''],{index:6,input:'a|b||c',groups:undefined}))
 eq('a|b||c|'.match(ed),null)
 var stEd=/^(?:[^\|]*)(?<!\|)(?=$)/
 // p('a|b||c'.match(stEd))
+
+let//leave fin
+r=/^(\|?)(.*(?=\|?))$/
+// eq('a|b||c'	.match(r),oba(['a|b||c','','a|b||c'],{index:0,input:'a|b||c',groups:undefined}))
+// eq('|a|b||c'.match(r),oba(['|a|b||c','|','a|b||c'],{index:0,input:'|a|b||c',groups:undefined}))
+// eq('a|b||c|'.match(r),oba(['a|b||c','','a|b||c'],{index:0,input:'a|b||c|',groups:undefined}))
+
+stEd=/^(\|?)(.*)(?=\|?$)(\|?)$/
+eq('a|b||c'.match(stEd),oba(['a|b||c','','a|b||c',''],{index:0,input:'a|b||c',groups:undefined}))
+eq('|a|b||c'.match(stEd),oba(['|a|b||c','|','a|b||c',''],{index:0,input:'|a|b||c',groups:undefined}))
+stEd=/^(\|?)(.*)(?!$)(\|?)$/
+eq('a|b||c|'.match(stEd),oba(['a|b||c|','','a|b||c','|'],{index:0,input:'a|b||c|',groups:undefined}))
+// eq('|a|b||c|'.match(stEd),oba(['|a|b||c|','|','a|b||c','|'],{index:0,input:'|a|b||c|',groups:undefined}))
 
 var _
 ,supSt=(a,c)=>a.replace(/(?<=^)(?=[^\|])/,'|')

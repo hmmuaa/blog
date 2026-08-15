@@ -31,6 +31,10 @@ let{}=0
 	,r=l)=>l+msg+r
 ,as=(a,msg)=>msg?_as(a,f(msg)):_as(a)
 ,eq=(a,b,msg)=>msg?_eq(a,b,f(msg)):_eq(a,b)
+// function eq(a,b,msg){
+// 	Error.captureStackTrace(globalThis,eq)
+// 	msg?_eq(a,b,f(msg)):_eq(a,b)
+// }//不会用
 Object.assign(g,{as,eq,neq,throws,rejects})
 
 import fs from'./fs.mjs'

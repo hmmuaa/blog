@@ -1,0 +1,9 @@
+-不能记住中英文切换状态 可暂时记住
+-英文键盘逐字输入
+
+#打开“No suggestions aggressive”
+(Acode-App settings-Keyboard mode)
+即为逐字输入
+并且能暂时记住英文输入状态
+只要调试时没打开输入法
+回到Acode就仍然是英语
