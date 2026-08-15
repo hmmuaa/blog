@@ -1,6 +1,5 @@
 import'#g'
 ///非g模式 从整个str一级级向下定位 和g模式很不同
-///不能仿g模式(或者我没想到怎么写)
 eq('aaaaaaa'.match(/(aa)a(aa)a/).slice(1),['aa','aa'])
 ///Non-capturing group只在非g模式有效
 eq('aaaaaaaaa'.match(/(?:(aa){1,2}a){1,3}/).slice(1),['aa'])
