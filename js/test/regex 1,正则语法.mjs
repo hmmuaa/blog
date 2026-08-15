@@ -1,166 +1,89 @@
 import'#g'
-eq('a'.match(/a/)[0],'a')
-eq('b'.match(/b/)[0],'b')
-eq('a'.match(/b/),null)
-eq('b'.match(/a/),null)
-eq('aaa'.match(/a*/)[0],'aaa')
-eq('bbb'.match(/b+/)[0],'bbb')
-eq('aaa'.match(/a/g),['a','a','a'])
+///非g模式 从整个str一级级向下定位 和g模式很不同
+///不能仿g模式(或者我没想到怎么写)
+eq('aaaaaaa'.match(/(aa)a(aa)a/).slice(1),['aa','aa'])
+///Non-capturing group只在非g模式有效
+eq('aaaaaaaaa'.match(/(?:(aa){1,2}a){1,3}/).slice(1),['aa'])
 
-eq('abc'.match(/a|abc/g),['a'])
-eq('abc'.match(/b|abc/g),['abc'])
-eq('abc'.match(/abc|a/g),['abc'])
-eq('abc'.match(/abc|b/g),['abc'])
+let a,b,r
+///以结尾为参照点
+let m=(a,b)=>[...a.match(b)??[]]
+a='abc'
+eq(m(a,/./),['a'])
+eq(m(a,/.$/),['c'])
+eq(m(a,/(.).$/),['bc','b'])
+eq(m(a,/^.(.).$/),['abc','b'])
+eq(m(a,/^(.).(.)$/),['abc','a','c'])
 
-///Character classes，字符类（通配符）
-eq('a b'.match(/.*/g),['a b',''])///会多一个空字符串
-eq('a b'.match(/.+/g),['a b'])///这样就不会多
-eq('a\nb'.match(/.+/g),['a','b'])//
-eq('a\nb'.match(/.+/gs),['a\nb'])//
-eq('a b'.match(/[^\n]+/g),['a b'])
-eq('abc'.match(/\S+/g),['abc'])
-eq('a b'.match(/\S+/g),['a','b'])///\S排除空格
-eq('a b'.match(/\w+/g),['a','b'])
-eq('abc'.match(/\w+/g),['abc'])
-let a='东市买骏马，西市买鞍鞯，南市买辔头，北市买长鞭。'
-eq(a.match(/\w/g),null)///中文无效
+///排除最后一个字 (参考输血措辞 匹配的反义词是排异)
+eq(m(a,/^.(.)(?=.$)/),['ab','b'])
+eq(m(a,/^.(.(?=.$))/),['ab','b'])
+eq(m(a,/^.(.)(?=.$)(.)/),['abc','b','c'])
 
-///不会重叠匹配
-eq('aaaaa'.match(/aa/g),['aa','aa'])
-///lookahead不算
-eq('aaaaaaa'.match(/aa(?=a)/g),['aa','aa','aa'])
+///匹配最后一个a
+a='ababa',b='abab'
+eq(m(a,/a$/),['a'])
+eq(m(a,/a?$/),['a'])
+eq(m(b,/a?$/),[''])
+eq(m(a,/(a?)$/),['a','a'])
+eq(m(b,/(a?)$/),['',''])
+eq(m(a,/(a?$)/),['a','a'])
+eq(m(b,/(a?$)/),['',''])
+r=/(a$|$)/
+eq(m(a,r),['a','a'])
+eq(m(b,r),['',''])
 
-///处理中文，六个字一分
-eq(a.match(/\S{1,6}/g),
-	['东市买骏马，','西市买鞍鞯，','南市买辔头，','北市买长鞭。'])
-///两行一分[引](https://stackoverflow.com/q/46494380/2537458)
-a=a.match(/\S{6}/g).join('\n')
-eq(a.match(/(?=[\s\S])(?:.*\n?){1,2}/g)
-	.map(a=>a.replaceAll('\n',''))
-	,['东市买骏马，西市买鞍鞯，','南市买辔头，北市买长鞭。'])
-eq(a.match(/(?:.+\n?){2}/g)
-	.map(a=>a.replaceAll('\n',''))
-	,['东市买骏马，西市买鞍鞯，','南市买辔头，北市买长鞭。'])
+///不匹配最后一个a
+r=/(.*)(?=a$|$)/
+eq(m(a,/(.*)(?=a$|$)/),['ababa','ababa'])//失败
+eq(m(a,/(.*(?=a$|$))/),['ababa','ababa'])//失败
+/*non-greedy(?)即匹配最少内容
+第一次就匹配最少内容 如“*?”即匹配空
+就向后匹配 如果向后匹配失败
+就继续non-greedy匹配 达到第二小匹配
+再向后匹配 如果再向后匹配失败
+再继续non-greedy匹配 达到第三小匹配 如此重复
+直到成功向后匹配
+greedy则正好相反*/
+r=/(.*?(?=a$|$))/
+eq(m(a,r),['abab','abab'])//成功
+eq(m(b,r),['abab','abab'])
+///如果不用non-greedy 用排除可能也能实现 但就复杂多了
 
-///拆分注音
-///w字母 W非字母
-a='长chang城长chang'
-eq(a.match(/\W\w*/g),
-	['长chang','城','长chang'])
+///最后的a单一组
+r=/(.*?)(a$|$)/
+eq(m(a,r),['ababa','abab','a'])
+eq(m(b,r),['abab','abab',''])
 
-///是否字母开头
-eq('ttt'.match(/^\w+/g),['ttt'])
-eq('ttt'.match(/^\w+/),Object.assign(['ttt'],{index:0,input:'ttt',groups:undefined}))
-eq('长chang'.match(/^\w+/g),null)
-eq('长chang'.match(/^\w+/),null)
+///输出格式
+eq('abcde'.match(/a(b)c(d)e/),Object.assign(['abcde','b','d'],{index:0,input:'abcde',groups:undefined}))
+eq('abcde'.match(/a(b)c(d)e/).slice(1),['b','d'])
 
-a='1\n\n\n\n2\n'
-eq(
-	(a+'\n').match(/(.*\n){2}/g).map(a=>a.slice(0,-1))
-	,[ '1\n', '\n', '2\n' ])
-// a='1\n2\n3\n\n2\n'
-// eq(
-// 	a.match(/(.*\n.*)/g)
-// 	,[ '1\n', '\n', '2\n' ])
+///字或段（词）
+eq('foooo'.match(/foo{3,}/)[0],'foooo')
+eq('foofoofoo'.match(/(?:foo){3,}/)[0],'foofoofoo')
+eq('上下下下下'.match(/上下下{3,}/)[0],'上下下下下')
+eq('上下下上下下上下下'.match(/(?:上下下){3,}/)[0]
+	,'上下下上下下上下下')
 
-///^需在|两边都写
-a='The quick brown fox jumps over the lazy dog'
-eq(a.match(/The|the/g),['The','the'])
-eq(a.match(/^The|^the/g),['The'])
-eq(a.match(/^(The|the)/g),['The'])
+///non-capturing group，match好像没区别，不知道会不会省内存？
+eq('foofoofoo'.match(/(?:foo){3,}/)[0],'foofoofoo')
+eq('foofoofoo'.match(/(foo){3,}/)[0],'foofoofoo')
 
-///group
-eq(a.toLowerCase().split(/the/)
-	,['',' quick brown fox jumps over ',' lazy dog'])
-eq(a.toLowerCase().split(/(the)/)
-	,['','the',' quick brown fox jumps over ','the',' lazy dog'])
-eq(a.toLowerCase().split(/\s?(the)\s?/)
-	,['','the','quick brown fox jumps over','the','lazy dog'])
+///跳过部分
+a='东市买骏马，西市买鞍鞯，南市买辔头，北市买长鞭。'
+eq(a.match('(东市买骏马)，(西市买鞍鞯)').slice(1),
+	['东市买骏马','西市买鞍鞯'])
 
-///negative lookbehind,not after,not following
-///negative look forwads
-eq(a.replace(/o/g,'O')
-	,'The quick brOwn fOx jumps Over the lazy dOg')
-eq(a.replace(/(?<! )o/g,'O')
-	,'The quick brOwn fOx jumps over the lazy dOg')
-eq(a.replace(/(?<! )o(?!w)/g,'O')
-	,'The quick brown fOx jumps over the lazy dOg')
-eq(a.replace(/o(?!w)/g,'O')
-	,'The quick brown fOx jumps Over the lazy dOg')
-eq(a.replace(/o(?!w|x)/g,'O')
-	,'The quick brown fox jumps Over the lazy dOg')
+///商品标题
+eq('40罐赛园李干150克（至1.04）'
+.match(/^([0-9]+)(.)(\W+)([0-9]+)\/?([0-9]*)(.)/).slice(1)
+,['40','罐','赛园李干','150','','克'])
 
-const countChars=a=>Object.entries(
-	a.replaceAll(' ','').split('').reduce((acc,char)=>
-		({...acc,[char]:(acc[char]||0)+1}),{})).sort((a,b)=>b[1]-a[1])
-a='The quick brown fox jumps over the lazy dog.'
-eq(countChars(a).filter(([,a])=>a>2),[[ 'o', 4 ], [ 'e', 3 ]])
-eq(a.match(/.e./g),[ 'he ', 'ver', 'he ' ])
-eq(a.match(/.o./g),[ 'row', 'fox', ' ov', 'dog' ])
-eq(a.match(/(?<=f|d)o./g),[ 'ox','og' ])
-eq(a.match(/(?<!f|d)o./g),[ 'ow', 'ov' ])
-eq(a.match(/(?:f|d)o./g),[ 'fox','dog' ])
-eq(a.match(/(?:br|d)o./g),[ 'brow','dog' ])
-eq(a.match(/(?:br|d|)o./g),['brow', 'ox', 'ov', 'dog'])
+eq('40罐赛园李干150/200克（至1.04）'
+.match(/^([0-9]+)(.)(\W+)([0-9]+)\/?([0-9]*)(.)/).slice(1)
+,['40','罐','赛园李干','150','200','克'])
 
-///match b but not abc
-/*这个好难 问了好几个ai 最后gpt搞定的*/
-eq('b'
-	.replace(/b(?!(?<=a)b(?=c))/g,'B')
-	,'B')
-eq('b abc'
-	.replace(/(?<!a)b|b(?!c)/g,'B')
-	,'B abc')
-eq('b abc ab bc ac abcba'
-	.replace(/(?<!a)b|b(?!c)/g,'B')
-	,'B abc aB Bc ac abcBa')
-eq(a.replace(/(?<!d)o|o(?!g)/g,'O')
-	,'The quick brOwn fOx jumps Over the lazy dog.')
-	
-///match b but not abc or xby
-a='thequickbrownfoxjumpsoverthelazydog'
-eq(a.replace(/(?<!d)o|o(?!g)/g,'O')
-	,'thequickbrOwnfOxjumpsOverthelazydog')
-eq(a.replace(/(?<!br)o|o(?!wn)/g,'O')
-	,'thequickbrownfOxjumpsOverthelazydOg')
-// eq(a.replace(/(?<!d)o|o(?!g)|(?<!br)o|o(?!wn)/g,'O')
-// 	,'thequickbrownfOxjumpsOverthelazydOg')
-
-// eq(
-//   'b abc xby'.replace(/b/g, (m, i, s) =>
-//     s.slice(i - 1, i + 2) === 'abc' || s.slice(i - 1, i + 2) === 'xby'
-//       ? 'b'
-//       : 'B'
-//   ),
-//   'B abc xby'
-// );
-// eq('b abc xby'
-// 	.replace(/((?<!a)b|b(?!c))|((?<!x)b|b(?!y))/g,'B')
-// 	,'B abc xby')
-a= 'The quick brown fox jumps over the lazy dog'
-// eq(a.replace(/(?<!d)o|o(?!g)/g,'O')
-// 	,'The quick brown fOx jumps Over the lazy dog')
-let x;
-///a是任意字符串 匹配所有o 排除brown和fox
-// a = 'thequickbrownfoxjumpsoverthelazydog'
-// x =?
-// eq(
-//   a.replace(x, 'O'),
-//   'thequickbrownfoxjumpsOverthelazydOg'
-// )
-
-/*
-replace match result
-(stackoverflow.com/a/69491433)
-*/
-const regex = /123/g;
-a = "XYZ is some string, but 123 is what to change.";
-///$& means the whole matched string
-eq(a.replace(regex,'*$&*')
-,'XYZ is some string, but *123* is what to change.')
-eq(a.replace(regex, m => m * 2)
-,'XYZ is some string, but 246 is what to change.')
-
-eq('黑龙江､吉林､辽宁并称东北省'
-.replace(/黑龙江|吉林|辽宁|东北省/g,'_$&_')
-,'_黑龙江_､_吉林_､_辽宁_并称_东北省_')
+eq('饼干1.5斤（3月4日到期）'
+.match(/^(.\W+)([0-9.]{1,3})斤（/).slice(1)
+,['饼干','1.5'])
