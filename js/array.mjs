@@ -15,6 +15,7 @@ var _
 ,toReversed=a=>a.slice().reverse()
 ,toSorted=(a,b)=>a.slice().sort(b)
 ,findLast=(a,f)=>toReversed(a).find(f)
+///[matrix/2D-array] Swap rows with columns / 45°flip
 ,transpose=a=>a[0].map((_,i)=>a.map(a=>a[i]))
 Object.assign(Array.prototype,{
 	unique(){return uniq(this)}

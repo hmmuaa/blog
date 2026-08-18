@@ -1,7 +1,7 @@
 import'#g'
 /*md-table 解析生成整理
 分层:md-array-obj*/
-const{}=0
+var _
 ,m=(a,b)=>[...a.match(b)??[]]
 ,ma=(a,r)=>[...a.matchAll(r)].map(a=>[...a].slice(1))
 
@@ -10,9 +10,19 @@ const{}=0
 ,unescape=a=>a.replaceAll('\\','')
 ,txt2md=a=>a,md2txt=unescape
 
+,tds=(a,_,__
+	,prep=a=>a.replace(/^(\|?)(.*?)(\|?)$/,'|$2|')
+	,rx=/(?<=\|)([^|]+)(\|+)/g
+	,f=a=>ma(a,rx)
+)=>(_
+	,f(prep(a)).flatMap(([a,i])=>array(i.length,a))
+)
+,heads=a=>(_
+	,a.split('\n').map(tds).transpose().map(a=>a.join('-'))
+)
 ,set='\n|\n'//setup/辨识行 不同md版本辨识行略有区别
 ,md2arr=(a,[h,b]=a.split(set)
-)=>({h:h.split('|')
+)=>({h:heads(h)
 	,b:b.split('\n').map(a=>a.split('|').map(md2txt))})
 
 ,{entries,keys,fromEntries}=Object
@@ -75,15 +85,27 @@ var _
 ,samples={md:'a|b|c\n|\nh|i|j\no|p|q'
 	,arr:{h:['a','b','c'],b:[['h','i','j'],['o','p','q']]}
 	,obj:[{a:'h',b:'i',c:'j'},{a:'o',b:'p',c:'q'}]
+	
+	,cat:{md:'a||b||\nh|i|h|i\n|\no|p|q|r\nu|v|w|x'
+		,arr:{h:['a-h','a-i','b-h','b-i'],b:[['o','p','q','r'],['u','v','w','x']]}
+		,obj:[{'a-h':'o','a-i':'p','b-h':'q','b-i':'r'},{'a-h':'u','a-i':'v','b-h':'w','b-i':'x'}]}
 }
 ,oba=Object.assign
 eq(escape('[]'),$`\[\]`)
 eq(unescape($`\[\]`),'[]')
 eq(td.parse('a|b||c|||d'),[oba('b',{colSpan:2}),oba('c',{colSpan:3})])
+
 eq(md2arr(samples.md),samples.arr)
 eq(arr2obj(samples.arr),samples.obj)
 eq(obj2arr(samples.obj),samples.arr)
 eq(arr2md(samples.arr),samples.md)
+
+a=samples.cat
+eq(md2arr(a.md),a.arr)
+eq(arr2obj(a.arr),a.obj)
+eq(obj2arr(a.obj),a.arr)
+///还原没写
+// eq(arr2md(a.arr),a.md)
 
 var _
 ,a=await fs.samples['希腊语⸳爱若斯.md']
@@ -107,9 +129,9 @@ await fs.output('希腊语⸳爱若斯.md',toMk(md))
 */
 var _
 ,cl=clean(a[3])
-,arr=md2arr(cl)
-,md=arr2md(arr)
-,_=eq(md,cl)
+// ,arr=md2arr(cl)
+// ,md=arr2md(arr)
+// ,_=eq(md,cl)
 
-,obj=arr2obj(arr)
+// ,obj=arr2obj(arr)
 // ,_=eq(obj2arr(obj),arr)

@@ -3,7 +3,36 @@
 
 #打开“No suggestions aggressive”
 (Acode-App settings-Keyboard mode)
-即为逐字输入
-并且能暂时记住英文输入状态
+能暂时记住英文输入状态
 只要调试时没打开输入法
 回到Acode就仍然是英语
+
+打开该选项后 正常应该是转为逐字输入
+但实际有bug
+输入英文后 如果连输符号 比如括号或点
+会导致刚刚的英文被重复输入一次
+此bug 有极小概率不触发 没找到规律
+
+#Bug反馈
+*需特定APP: Acode(1.11.8-nightly.c2f6644)
+获取网址: https://github.com/Acode-Foundation/Acode/releases/tag/1.11.8-nightly.c2f6644
+该APP可能不是必需
+关键是“App settings-Keyboard mode
+-No suggestions aggressive”选项
+打开后 输入法英文键盘会正常切换为逐字符输入
+*在输入法选项中 打开“上滑输入数字符号”
+
+Acode是一个代码编辑器
+可以输入 编辑代码 一切正常
+但只要在字母后继续输入括号
+这会导致之前输入的字母*被重复输入一遍*
+
+比如输入 string 再输入 (
+就会变为“stringstring(”
+
+经过一些测试
+英文键盘主键盘
+所有上滑数字与符号都会触发此bug
+但主键盘底部的句号 及句号上滑输入逗号
+不会触发bug
+通过左下角打开符号面板再输入符号也不会触发

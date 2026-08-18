@@ -56,7 +56,6 @@ neq(py('波').localeCompare(py('比')),-1)
 在拼音基础上自定义编码 使韵母、声调正确排序
 */
 let{}={}
-,transpose=a=>a[0].map((_,i)=>a.map(a=>a[i]))
 ,/*encode*/nc=(a
 	,[o,n]='oei|eio'.split('|').map(a=>a.split(''))
 	,map=Object.fromEntries([o,n].transpose())

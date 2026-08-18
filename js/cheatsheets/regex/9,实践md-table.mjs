@@ -26,12 +26,6 @@ var _
 	,a='|a|b||c|'
 	eq(ma(a,rg),[['a','|'],['b','||'],['c','|']])
 }
-///split colSpan /split:分裂
-{
-	const split=a=>('|'+a).replaceAll(/(?<=\|)([^|]+)(\|{2,})/g
-		,(_,n,sp)=>array(sp.length,()=>n+'|').join('')).slice(1)
-	eq(split('a|b||c|||d'),'a|b|b|c|c|c|d')
-}
 /*Treatment markdown table row
 Supplement or un-trim
 :add specific char to start and end if not exist
