@@ -1,0 +1,31 @@
+_√_×_✓_✗_✔_✘_✖_✕_☓_☑_☒_
+_✔️_❌_✖️✅❎☑️(绿色有勾叉 灰色只有勾)
+(https://zh.m.wikipedia.org/wiki/叉號)
+
+勾叉号的严重问题:没有一组真的理想的
+✔✘这组太重太碍眼
+☑☒也是 有框 存在感太强
+
+✓✗也比正常字符粗
+且因字体缺字形触发fallback而不匹配
+✓为直划而✗为弯划
+/都是字体问题 Google-Font预览正常字体无此问题
+目前选用这组
+
+×  MULTIPLICATION SIGN (U+00D7)
+U+221A 	√ 	SQUARE ROOT
+U+2611 	☑ 	BALLOT BOX WITH CHECK
+:U+FE0F 	☑️ 	VARIATION SELECTOR-16
+U+2612 	☒ 	BALLOT BOX WITH X
+U+2613 	☓ 	SALTIRE
+U+2705 	✅ 	WHITE HEAVY CHECK MARK
+U+2713 	✓ 	CHECK MARK
+U+2714 	✔ 	HEAVY CHECK MARK
+:U+FE0F 	✔️️ 	VARIATION SELECTOR-16
+U+2715 	✕ 	MULTIPLICATION X
+U+2716 	✖ 	HEAVY MULTIPLICATION X
+:U+FE0F 	️✖️ 	VARIATION SELECTOR-16 
+U+2717 	✗ 	BALLOT X
+U+2718 	✘ 	HEAVY BALLOT X
+U+274C 	❌ 	CROSS MARK
+U+274E 	❎ 	NEGATIVE SQUARED CROSS MARK

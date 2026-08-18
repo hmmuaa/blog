@@ -1,14 +1,9 @@
 import'#g'
 /*md-table 解析生成整理
 分层:md-array-obj*/
-var _
-,colSpan={
-	split:a=>('|'+a).replaceAll(/(?<=\|)([^\|]+)(\|{2,})/g
-		,(_,n,sp)=>array(sp.length,()=>n+'|').join('')).slice(1)
-	,join:a=>a
-}
-
-///Document-Object Model
+const{}=0
+,m=(a,b)=>[...a.match(b)??[]]
+,ma=(a,r)=>[...a.matchAll(r)].map(a=>[...a].slice(1))
 
 ,$=String.raw
 ,escape=a=>a.replace(/[\[\]]/g,$`\$&`)
@@ -65,7 +60,7 @@ var _
 ,setr=/(?<=\n)[ :\-\|]+(?=\n)/
 ,cell=a=>a.match(/^ +$/)?' ':a.trim()
 /*行首的'|'有两种情况 1.一般可直接去掉'
-2.当行首有两个或以上“|” 即有空格时 则去掉一个会改变原格式
+2.当行首有两个或以上“|” 即空单元格时 则去掉一个会导致丢失
 但本处之后用split('|')解析 则没有影响*/
 ,line=a=>a.replace(/^\||\|$/g,'').split('|').map(cell).join('|')
 ,clean=a=>a.replace(setr,'|||').split('\n').map(line).join('\n')
@@ -84,7 +79,6 @@ var _
 ,oba=Object.assign
 eq(escape('[]'),$`\[\]`)
 eq(unescape($`\[\]`),'[]')
-eq(colSpan.split('a|b||c|||d'),'a|b|b|c|c|c|d')
 eq(td.parse('a|b||c|||d'),[oba('b',{colSpan:2}),oba('c',{colSpan:3})])
 eq(md2arr(samples.md),samples.arr)
 eq(arr2obj(samples.arr),samples.obj)
@@ -104,12 +98,15 @@ var _
 ,_=eq(obj2arr(obj),arr)
 
 ,toMk=a=>a.replace('\n|\n','\n|---\n')
-
 await fs.output('希腊语⸳爱若斯.md',toMk(md))
 
+///交叉表
+/*todo 先分裂会导致obj-init重复属性第1个失效
+其实这个思路错了
+需要的并不是先分裂 而是先整理完整列名
+*/
 var _
 ,cl=clean(a[3])
-,cl=colSpan.split(cl)
 ,arr=md2arr(cl)
 ,md=arr2md(arr)
 ,_=eq(md,cl)

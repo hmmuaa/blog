@@ -14,65 +14,41 @@ eq('ab'.match(/(?<=a)()(?=b)/g),[''])
 eq('ab'.match(/(?<=a)(?=b)/g),[''])
 
 var _
-,clear=({1:n,2:sp,index:i})=>[n,sp,i]
-,ma=(a,r)=>[...a.matchAll(r)]
-,mc=(a,r)=>[...a.matchAll(r)].map(clear)
+,m=(a,b)=>[...a.match(b)??[]]
+,ma=(a,r)=>[...a.matchAll(r)].map(a=>[...a].slice(1))
 
-/*Markdown格式处理实践
-split colSpan*/
-{
-	const split=a=>('|'+a).replaceAll(/(?<=\|)([^|]+)(\|{2,})/g
-		,(_,n,sp)=>array(sp.length,()=>n+'|').join('')).slice(1)
-	eq(split('a|b||c|||d'),'a|b|b|c|c|c|d')
-}
+///Markdown格式处理实践
+///解析单元格
 {
 	let _
 	,r=/(?<=\|)([^|]+)(\|+)/
 	,rg=/(?<=\|)([^|]+)(\|+)/g
 	,a='|a|b||c|'
-	eq(mc(a,rg),[['a','|',1],['b','||',3],['c','|',6]])
+	eq(ma(a,rg),[['a','|'],['b','||'],['c','|']])
+}
+///split colSpan /split:分裂
+{
+	const split=a=>('|'+a).replaceAll(/(?<=\|)([^|]+)(\|{2,})/g
+		,(_,n,sp)=>array(sp.length,()=>n+'|').join('')).slice(1)
+	eq(split('a|b||c|||d'),'a|b|b|c|c|c|d')
 }
 /*Treatment markdown table row
 Supplement or un-trim
 :add specific char to start and end if not exist
 /A supplement is an extra part added to something
 to make it complete, improve it, or fix a missing piece*/
-var _
-,st=/(?<=^)(?=[^\|])/
-eq('a|b||c'.match(st),oba([''],{index:0,input:'a|b||c',groups:undefined}))
-eq('|a|b||c'.match(st),null)
-st=/((?<=^)(?=[^\|]))(?:[^\|]*?)/
-eq('a|b||c'.match(st),oba(['',''],{index:0,input:'a|b||c',groups:undefined}))
-eq('|a|b||c'.match(st),null)
-,st=/^(\|?)(.*)/
-eq('a|b||c'.match(st),oba(['a|b||c','','a|b||c'],{index:0,input:'a|b||c',groups:undefined}))
-eq('|a|b||c'.match(st),oba(['|a|b||c','|','a|b||c'],{index:0,input:'|a|b||c',groups:undefined}))
-var ed=/(?<=.*)(?<!\|)(?=$)/
-eq('a|b||c'.match(ed),oba([''],{index:6,input:'a|b||c',groups:undefined}))
-eq('a|b||c|'.match(ed),null)
-var stEd=/^(?:[^\|]*)(?<!\|)(?=$)/
-// p('a|b||c'.match(stEd))
-
-let//leave fin
-r=/^(\|?)(.*(?=\|?))$/
-// eq('a|b||c'	.match(r),oba(['a|b||c','','a|b||c'],{index:0,input:'a|b||c',groups:undefined}))
-// eq('|a|b||c'.match(r),oba(['|a|b||c','|','a|b||c'],{index:0,input:'|a|b||c',groups:undefined}))
-// eq('a|b||c|'.match(r),oba(['a|b||c','','a|b||c'],{index:0,input:'a|b||c|',groups:undefined}))
-
-stEd=/^(\|?)(.*)(?=\|?$)(\|?)$/
-eq('a|b||c'.match(stEd),oba(['a|b||c','','a|b||c',''],{index:0,input:'a|b||c',groups:undefined}))
-eq('|a|b||c'.match(stEd),oba(['|a|b||c','|','a|b||c',''],{index:0,input:'|a|b||c',groups:undefined}))
-stEd=/^(\|?)(.*)(?!$)(\|?)$/
-eq('a|b||c|'.match(stEd),oba(['a|b||c|','','a|b||c','|'],{index:0,input:'a|b||c|',groups:undefined}))
-// eq('|a|b||c|'.match(stEd),oba(['|a|b||c|','|','a|b||c','|'],{index:0,input:'|a|b||c|',groups:undefined}))
-
-var _
-,supSt=(a,c)=>a.replace(/(?<=^)(?=[^\|])/,'|')
-,supEd=(a,c)=>a.replace(/(?<!\|)(?=$)/,'|')
-,supStEd=(a,c)=>a.replace(/((?<=^)(?=[^\|])).*((?<!\|)(?=$))/,'|')
-,t=(a,c)=>a.replace(/((?<=^)(?=[^\|]))/,p)
-eq(supSt('a|b||c'),'|a|b||c')
-eq(supSt('|a|b||c'),'|a|b||c')
-eq(supEd('a|b||c'),'a|b||c|')
-eq(supEd('a|b||c|'),'a|b||c|')
-// p(t('|a|b||c'))
+var r
+r=/^(\|?)(.*)/
+eq(m('a|b||c',r),['a|b||c','','a|b||c'])
+eq(m('|a|b||c',r),['|a|b||c','|','a|b||c'])
+r=/^(\|?)(.*?)(\|?)$/
+eq(m('a|b||c',r),['a|b||c','','a|b||c',''])
+eq(m('|a|b||c',r),['|a|b||c','|','a|b||c',''])
+eq(m('a|b||c|',r),['a|b||c|','','a|b||c','|'])
+eq(m('|a|b||c|',r),['|a|b||c|','|','a|b||c','|'])
+var
+f=(a,c)=>a.replace(r,'|$2|')
+eq(f('a|b||c'),'|a|b||c|')
+eq(f('|a|b||c'),'|a|b||c|')
+eq(f('a|b||c|'),'|a|b||c|')
+eq(f('|a|b||c|'),'|a|b||c|')
