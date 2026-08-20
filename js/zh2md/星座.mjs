@@ -13,7 +13,8 @@ Sagittarius/♐︎  Capricorn/♑︎  Aquarius/♒︎  Pisces/♓︎'
 ,Modalities='Cardinal/🜍  Fixed/🜔  Mutable/☿'
 ,Planets='Sun/☉  Moon/☽  Mercury/☿  Venus/♀  Mars/♂  Jupiter/♃  Saturn/♄'
 ,Modern_Planets='Uranus/♅  Neptune/♆  Pluto/⯓'
-,f=a=>a.split('  ').map((a,_,__,[nm,sy]=a.split('/'))=>sy)
+
+,f=a=>a.split('  ').map((a,_,__,[nm,sy]=a.split('/'))=>nm)
 ,{entries,keys,fromEntries}=Object
 ,zd=fromEntries(f(Zodiacs).map(a=>[a,{}]))
 ,el=f(Elements),mo=f(Modalities)
@@ -25,12 +26,7 @@ Object.values(zd).forEach((a,i)=>(
 		:(i=>(i=i-3,i=i<0?-i+1:i>6?6-i:i,pl.at(i)))(i)
 	,++i in mp?a.mr=mp[i]:_
 	))
-eq(dataTable(fromEntries(entries(zd).slice(-3,-1)))
-	,'||el|mo|ru|mr\n|---\n♑︎|🜃|🜍|♄|\n♒︎|🜁|🜔|♄|♅')
-eq(xt(zd),'||🜂|🜃|🜁|🜄\n|---\n**🜍**|♈︎|♑︎|♎︎|♋︎\n**🜔**|♌︎|♉︎|♒︎|♏︎\n**☿**|♐︎|♍︎|♊︎|♓︎')
-var tt=a=>'#### #'+a
-eq(tt`Zodiacs`,'#### #Zodiacs')
-await fs.output('zodiac',[tt`Zodiacs`,dt(zd)
-	,tt`Categorized`,xt(zd)
-	,tt`Rulers`,xt(zd,a=>a.ru,a=>a.el,pl,el)
-	].join('\n'))
+const sample=fromEntries(entries(zd).slice(9,11))
+export{zd,sample}
+eq(sample,{Capricorn:{el:'Earth',mo:'Cardinal',ru:'Saturn'}
+	,Aquarius:{el:'Air',mo:'Fixed',ru:'Saturn',mr:'Uranus'}})

@@ -8,7 +8,7 @@ f=a=>String.raw(a);eq(f`\abc`,'\\abc')
 f=a=>String.raw(a)+123;eq(f`\abc`,'\\abc123')
 
 f=a=>String.raw(a)
-eq(f`\abc`+`de`,'\\abcde')///⚠️无法拼接 其实传进去的只有abc
+eq(f`\abc`+`de`,'\\abcde')//⚠️无法拼接 其实传进去的只有abc
 throws(()=>f(`\abc`),TypeError)
 throws(()=>f(['\abc']),TypeError)
 

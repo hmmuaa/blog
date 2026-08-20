@@ -1,4 +1,13 @@
 
+///Engineering 暂时没启用
+/*,steps=(...a)=>a
+,md,dom,obj
+,parseMd=steps(md,dom,obj)
+
+,coder=(enc,dec)=>[enc.dec]
+*/
+
+
 ///DOM/“Document-Object Model” 写了但暂时用不上
 var md2dom,row,rx,f,prep
 ///tr

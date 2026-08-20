@@ -1,3 +1,21 @@
+_2026年8月19日_
+Opening custom ext file causes “Open with”
+
+It is weird
+
+In this screenshot,
+There are two very similar file names
+The first filename leading with “v1..”
+When tapping it, it got directly opened in Markor
+And the second filename leading with “v2..”
+When tapping it, it popped me ”open with” dialog
+
+After I selected open with Markor
+(And I tried modify some file settings
+Since I suppose it'll get remembered by Markor)
+And then closed and tried to reopen that file
+And it's still asking me for open-with..
+
 #版本2.15.2
 性能问题严重 之前能打开的文件现在直接崩溃
 文件大一点增删行就卡
