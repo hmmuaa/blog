@@ -7,6 +7,7 @@ Halfwidth Left Corner Bracket
 原则上是占半个汉字的宽度
 和半角句号`｡` 半角顿号`､` 半角平假名中点`･`
 是邻居
+(引号见专门文件整理)
 
 (https://zh.wikipedia.org/wiki/顿号)
 在 Unicode 字符是 U+3001： 
@@ -23,29 +24,26 @@ Halfwidth Left Corner Bracket
 ﾟHalfwidth Katakana Semi-Voiced Sound Mark
 	ぱぴぷ
 
-, ،
-[],(),{},⟨⟩,⟪⟫
-‹ › « »
-<>
-Angle brackets (BE&AE)[2] 	Angle brackets (BE&AE)[2] 	less-than and greater-than 
-⟪|⟫|U+27EA
-⟪|
-《|
 ¥|
 ￥|
 
-..........-|+002E FULL STOP (英文句号)
-⸳⸳⸳⸳⸳⸳⸳⸳⸳⸳-|+2E33 Raised Dot 选用 较稳定 ⸳⸳
-‧‧‧‧‧‧‧‧‧‧-|+2027 HYPHENATION POINT 出错弃用 ‧‧
-··········-|+0387 GREEK ANO TELEIA 不稳定
-⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅-|+22C5 DOT OPERATOR
+․․․․․․․․․․-|2024 ONE DOT LEADER
+..........-|U+002E FULL STOP (英文句号)
+⸳⸳⸳⸳⸳⸳⸳⸳⸳⸳-|2E33 Raised Dot 选用 较稳定 ⸳⸳
+‧‧‧‧‧‧‧‧‧‧-|2027 HYPHENATION POINT 出错弃用 ‧‧
+··········-|0387 GREEK ANO TELEIA 不稳定
+⸱⸱⸱⸱⸱⸱⸱⸱⸱⸱-|2E31 WORD SEPARATOR MIDDLE DOT
+⋅⋅⋅⋅⋅⋅⋅⋅⋅⋅-|22C5 DOT OPERATOR
+ᐧᐧᐧᐧᐧᐧᐧᐧᐧᐧ-|1427 CANADIAN SYLLABICS FINAL MIDDLE DOT
+˙˙˙˙˙˙˙˙˙˙-|02D9 DOT ABOVE
+∙∙∙∙∙∙∙∙∙∙-|2219 BULLET OPERATOR
+᛫᛫᛫᛫᛫᛫᛫᛫᛫᛫-|16EB RUNIC SINGLE PUNCTUATION
+•••••-|2022 BULLET
+𐄁𐄁𐄁𐄁𐄁-|10101 AEGEAN WORD SEPARATOR DOT
+･････-|FF65 HALFWIDTH KATAKANA MIDDLE DOT
 ·····-|+00B7 MIDDLE DOT (中文输入法Shift+@)
-˙-|+02D9 DOT ABOVE
-⸱-|+2E31 WORD SEPARATOR MIDDLE DOT
-∙-|U+2219 BULLET OPERATOR
-․|U+2024 ONE DOT LEADER
-᛫U+16EB RUNIC SINGLE PUNCTUATION
-•U+2022 BULLET
+（维基W3C《中文排版需求》草稿建议）
+・|30FB KATAKANA MIDDLE DOT
 
 #对比实测
 -在B站app发布后查看

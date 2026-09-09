@@ -1,5 +1,14 @@
 Overline “‾” (U+203E)  macron/长音符号 “¯” (U+00AF)
 
+Spacing Overline (‾): U+203E
+— A standalone overline character.
+Spacing Macron (¯): U+00AF
+— A traditional modifier letter macron (high flat line).
+Combining Overline (̅): U+0305
+— Places a line directly above the character that precedes it.
+Combining Macron (̄): U+0304
+— Places a smaller macron mark above the preceding letter.
+
 +-×÷=
 ＋－×÷＝
 #️⃣*️⃣🔢🔠🔡🔤🔣🆗 🈁/koko/(这,here)
@@ -12,14 +21,6 @@ Overline “‾” (U+203E)  macron/长音符号 “¯” (U+00AF)
 🌞 🌕🌖🌗🌘🌑🌒🌓🌔
 
 😗😙😚😽 🫠🫥😶‍🌫️🫣 🐈🐱😹
-
-·[U+00B7 MIDDLE DOT]
-（维基W3C《中文排版需求》草稿建议）
-•[U+2022 BULLET]
-⋅[U+22C5 DOT OPERATOR]
-⸳[U+2E33 RAISED DOT]
-・U+30FB KATAKANA MIDDLE DOT
-･U+FF65 HALFWIDTH KATAKANA MIDDLE DOT
 
 ╏,⸽,
 254F,2E3D
@@ -44,75 +45,8 @@ U+00B6 ¶ PILCROW SIGN (&para;)
 ⬢⬡⬢⬡⎔⌬⏣⛃⚛️⚛🔯✡𔓘🧬
 ـــــــــــــــﮩ٨ـ💔ﮩ٨ـﮩﮩ٨ـ❤️
 `𖥔👽༘⋆⭑👾☆｡𖦹🪐‧✮ ° ₊˚🛸⋆☾⋆⁺
-←↖↑↗→↘↓↙
-⬅➡⬆⬇➜
-2B00	 ⬀ 	North East White Arrow
-2B01	 ⬁ 	North West White Arrow
-2B02	 ⬂ 	South East White Arrow
-2B03	 ⬃ 	South West White Arrow
-2B04	 ⬄ 	Left Right White Arrow
- 	 	→	21E6 ⇦ leftwards white arrow
- 	 	⇨
- 	 	→	21F3 ⇳ up down white arrow
-2B05	 ⬅ 	Leftwards Black Arrow
- 	 	→	27A1 ➡ black rightwards arrow
- 	 	→	2B95 ⮕ rightwards black arrow
-2B06	 ⬆ 	Upwards Black Arrow
-2B07	 ⬇ 	Downwards Black Arrow
-2B08	 ⬈ 	North East Black Arrow
-2B09	 ⬉ 	North West Black Arrow
-2B0A	 ⬊ 	South East Black Arrow
-2B0B	 ⬋ 	South West Black Arrow
-2B0C	 ⬌ 	Left Right Black Arrow
-2B0D	 ⬍ 	Up Down Black Arrow
-2B95	 ⮕ 	Rightwards Black Arrow
- 	 	→	27A1 ➡ black rightwards arrow
- 	 	→	2B05 ⬅ leftwards black arrow
-FFE9 	￩ 	HALFWIDTH LEFTWARDS ARROW
-FFEA 	￪ 	HALFWIDTH UPWARDS ARROW
-FFEB 	￫ 	HALFWIDTH RIGHTWARDS ARROW
-FFEC 	￬ 	HALFWIDTH DOWNWARDS ARROW
-
-￬
-↚ ↛ ↜ ↝ ↞ ↟ ↠ ↣ ↤ ↥ ↦ ↧ ↨ ↫ ↬ ↭
-⤷⤴⤵↩
-↴
-↔⟷↕ [参考1](https://www.compart.com/en/unicode/block/U+2190) [Supplemental Arrows-A](https://www.compart.com/en/unicode/block/U+27F0)
-⟳⟲↻↺ · 🔄🔃 · 🔁 · ♻
-⬅️↖️⬆️↗️➡️↘️⬇️↙️↔️↕️↩️↪️⤴️⤵️
 ◼️◻◼▫▪▫️🔹🔲🔳⚫🔘⚪🟢○
 🇦 🇷 🇺 🇵
-
-#长度对比(按QQ排列)
-←|
-→|
-⬅|
-➡|
-➔|
-➜|
-↣|
-↦|
-⇨|
-⋙|
-▶|
-➤|
-➝|
-◄|
-￩|
-￫|
-‹|single angle quotation mark (U+2039)
-›|0x203A|&rsaquo;
-»|
-≫|
-<|
->|greater-than sign (U+003E)
-﹤|small less-than sign (U+FE64)
-﹥|small greater-than sign (U+FE65)
-￩|
-￫|
-◂▸|
-◃▹|
-⟨⟩|
 
 ❤️ means ‘love heart’
 💘 means ‘in love’
