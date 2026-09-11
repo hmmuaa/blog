@@ -7,13 +7,12 @@ let _
 ,g=globalThis
 ,l=console.log
 ///输出表达式 用在eq中
-,nsp=a=>_nsp(a)
-	.replaceAll(': ',':').replaceAll(/,\s+/g,',')
-	.replaceAll('\n  ','')
-	.replaceAll(/\[\s+/g,'[').replaceAll(' ]',']')
-	.replaceAll(/{\s+/g,'{').replaceAll(/\s+}/g,'}')
+,nsp=(a,o)=>_nsp(a,{compact:true,breakLength:Infinity,...o})
+	.replaceAll(': ',':').replaceAll(', ',',')
+	.replaceAll('[ ','[').replaceAll(' ]',']')
+	.replaceAll('{ ','{').replaceAll(' }','}')
+	.replaceAll('] ',']')
 	.replace(' [Generator] ','[Generator]')
-	.replaceAll('] {',']{')
 ,p=(...a)=>(l(a.map(nsp).join('\n')),a[1]?a:a[0])
 // ,p=(...a)=>(l(...a),a[1]?a:a[0])
 ///forEach(log)会输出整个数组 用log1
@@ -40,6 +39,5 @@ let{}=0
 Object.assign(g,{as,eq,neq,throws,rejects})
 
 let $=String.raw
-import fs from'./fs.mjs'
 import array from'./array.mjs'
-Object.assign(g,{$,fs,array})
+Object.assign(g,{$,array})

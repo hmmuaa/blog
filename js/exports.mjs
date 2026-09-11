@@ -5,7 +5,9 @@ import{random,ranged}from'./random.mjs'
 // const l=console.debug
 // ,global._=(...a)=>(l(shorts(Error().stack),...a),a[1]?a:a[0])
 
+import fs from'./fs.mjs'
 import{compareByPinyin}from'./Chinese-text/sort.mjs'
 
-Object.assign(global,{random,ranged,//...date
-	,compareByPinyin})
+Object.assign(global,{random,ranged
+	,fs,compareByPinyin})
+//...date

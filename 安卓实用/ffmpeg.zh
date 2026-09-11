@@ -1,3 +1,21 @@
+用的是“FFmpeg Media Encoder”6.0.0_12
+@Aleksey-Makhno (SilentLexx UA)
+(github.com/silentlexx/ffmpeggui)
+(play.google.com/store/apps/details?id=com.silentlexx.ffmpeggui)
+
+#怎样打开多个文件
+-例如合并B站缓存影音 有两个方法
+1.将文件放到_工作文件夹_后选文件
+(`/storage/emulated/0/Android/..`)
+(`../data/com.silentlexx.ffmpeggui/files`)
+方法2,(提取B站缓存)
+1.用mixp打开`../data/tv.danmaku.bili/download`
+.把video.m4s分享到ffm 在ffm中选“2 files”
+.切换回mx把audio.m4s分享到ff
+.正确填写两个文件 不能选会导致bug清除 要填写
+.输出默认
+.命令选“-c copy” 执行
+
 #剪切画幅(标签方式 原流不更改 但经测mx出错)
 完整参考:`ffmpeg -i input.mp4 -c copy -bsf:v h264_metadata=crop_left=100:crop_right=20:crop_top=10:crop_bottom=10 output.mp4`
 APP:`-c copy -bsf:v hevc_metadata=crop_left=500:crop_right=826:crop_top=24:crop_bottom=0`
