@@ -27,6 +27,9 @@ Halfwidth Left Corner Bracket
 ¥|
 ￥|
 
+          -|空格
+::::::::::-|冒号
+;;;;;;;;;;-|分号
 ․․․․․․․․․․-|2024 ONE DOT LEADER
 ..........-|U+002E FULL STOP (英文句号)
 ⸳⸳⸳⸳⸳⸳⸳⸳⸳⸳-|2E33 Raised Dot 选用 较稳定 ⸳⸳
@@ -44,6 +47,7 @@ Halfwidth Left Corner Bracket
 ·····-|+00B7 MIDDLE DOT (中文输入法Shift+@)
 （维基W3C《中文排版需求》草稿建议）
 ・|30FB KATAKANA MIDDLE DOT
+/参考https://fonts.google.com/?preview.text=_%CB%99_%E2%B8%B3_%CE%87_%E2%80%A7_%E5%AD%97_
 
 #对比实测
 -在B站app发布后查看
