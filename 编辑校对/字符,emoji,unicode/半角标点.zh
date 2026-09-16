@@ -44,9 +44,11 @@ Halfwidth Left Corner Bracket
 •••••-|2022 BULLET
 𐄁𐄁𐄁𐄁𐄁-|10101 AEGEAN WORD SEPARATOR DOT
 ･････-|FF65 HALFWIDTH KATAKANA MIDDLE DOT
-·····-|+00B7 MIDDLE DOT (中文输入法Shift+@)
+·····-|00B7 MIDDLE DOT (中文输入法Shift+@)
 （维基W3C《中文排版需求》草稿建议）
 ・|30FB KATAKANA MIDDLE DOT
+_____-|下划线
+ˍˍˍˍˍ-|02CD Modifier Letter Low Macron
 /参考https://fonts.google.com/?preview.text=_%CB%99_%E2%B8%B3_%CE%87_%E2%80%A7_%E5%AD%97_
 
 #对比实测
