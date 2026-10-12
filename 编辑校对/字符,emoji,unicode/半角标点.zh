@@ -13,13 +13,14 @@ Halfwidth Left Corner Bracket
 在 Unicode 字符是 U+3001： 
 台、港、澳标准为置中，如“、︁”，直排时皆然
 中国大陆同日本标准为靠左下，如“、︀”；直排时靠右上，Unicode 4.1 增加配合中国大陆写法之“直排顿号（PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA），U+FE11”“︑”[6]，以兼容 GB 18030
-另有“小顿号（SMALL IDEOGRAPHIC COMMA）”“﹑”在 U+FE51，源自 CNS 11643／Big5；此外还有“半形顿号（HALFWIDTH IDEOGRAPHIC COMMA）”“､”在 U+FF64，源自 JIS X 0201 编码。
+另有小顿号“﹑” 源自CNS 11643/Big5
+半宽顿号“､” 源自“JIS X 0201”(半角日文区)编码
 ｡|h/w IDEOGRAPHIC FULL STOP|FF61
-､|h/w IDEOGRAPHIC COMMA|FF64(半角日文区)
-﹑|SMALL IDEOGRAPHIC COMMA|FE51
-/|
-\|
- |
+､､､､､|Halfwidth Ideographic Comma|FF64
+﹑﹑﹑﹑﹑|Small Ideographic Comma|FE51
+/hwi(日文半角)有个问题 字高比正常高一些
+如果未指定行高 比如手机QQ音乐回复输入框中
+输入就会看到行高增加
 
 ﾟHalfwidth Katakana Semi-Voiced Sound Mark
 	ぱぴぷ

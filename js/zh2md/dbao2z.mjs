@@ -24,7 +24,7 @@ maps=`\
 `.split('\n').filter(a=>a).map(a=>a.replaceAll('\\n','\n').split('\t'))
 ,pr=a=>Promise.resolve().then(()=>a)
 ,trans=a=>pr(a).then(a=>maps.reduce((z,[a,b])=>z.replaceAll(b,a)
-	,a.replace(/\u200B/g,''))
+	,a.replace(/\u200B/g,''))//zero-width space
 	.trimEnd())
 	.then(markNames)
 import{getClip,setClip}from'clip_manager'

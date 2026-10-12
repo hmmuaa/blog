@@ -18,6 +18,7 @@
 
 #about:config
 fx支持about:config但通过特殊地址:`chrome://geckoview/content/config.xhtml`
+/可加书签
 
 #禁止网页弹app
 点进知乎或B站 就会弹app 以下实测知乎
