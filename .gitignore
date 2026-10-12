@@ -1,3 +1,5 @@
+**/node_modules/
+
 **/.data/
 #比较重要 可能含有个人隐私
 #例如抓取的淘宝快递记录 关注商品优惠记录
@@ -21,4 +23,6 @@
 #性同.tmp 分_output_以便区分
 #目前用在_输入法自定词库_和_zh2md_项目中
 
-**/node_modules/
+**/.obsidian/
+**/.trash/
+#obsidian
