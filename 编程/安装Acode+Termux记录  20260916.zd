@@ -1,0 +1,32 @@
+##安装Acode+Termux记录 _2026年9月16日_
+#安装并配置tx(Termux)
+0.从gh下载并安装
+..tx中安装node
+..安装_axs(acodex_server) with gui_
+`curl -sL https://raw.githubusercontent.com/bajrangCoder/acode-plugin-acodex/main/installServer.sh | bash -s -- --gui`
+	_failed: Connection refused_ /设置VPN后重试
+..执行`termux-setup-storage` /开启存储权限
+
+#安装并配置ac(Acode)
+0.从gh下载并安装
+1.Settings:Pluggins安装_AcodeX_插件
+
+#运行
+1.tx运行`axs` /`axs::terminal: listening..127.0.0.1:8767`
+2.ac右上角菜单打开Terminal /初次需等待安装
+..等待无响应 气泡提示“Failed to start AXS server after multiple attempts”
+	切换到tx 看到有记录 切换回ac看到成功
+	设置tx:耗电管理:允许完全后台行为 /重试一次成功
+..可运行`node`
+起始路径在`data/com.termux/files`
+
+#示例
+-cd '/storage/emulated/0/a_a/gh/hmmuaa/blog/js/zh2md/'
+-node 'zd2md,261012.mjs'
+-node 'fs.mjs'
+
+#坏结论
+虽然可以运行
+但似乎并不能完成在ac中选文件运行等功能
+可能是因为我用的是旧版本ac
+和直接在tx中输入命令没区别
