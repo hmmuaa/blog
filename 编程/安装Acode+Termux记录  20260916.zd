@@ -1,11 +1,15 @@
-##安装Acode+Termux记录 _2026年9月16日_
+##安装Termux+Acode记录 _2026年9月16日_
 #安装并配置tx(Termux)
-0.从gh下载并安装
-..tx中安装node
+0.从F-Droid下载并安装
+..tx中安装node:
+`apt update`
+`pkg update && pkg upgrade -y`
+`pkg install nodejs`
+..执行`termux-setup-storage` /开启存储权限
 ..安装_axs(acodex_server) with gui_
 `curl -sL https://raw.githubusercontent.com/bajrangCoder/acode-plugin-acodex/main/installServer.sh | bash -s -- --gui`
 	_failed: Connection refused_ /设置VPN后重试
-..执行`termux-setup-storage` /开启存储权限
+*Termux支持最新版nodejs
 
 #安装并配置ac(Acode)
 0.从gh下载并安装
@@ -21,6 +25,7 @@
 起始路径在`data/com.termux/files`
 
 #示例
+-node /storage/emulated/0/a_a/gh/hmmuaa/-secret/ajsp/test/log.mjs
 -cd '/storage/emulated/0/a_a/gh/hmmuaa/blog/js/zh2md/'
 -node 'zd2md,261012.mjs'
 -node 'fs.mjs'

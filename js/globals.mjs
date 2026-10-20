@@ -5,7 +5,6 @@
 import{inspect as _nsp}from'util'
 let _
 ,g=globalThis
-,l=console.log
 ///输出表达式 用在eq中
 ,nsp=(a,o)=>_nsp(a,{compact:true,breakLength:Infinity,...o})
 	.replaceAll(': ',':').replaceAll(', ',',')
@@ -13,12 +12,12 @@ let _
 	.replaceAll('{ ','{').replaceAll(' }','}')
 	.replaceAll('] ',']')
 	.replace(' [Generator] ','[Generator]')
-,p=(...a)=>(l(a.map(nsp).join('\n')),a[1]?a:a[0])
+,p=(...a)=>(console.log('\x1b[0;30m%s\x1b[0m',a.map(nsp).join('\n')),a[1]?a:a[0])
 // ,p=(...a)=>(l(...a),a[1]?a:a[0])
 ///forEach(log)会输出整个数组 用log1
 ,p1=a=>(p(a),a)
-,n='p'
-Object.assign(g,{[n]:p,[n+1]:p1,[n+'o']:l,nsp,logFnName:n})
+,n='p'//log function name
+Object.assign(g,{[n]:p,[n+1]:p1,nsp,logFnName:n})
 // Object.assign(g,{[n+'o']:po})
 
 ///assert msg非常难找

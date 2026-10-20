@@ -3,7 +3,7 @@
 import'#g'
 import markNames from'../神谱/专名表.mjs'
 let
-maps=`\
+maps=`
 ﹑	、
 (	（
 )	）
