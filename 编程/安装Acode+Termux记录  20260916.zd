@@ -25,10 +25,11 @@
 起始路径在`data/com.termux/files`
 
 #示例
--node /storage/emulated/0/a_a/gh/hmmuaa/-secret/ajsp/test/log.mjs
--cd '/storage/emulated/0/a_a/gh/hmmuaa/blog/js/zh2md/'
+-cd '/storage/emulated/0/a_a/gh/hmmuaa/blog/js/zh2md'
 -node 'zd2md,261012.mjs'
 -node 'fs.mjs'
+-cd '/storage/emulated/0/a_a/gh/hmmuaa/blog/js/cheatsheets'
+-node /storage/emulated/0/a_a/gh/hmmuaa/blog/js/cheatsheets/literal,string,int,undefined,null.mjs
 
 #坏结论
 虽然可以运行
