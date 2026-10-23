@@ -1,7 +1,17 @@
 import'#g'
 ///复合object initializer and destructor
+///这种‘对象+数组复合体’会在正则匹配时产生
 let a
 a=Object.assign('abc'.split(''),{i:1,n:2.3})
+eq(a,Object.assign('abc'.split(''),{i:1,n:2.3}))
+as(a!=Object.assign('abc'.split(''),{i:1,n:2.3}))
+as(a!==Object.assign('abc'.split(''),{i:1,n:2.3}))
+const assert=await import('assert')
+assert.notEqual(a,Object.assign('abc'.split(''),{i:1,n:2.3}))
+assert.notStrictEqual(a,Object.assign('abc'.split(''),{i:1,n:2.3}))
+assert.deepEqual(a,Object.assign('abc'.split(''),{i:1,n:2.3}))
+///deepStrictEqual allows first level not same reference
+assert.deepStrictEqual(a,Object.assign('abc'.split(''),{i:1,n:2.3}))
 {
 	eq(nsp(a),`['a','b','c',i:1,n:2.3]`)
 	let i,n,r,s,t,u
@@ -34,13 +44,14 @@ a=Object.assign('abc'.split(''),{i:1,n:2.3})
 	,{i,...b}=a
 	eq(b,{'0':'a','1':'b','2':'c',n:2.3})
 	///注意 此时b已经不是数组
-	as(a instanceof Array),as(!(b instanceof Array))
+	as(a instanceof Array)
+	as(!(b instanceof Array))
 	eq(b[0],'a')
 	eq([...a],['a','b','c'])
 	throws(()=>[...b],/TypeError: b is not iterable/)
 }
 {
-	///用链赋值
+	///用链赋值 (穿透赋值/贯穿赋值)
 	let i,n,r,s,t,u,v
 	r=[s,t,...u]={i,n,...v}=a
 	eq([i,n,r,s,t,u,v],[1,2.3,a,'a','b',['c'],{'0':'a','1':'b','2':'c'}])

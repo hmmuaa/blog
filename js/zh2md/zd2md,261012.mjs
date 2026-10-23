@@ -1,8 +1,10 @@
 /*中文mark-down z⬇ Z⬇️
 暂时只针对markor测试
-261012 相对旧版有了些格式调整*/
+261012 相对旧版有了些格式调整
+模式有两种 1是面向对象式 建树结构
+2是函数式 通过正则检索*/
 import'#g'
-import ftree from'../logical tree.mjs'
+// import ftree from'../logical tree.mjs'~
 const{}={}
 ,format=Object.values({
   paragraph:[/\n{2,}/,`\n\n`],
@@ -15,14 +17,14 @@ const{}={}
 *	**
 _	*
 `.split('\n').filter(a=>a).map(a=>a.split('\t'))
-,prop=a=>(
-  a=spl(a)
-  ,a=cpl(a)
-  ,p(a)
-  ,a='\n'+a
+,prop=a=>(0
+  // ,a=spl(a)
 	,a=maps.reduce((z,[a,b])=>z.replaceAll(a,b),a)
+	// ,a=maps.reduce((z,[a,b])=>z.map(u=>u.replaceAll(a,b)),a)
+  // ,a=cpl(a)
+  ,a='\n'+a
 	,a
-	///zd是按中文习惯调整md
+	///zd按中文习惯调整md
 	///不使用空格 开头“#、>、-、1.”后不用空格
 	.replace(
 		/(?<=\n)(#{1,6}|[-]|[1-9]\.)(?=.)/g

@@ -1,4 +1,6 @@
 import'#g'
+///近义参考:Object.defineProperty
+
 ///proxy indexed-getter 用在fs.samples
 var
 a=new Proxy({},{get:function(target,v){return v**2}})
