@@ -1,6 +1,6 @@
 import'#g'
 import{curves}from'./bezier curves.mjs'
-import{op}from'#fs'
+import{op}from'#+fs'
 function generatePolylineSVG(dataSets) {
   const colors = ['#ff4444','#44aa44','#4444ff','#ffaa00'];
 

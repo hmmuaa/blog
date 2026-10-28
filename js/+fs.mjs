@@ -13,7 +13,7 @@ eq(path.resolve('.'),process.cwd())
 `import.meta.filename/dirname/dir`是本fs文件的dir
 :`/storage/emulated/0/a_a/gh/hmmuaa/blog/js/fs.mjs``
 */
-as(import.meta.filename.endsWith('/js/fs.mjs'))
+as(import.meta.filename.endsWith('/js/+fs.mjs'))
 as(import.meta.dirname.endsWith('/js'))
 /*
 `process.argv[1]`是entry
