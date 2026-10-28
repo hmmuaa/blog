@@ -4,7 +4,7 @@ const oba=Object.assign
 ///正则可以*按格式*一次返回一组多个结果
 eq('abcde'.match(/b|d/g),['b','d'])
 eq('abcde'.match(/a(b)c(d)e/),oba(['abcde','b','d'],{index:0,input:'abcde',groups:undefined}))
-/*分g和非g两种不同写法 写法用法不同
+/*分g和非g两种 写法用法都不同
 g较简单暂不测 本文研究非g写法和用法
 写法指正则表达式语法 用法指js函数 两者需正确配合
 
@@ -14,26 +14,44 @@ g较简单暂不测 本文研究非g写法和用法
 其中split逻辑模式与其他不同
 函数逻辑模式不同 决定了正则写法也不同
 
-以下先测试一个一般的情况 即从字符串match所需部分内容
+即从字符串match所需部分内容 几种函数
 */
-let a='abcdefghijklmn',r=/[ah](.).(.)./,rg=/[ah](.).(.)./g
+let a='abcdefghijklmn'
+{
+let{}={}
+,r=/[ah](.).(.)./
+,rg=/[ah](.).(.)./g
 ,u=oba(['abcde','b','d'],{index:0,input:'abcdefghijklmn',groups:undefined})
 ,v=oba(['hijkl','i','k'],{index:7,input:'abcdefghijklmn',groups:undefined})
 eq(typeof r,'object'),as(r instanceof RegExp)
+
 ///matchAll能得到完整结果 matchAll必须+g
 eq([...a.matchAll(rg)],[u,v])
 throws(()=>a.matchAll(r),/matchAll called with a non-global RegExp/)
+
 ///如mdn所述 match+g会合并多个结果(developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll#better_access_to_capturing_groups_than_string.prototype.match)
 eq(a.match(rg),['abcde','hijkl'])
-/*不加g则返回第一组 但不合并*/
+///不加g则返回第一组 但不合并
 eq(a.match(r),u)
 ///exec则每次得到下一条结果
 eq(rg.exec(a),u)
 eq(rg.exec(a),v)
-///split工作模式不同
-eq(a.split(r),['','b','d','fg','i','k','mn'])
-///split另撰文
 
+///split工作模式不同 g也没影响
+eq(a.split(r),['','b','d','fg','i','k','mn'])
+eq(a.split(rg),['','b','d','fg','i','k','mn'])
+///split另撰文
+}{
+
+let{}={}
+///正确用法 non-global是连续而不是递归
+,r=/^a(.).(.).*h(.).(.)./
+,rg=/^a(.).(.).*h(.).(.)./g
+,u=oba(['abcdefghijkl','b','d','i','k'],{index:0,input:'abcdefghijklmn',groups:undefined})
+eq(a.match(r),u)
+eq(a.match(rg),['abcdefghijkl'])
+}
+let{}={}
 ///支持lookup
 ,rg=/(?<=[ah])(.)(?=.).(?<=[cj])(.)(?:.)(?=.)/g
 eq([...a.matchAll(rg)]

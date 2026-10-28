@@ -62,6 +62,13 @@ eq([1,11].flatMap(a=>sign(a)==1?[fl(a/4),a%4]:[]),init(4))
 ///remove dup
 const uniq=a=>[...new Set(a)]
 eq(uniq([...'abcbadec']).join(''),'abcde')
+{
+	
+///remove repeat (neighbor dups)
+const a='aabbccaabb'
+,f=a=>a.flatMap((a,i,l)=>!i||l[i-1]!=a?a:[])
+eq(f(a.split('')).join(''),'abcab')
+}
 
 ///group by
 throws(()=>Object.groupBy(a,b),TypeError)
@@ -75,27 +82,14 @@ const gr=f
 f=a=>Object.values(gr(a,i=>i%2))
 eq(f(init(7)),[[0,2,4,6],[1,3,5]])
 
-///group by 2map
+///group to map
 f=(a,f)=>a.reduce((a,b,i,l,__,k=f(b,i,l))=>(
 	a.get(k)?.push(b)??a.set(k,[b]),a),new Map)
 eq(f(init(9),a=>a%3).get(1),[1,4,7])
+{
 
-///same w/group then skip through keys
-/*注意这部分skipThrough Set实现经测都是错的
-此处留档备查 改正的见下文continual:reduce实现*/
-a='aabbccaabb'.split(''),b=[...new Set(a)]
-eq(b,'abc'.split(''))
-let skipThrough=(a,n=1,uniq=[...new Set(a)])=>
-	a.slice(a.indexOf(uniq[n]))
-eq(skipThrough(a).join(''),'bbccaabb')
-eq(skipThrough(a,2).join(''),'ccaabb')
-///错了
-skipThrough=(a,n=1,id=a=>a,uniq=[...new Set(a.map(id))])=>
-	a.slice(a.findIndex(a=>id(a)==uniq[n]))
-eq(skipThrough(a).join(''),'bbccaabb')
-eq(skipThrough(a,2).join(''),'ccaabb')
-
-///continual partition
+///continuously partition
+a='aabbccaabb'.split('')
 f=(a,id=a=>a)=>a.reduce(([y,z,k],a,_i,_r,ak=id(a))=>
 	k==ak?[y,z.concat(a),k]:[y.concat([z]),[a],ak],[[],[]])
 eq(f(a),[[[],['a','a'],['b','b'],['c','c'],['a','a']],['b','b'],'b'])
@@ -104,6 +98,7 @@ eq(g(a),[['a','a'],['b','b'],['c','c'],['a','a'],['b','b']])
 eq(init(10,a=>Math.floor(Math.sqrt(a*2+1))),[1,1,2,2,3,3,3,3,4,4])
 eq(g(init(10,a=>a*2+1),a=>Math.floor(Math.sqrt(a)))
 	,[[1,3],[5,7],[9,11,13,15],[17,19]])
+}
 
 const splitByContinual=(a,id
 	,f=(a,id=a=>a)=>a.reduce(([y,z,k],a,_i,_r,ak=id(a))=>

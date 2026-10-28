@@ -18,7 +18,7 @@ let _
 ,p1=a=>(p(a),a)
 ,n='p'//log function name
 Object.assign(g,{[n]:p,[n+1]:p1,nsp,logFnName:n})
-// Object.assign(g,{[n+'o']:po})
+Object.assign(g,{[n+'o']:console.log})
 
 ///assert msg非常难找
 import _as,{deepEqual as _eq,notDeepEqual as _neq

@@ -8,6 +8,9 @@ a=!0?2:_,eq(a,2)
 a=0?_:3,eq(a,3)
 a=0?_:0?_:4,eq(a,4)
 
+a=0?0:{},eq(a,{})
+throws(()=>eval(`a=0?0:()`),/Unexpected token '\)'/)
+
 ///like switch..case and shorter
 eq('abc'[3-2],'b')
 eq('abc'[3]??'x','x')

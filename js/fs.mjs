@@ -1,17 +1,50 @@
 import'./globals.mjs'
 // import{stampms}from'./date.mjs'
-import{readFile as rd,writeFile as wt}from'fs/promises'
-import{join,extname as xn}from'path'
-let
-modify=async(f,t,m)=>{
-	let a=await rd(f,'utf8')
+import fs,{readFile,writeFile as wt}from'fs/promises'
+import path,{join}from'path'
+/*
+`process.cwd()`是命令行 运行node时的dir
+path.resolve('.')同
+cwd只在一次运行node有效 下一次不会保留记忆
+:`/storage/emulated/0`
+*/
+eq(path.resolve('.'),process.cwd())
+/*
+`import.meta.filename/dirname/dir`是本fs文件的dir
+:`/storage/emulated/0/a_a/gh/hmmuaa/blog/js/fs.mjs``
+*/
+as(import.meta.filename.endsWith('/js/fs.mjs'))
+as(import.meta.dirname.endsWith('/js'))
+/*
+`process.argv[1]`是entry
+:`['/data/data/com.termux/files/usr/bin/node'
+,'/storage/emulated/0/a_a/gh/hmmuaa/blog/js/array.mjs'
+,..可以加更多]`
+aj同
+*/
+///以entry为cwd
+process.chdir(path.dirname(process.argv[1]))
+
+const{}={}
+,writeFile=(p,t,__,d=path.dirname(p))=>(
+	fs.mkdir(d,{recursive:true}).then(fs.writeFile(p,t,'utf8')))
+,writeWorkFile=d=>(f,t,__,p=join(d,f))=>(
+	fs.mkdir(d,{recursive:true}).then(fs.writeFile(p,t,'utf8')))
+,wf=writeWorkFile
+export const{}={}
+,modify=async(f,t,m)=>{
+	let a=await readFile(f,'utf8')
 	a=await m(a)
 	await wt(t,a)
 }
+,getSample=n=>readFile(join('samples',n),'utf8')
+,samples=new Proxy({},{get:(_,v)=>getSample(v)})
+///test run outputs
+,op=wf('.op')
+///以上是程序使用的 以下是用户使用的
+///工作结果
 ,output=(f,t,p=join('output',f))=>wt(p,t)
 // ,output=(n,t,f=join('output',n+1+'.z'))=>wt(f,t,{flag:'wx'})
-,getSample=n=>rd(join('samples',n),'utf8')
-,samples=new Proxy({},{get:(_,v)=>getSample(v)})
 
 /*存档文件#命名规则
 /`|`､`:`在mx中不能用做文件名 (豆包云盘可以)
@@ -40,7 +73,7 @@ mx中 文件名不支持的字符 ? | :
 )=>(a=a.search,!a?a:'`'+clearQuery(a))
 
 ///URL to filename
-,url2f_by_str=a=>a.replace(/^https:\/\/(www\.)?/,``)
+export const url2f_by_str=a=>a.replace(/^https:\/\/(www\.)?/,``)
 	.replace(/\/$/,``)
 	.replaceAll(`/`,esc)
 ,url2f=(a
@@ -51,6 +84,3 @@ mx中 文件名不支持的字符 ? | :
 		+a.pathname.replace(/\/$/,``).replaceAll(`/`,esc)
 		+fixQuery(a)
 )
-export default{modify,output,samples
-	,url2f
-}

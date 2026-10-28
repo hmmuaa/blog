@@ -24,12 +24,22 @@
 ..可运行`node`
 起始路径在`data/com.termux/files`
 
+#授权/授予权限
+You can open the Draw Over Apps permission activity with `am start --user 0 -a android.settings.action.MANAGE_OVERLAY_PERMISSION -d "package:com.termux"` so that user can manually enable/disable permission toggle.✓
+
+If you have root or adb access (android-tools package), then you can run appops set --user 0 com.termux SYSTEM_ALERT_WINDOW allow to grant it and appops set --user 0 com.termux SYSTEM_ALERT_WINDOW deny to revoke it automatically from background. Run appops get com.termux SYSTEM_ALERT_WINDOW to check current state.
+
 #示例
--cd '/storage/emulated/0/a_a/gh/hmmuaa/blog/js/zh2md'
--node 'zd2md,261012.mjs'
--node 'fs.mjs'
--cd '/storage/emulated/0/a_a/gh/hmmuaa/blog/js/cheatsheets'
+*备忘小技巧:
+路径中有空格时 除了用引号 还可以用斜杠转译
+-node 'drawing/bezier curves.mjs'
+-node drawing/bezier\ curves.mjs
+
+-cd /storage/emulated/0
+-cd /storage/emulated/0/a_a/gh/hmmuaa/blog/js/cheatsheets/regex
+-cd /storage/emulated/0/a_a/gh/hmmuaa/blog/js/zh2md
 -node /storage/emulated/0/a_a/gh/hmmuaa/blog/js/cheatsheets/literal,string,int,undefined,null.mjs
+-node 5,一次返回一组多个结果.mjs
 
 #坏结论
 虽然可以运行
