@@ -1,0 +1,5 @@
+Firefox Android 最后一个完全使用纯粹“原版”经典三点菜单（非新版 Nova UI、非测试阶段的 Nimbus 实验菜单）的正式版本是 Firefox 140。 [1] (https://www.reddit.com/r/firefox/comments/1s63jhw/has_anyone_figured_out_how_to_revert_to_the_old/)
+在 Mozilla 推进名为 “Nova” 的全新 Android 界面重构（包括全新的标签页管理和底部弹出菜单设计）期间：
+• Firefox 140 是旧版菜单默认存在的最后一个稳定版本。
+• 从 Firefox 141 开始，Mozilla 全面推送并强制启用了基于 Compose（可组合工具栏）和 Nova UI 的新版菜单。虽然在 141 ~ 145 版本期间，用户仍可以通过进入“秘密设置（Secret Settings）”或修改 Nimbus 实验参数强行恢复旧版菜单，但到了 Firefox 145/146 之后，相关的代码被彻底移除，任何后门开关均已失效。 [1] (https://www.reddit.com/r/firefox/comments/1mom32j/revert_to_old_menu_on_android/?tl=zh-hans), [2] (https://www.reddit.com/r/firefox/comments/1s63jhw/has_anyone_figured_out_how_to_revert_to_the_old/)
+因此，如果你想保留并继续使用无需任何繁琐修改的、最纯粹的经典原版菜单，建议将版本锁定在 140.0 稳定版。

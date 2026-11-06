@@ -11,10 +11,6 @@ a=0?_:0?_:4,eq(a,4)
 a=0?0:{},eq(a,{})
 throws(()=>eval(`a=0?0:()`),/Unexpected token '\)'/)
 
-///like switch..case and shorter
-eq('abc'[3-2],'b')
-eq('abc'[3]??'x','x')
-
 ///`&&||??`需要加括号 `:?`则不需要 加括号的格式都非常累赘
 a=0
 !0&&(a=1),eq(a,1)
@@ -31,6 +27,11 @@ eq(typeof t,'undefined')
 throws(()=>t,ReferenceError)
 global.t??=1
 eq(t,1)
+
+
+///switch-like, shorter switch..case
+eq('abc'[3-2],'b')
+eq('abc'[3]??'x','x')
 
 ///object map
 var name='true'
@@ -60,6 +61,7 @@ const fruitColor = fruit =>
   'Nothing');
 eq(fruitColor('plum'),'red')
 eq(fruitColor(),'Nothing')
+
 
 ///Optional chaining (?.)
 function printCustomerCity(customer) {

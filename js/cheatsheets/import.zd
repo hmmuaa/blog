@@ -1,0 +1,3 @@
+#import有几种情况
+当用`await import` 被im的`.mjs`中有自执行的代码时
+出错时不会跟踪行数 (aj)

@@ -7,12 +7,17 @@ function generatePolylineSVG(dataSets) {
   let polylines = '';
   dataSets.forEach((points, idx) => {
     const ptsStr = points.map(p => `${p.x},${p.y}`).join(' ');
-    polylines += `\n<polyline points="${ptsStr}" fill="none" stroke="${colors[idx]}" stroke-width="0.02"/>`;
+    polylines += `\n<polyline points="${ptsStr}" fill="none" stroke="${colors[idx]}" stroke-width="0.02" marker-end="url(#head)"/>`;
   });
 
   const svgText = `<?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 -0.4 3 0.8" xmlns="http://www.w3.org/2000/svg">
-  ${polylines}
+<defs>
+<marker id="head" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
+<circle cx="5" cy="5" r="4" fill="none" stroke="silver" stroke-width="2"/>
+</marker>
+</defs>
+${polylines}
 </svg>`;
   return svgText;
 }

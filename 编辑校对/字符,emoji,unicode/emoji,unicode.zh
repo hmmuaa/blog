@@ -76,8 +76,16 @@ U+00B6 ¶ PILCROW SIGN (&para;)
 
 #类似“#”的符号:解决知乎对#的冲突问题
 #|U+0023|NUMBER SIGN
-﹟|SMALL NUMBER SIGN|fx中显示和其他不一样
-♯|U+266F|MUSIC SHARP SIGN (&sharp;)
-⋕|U+22D5|EQUAL AND PARALLEL TO
-𖥻|U+1697B|Bamum Letter Phase-E Lom
+﹟|U+FE5F|SMALL NUMBER SIGN|网页中全角
+♯|U+266F|MUSIC SHARP SIGN (&sharp;)|网页中全角
+⋕|U+22D5|EQUAL AND PARALLEL TO|较窄
+𖥻|U+1697B|Bamum Letter Phase-E Lom|笔画最轻
 ⌗|U+2317|VIEWDATA SQUARE
+＃|U+FF03|Fullwidth Number Sign
+
+|	 ̷|0337|Combining Short Solidus Overlay 1  ̷2
+| / | U+002F | Solidus (Standard Slash) | 1/2
+| ⧸ |U+29F8|BIG SOLIDUS
+| ⁄ | U+2044 | Fraction Slash | 1⁄2 a⁄b 123⁄4567
+| ∕ | U+2215 | Division Slash |
+| ／ | U+FF0F | Fullwidth Solidu
