@@ -17,10 +17,13 @@ Halfwidth Left Corner Bracket
 半宽顿号“､” 源自“JIS X 0201”(半角日文区)编码
 ｡|h/w IDEOGRAPHIC FULL STOP|FF61
 ､､､､､|Halfwidth Ideographic Comma|FF64
-﹑﹑﹑﹑﹑|Small Ideographic Comma|FE51
+﹑﹑﹑﹑﹑|Small Ideographic Comma|FE51*
+阳光､空气､水
+阳光﹑空气﹑水
 /hwi(日文半角)有个问题 字高比正常高一些
 如果未指定行高 比如手机QQ音乐回复输入框中
 输入就会看到行高增加
+*`FE51`在多数字体中都是全角 g/fonts测试
 
 ﾟHalfwidth Katakana Semi-Voiced Sound Mark
 	ぱぴぷ
